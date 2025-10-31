@@ -18,18 +18,6 @@ export default function AccessoriesPage() {
 
     const getQuantity = (productId: string) => quantities[productId] || 1;
 
-    // Preload first 6 images for faster loading
-    useEffect(() => {
-        const preloadImages = () => {
-            filteredProducts.slice(0, 6).forEach(product => {
-                const img = new window.Image();
-                img.src = product.image;
-            });
-        };
-        preloadImages();
-    }, [filteredProducts]);
-
-
     // Filter products based on selected category
     const filteredProducts = selectedCategory === 'All'
         ? accessoriesProducts
@@ -38,6 +26,14 @@ export default function AccessoriesPage() {
                 ? product.category.includes(selectedCategory) // if category is an array, check if it contains the selectedCategory
                 : product.category === selectedCategory // if category is a single string, compare directly
         );
+
+    // Preload first 6 images for faster loading
+    useEffect(() => {
+        filteredProducts.slice(0, 6).forEach(product => {
+            const img = new window.Image();
+            img.src = product.image;
+        });
+    }, [filteredProducts]);
 
 
     return (
