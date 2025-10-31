@@ -1,8 +1,9 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { ChevronDown, Minus, Plus } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
 import { PRODUCTS_DATA } from "@/lib/productData";
 import { useCart } from "./CartContext";
@@ -49,6 +50,14 @@ export default function ProductPage() {
 
   const getQuantity = (productId: string) => quantities[productId] || 1;
 
+  // Preload first 6 images for faster loading
+  useEffect(() => {
+    products.slice(0, 6).forEach(product => {
+      const img = new window.Image();
+      img.src = product.image;
+    });
+  }, [products]);
+
   return (
     <main className="bg-white text-gray-900 mt-52 md:mt-36">     
       {/* Breadcrumb */}
@@ -88,11 +97,15 @@ export default function ProductPage() {
               <div className="relative mb-2 sm:mb-3">
                 <div className="w-full rounded-lg sm:rounded-xl bg-white" />
                 <Link href={`/products/${product.slug}`}>
-                  <img 
+                  <Image 
                     className='object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl'
                     src={product.image} 
                     alt={product.name}
-                    loading="lazy"
+                    width={300}
+                    height={300}
+                    priority={PRODUCTS_DATA.indexOf(product) < 6}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                 </Link>
               </div>

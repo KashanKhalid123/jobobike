@@ -1,7 +1,8 @@
 ﻿'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Minus, Plus } from 'lucide-react';
 import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from "@/lib/productData";
@@ -18,14 +19,33 @@ const LandingPage = () => {
 
   const getQuantity = (productId: string) => quantities[productId] || 1;
 
+  // Preload critical images for faster loading
+  useEffect(() => {
+    const criticalImages = [
+      '/images/banner.jpg',
+      '/images/mover/mover-1.png',
+      '/images/lyon/lyon-1.png',
+      '/images/eddy-x/eddy-1.png',
+      ...PRODUCTS_DATA.slice(0, 6).map(p => p.image)
+    ];
+    
+    criticalImages.forEach(src => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-white mt-32 md:mt-24">
 
       {/* Hero Section */}
       <section className="flex justify-center items-center sm:m-0">
-        <img
+        <Image
           src="/images/banner.jpg"
           alt="DYU E-Bikes"
+          width={1200}
+          height={600}
+          priority
           className="max-h-[600px] w-auto md:object-contain md:max-w-7xl md:px-4 sm:px-2"
         />
       </section>
@@ -43,9 +63,12 @@ const LandingPage = () => {
             {/* Fat Tire */}
             <Link href="/category/Fatbike">
               <div>
-                <img
+                <Image
                   src="/images/mover/mover-1.png"
                   alt="Fat Tire"
+                  width={288}
+                  height={240}
+                  priority
                   className="mx-auto w-72 h-60 object-contain"
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
@@ -58,9 +81,12 @@ const LandingPage = () => {
             {/* lightweight */}
             <Link href="/category/Pendler ">
               <div>
-                <img
+                <Image
                   src="/images/lyon/lyon-1.png"
                   alt="Step-thru"
+                  width={288}
+                  height={240}
+                  priority
                   className="mx-auto w-72 h-60 object-contain"
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
@@ -73,9 +99,12 @@ const LandingPage = () => {
             {/* Cargo & Family */}
             <Link href="/category/Lastesykkel">
               <div>
-                <img
+                <Image
                   src="/images/eddy-x/eddy-1.png"
                   alt="Cargo & Family"
+                  width={288}
+                  height={240}
+                  priority
                   className="mx-auto w-72 h-60 object-contain"
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
@@ -107,11 +136,15 @@ const LandingPage = () => {
             >
               <div className="relative mb-2 sm:mb-3">
                 <Link href={`/products/${product.slug}`}>
-                  <img
+                  <Image
                     className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
                     src={product.image}
                     alt={product.name}
-                    loading="lazy"
+                    width={300}
+                    height={300}
+                    priority={PRODUCTS_DATA.indexOf(product) < 3}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                 </Link>
               </div>
