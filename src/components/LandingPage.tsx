@@ -40,12 +40,9 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="flex justify-center items-center sm:m-0">
-        <Image
+        <img
           src="/images/banner.jpg"
           alt="DYU E-Bikes"
-          width={1200}
-          height={600}
-          priority
           className="max-h-[600px] w-auto md:object-contain md:max-w-7xl md:px-4 sm:px-2"
         />
       </section>
