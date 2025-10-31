@@ -228,7 +228,7 @@ export default function Navbar() {
               </Link>
 
               {/* Desktop Navigation */}
-              <div className="hidden lg:flex items-center space-x-8 text-sm font-medium">
+              <div className="hidden lg:flex items-center space-x-8 text-base font-medium">
                 {navItems.map((item, index) => (
                   <div
                     key={index}
@@ -237,14 +237,14 @@ export default function Navbar() {
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     {item.dropdown ? (
-                      <button className="flex items-center space-x-1 text-gray-700 hover:text-[#12b190] transition-colors py-2">
+                      <button className="flex items-center space-x-1 text-gray-700 hover:text-[#12b190] transition-colors py-2 text-base">
                         <span>{item.name}</span>
                         <ChevronDown className="w-4 h-4" />
                       </button>
                     ) : (
                       <Link
                         href={item.href}
-                        className="text-gray-700 hover:text-[#12b190] transition-colors py-2"
+                        className="text-gray-700 hover:text-[#12b190] transition-colors py-2 text-base"
                       >
                         {item.name}
                       </Link>

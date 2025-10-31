@@ -305,7 +305,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Integrated basket specially designed for e-bikes. Mounts directly on front or rear rack without additional hardware. Quick and easy installation.",
     fullDescription: "Integrated basket, specially designed for e-bikes. It can be mounted directly on the front or rear rack of the e-bike without the need for an additional front rack. Installation is quick and easy. The basket is made of aluminum alloy and features a durable matte black powder coating for excellent rust resistance. This makes it suitable for all weather conditions and ensures a long service life. The basket's design combines modern urban style with natural wood elements.",
     price: 88,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/Integrated-basket/basket.png.png",
     images: [
      "/images/Integrated-basket/basket.png.png",
@@ -354,7 +354,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Universal shockproof phone mount with anti-slip silicone pads and 360° rotation. Tool-free installation, fits phones 4.8\"-7.0\".",
     fullDescription: "Secure your phone on every ride with this shockproof, universal e-bike phone mount. Built to handle rough roads and daily commutes, it features a non-slip clamp, 360° adjustable viewing, and a quick-install system – no tools needed. Compatible with phones 132–182mm long (about 4.8\" to 7.0\") and mounts on handlebars up to 46mm in diameter. Full silicone padding protects your phone from scratches and shocks, while the safety lock clip enhances grip and stability during rides.",
     price: 29,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/holder-shock/holder.png.png",
     images: [
      "/images/holder-shock/holder.png.png",
@@ -396,7 +396,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Premium water bottle holder with JOBOBIKE branding. Durable construction with secure grip for standard bottles.",
     fullDescription: "Premium water bottle holder featuring the JOBOBIKE logo. Made from high-quality materials with a durable black finish. Provides secure retention for standard water bottles while adding a branded touch to your e-bike. Easy installation with included mounting hardware.",
     price: 19,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/bottle-logo/bottle-logo.png.png",
     images: [
       "/images/bottle-logo/bottle-logo.png.png",
@@ -443,7 +443,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Innovative magnetic water bottle holder for quick access. Strong magnetic grip with easy one-hand operation.",
     fullDescription: "Revolutionary magnetic water bottle holder that allows quick, one-handed access to your water bottle while riding. Features powerful magnets that securely hold your bottle in place, yet release easily when needed. Perfect for riders who need frequent hydration without stopping. Compatible with special magnetic water bottles or magnetic bottle adapters.",
     price: 35.99,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/magnet-holder/magnet-holder.png.png",
     images: [
      "/images/magnet-holder/magnet-holder.png.png",
@@ -481,7 +481,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Waterproof single-side pannier bag for rear rack. Perfect for daily commuting and grocery shopping.",
     fullDescription: "Versatile single-side pannier bag designed to attach to your rear rack. Features waterproof construction, reflective strips for safety, and multiple compartments for organized storage. Ideal for commuters who need moderate cargo capacity without the bulk of double panniers. Quick-release mounting system allows easy attachment and removal.",
     price: 66,
-    currency: "EUR",
+    currency: "NOK",
     image:"/images/pannier/pannier-1.png",
     images: [
       "/images/pannier/pannier-1.png",
@@ -522,7 +522,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Waterproof double pannier bag set for maximum cargo capacity. Ideal for touring, shopping, and heavy loads.",
     fullDescription: "Complete double-sided pannier bag system for serious cargo needs. Features two spacious bags that attach to both sides of your rear rack, providing balanced weight distribution and maximum storage capacity. Waterproof construction with roll-top closures, reflective safety elements, and quick-release mounting. Perfect for bike touring, large shopping trips, or transporting equipment.",
     price: 119,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/double-bag/bag.png.png",
     images: [
      "/images/double-bag/bag.png.png",
@@ -563,7 +563,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Weather protection canopy for cargo bikes. Shields rider and cargo from rain, sun, and wind.",
     fullDescription: "The JOBOBIKE Canopy provides comprehensive weather protection for cargo bike riders. This durable canopy shields you and your cargo from rain, harsh sun, and wind, making year-round riding more comfortable. Features a sturdy aluminum frame with waterproof fabric cover, easy installation, and adjustable positioning. Perfect for delivery riders, parents transporting children, or anyone who rides in all weather conditions.",
     price: 259,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/canopy/canopy.png.png",
     images: [
       "/images/canopy/canopy.png.png",
@@ -603,7 +603,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Front handlebar attachment for child passenger. Safe and comfortable seating position for young riders.",
     fullDescription: "The JOBOBIKE Monkey Bar is a front-mounted handlebar attachment that allows you to safely transport a child on your cargo bike. This innovative accessory provides a secure holding bar for children to grip while riding, positioned in front of the rider for maximum supervision and interaction. Features padded grips, adjustable positioning, and sturdy construction to ensure safety and comfort.",
     price: 220,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/monkey-bar/bar.png.png",
     images: [
       "/images/monkey-bar/bar.png.png",
@@ -641,7 +641,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Premium child seat with full back support and safety harness. Comfortable and secure seating for young passengers.",
     fullDescription: "The JOBOBIKE Captain Chair is a premium child seating solution for cargo bikes. Features a full backrest, comfortable cushioning, integrated safety harness, and footrests for secure and comfortable transport of children. Designed to work seamlessly with the Monkey Bar for the ultimate family riding experience. High-quality construction ensures durability and safety for years of use.",
     price: 245,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/chair/chair.png.png",
     images: [
       "/images/chair/chair.png.png",
@@ -681,7 +681,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Comfortable armrests for cargo bike seating. Adds extra comfort and security for passengers.",
     fullDescription: "The JOBOBIKE Armrest set provides additional comfort and security for cargo bike passengers. These padded armrests attach to the sides of the cargo platform, giving passengers something to hold onto and lean against during the ride. Particularly useful when transporting adults or older children, or when using the cargo area for extended trips.",
     price: 59,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/arm/arm.png.png",
     images: [
       "/images/arm/arm.png.png",
@@ -718,7 +718,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Adjustable safety belt for securing cargo or passengers on rear rack. Essential safety accessory.",
     fullDescription: "The JOBOBIKE Safety Belt is an essential safety accessory for securing cargo or passengers on your rear rack. Features adjustable length, quick-release buckle, and durable webbing that can withstand outdoor conditions. Perfect for securing bags, boxes, or providing additional safety for rear-mounted child seats.",
     price: 15,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/belt/belt.png.png",
     images: [
      "/images/belt/belt.png.png",
@@ -755,7 +755,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Comfortable cushion for rear rack passenger seating. Waterproof and padded for extended comfort.",
     fullDescription: "Transform your rear rack into a comfortable passenger seat with the JOBOBIKE Rear Rack Cushion. This padded cushion features waterproof covering, anti-slip bottom, and secure attachment straps. Perfect for giving friends a ride or creating a comfortable seating area on your cargo rack. The cushion is weather-resistant and easy to clean.",
     price: 40,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/cushion/cushion.png.png",
     images: [
       "/images/cushion/cushion.png.png",
@@ -793,7 +793,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Heavy-duty loading platform extension for cargo bikes. Increases cargo capacity and provides flat loading surface.",
     fullDescription: "The JOBOBIKE Loading-Bearing Plate is a heavy-duty platform extension designed for serious cargo needs. This reinforced plate mounts to your cargo bike's platform, providing a stable, flat surface for transporting larger items, boxes, or equipment. Made from durable materials that can handle significant weight, it's perfect for delivery riders, business use, or anyone who needs maximum cargo capacity.",
     price: 99,
-    currency: "EUR",
+    currency: "NOK",
     image: "/images/plate/plate.png.png",
     images: [
       "/images/plate/plate.png.png",

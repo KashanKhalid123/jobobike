@@ -104,20 +104,9 @@ export default function ProductPage() {
 
               <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between">
                 <div className="flex-1 min-w-0">
-                  {product.price < product.originalPrice ? (
-                    <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
-                      <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                        {formatCurrency(product.price)}
-                      </span>
-                      <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
-                        {formatCurrency(product.originalPrice)}
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                      {formatCurrency(product.price)}
-                    </span>
-                  )}
+                  <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                    {formatCurrency(product.price)}
+                  </span>
 
                   {product.features?.length && (
                     <ul className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-gray-700">

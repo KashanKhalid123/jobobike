@@ -46,10 +46,10 @@ export async function syncProductsWithStripe() {
         query: `product:'${stripeProduct.id}' AND active:'true'`,
       });
 
-      const priceInCents = product.price * 100;
+      const priceInOre = product.price * 100;
 
       if (existingPrices.data.length === 0 || 
-          existingPrices.data[0].unit_amount !== priceInCents) {
+          existingPrices.data[0].unit_amount !== priceInOre) {
         
         // Deactivate old prices
         for (const oldPrice of existingPrices.data) {
@@ -59,13 +59,13 @@ export async function syncProductsWithStripe() {
         // Create new price
         await stripe.prices.create({
           product: stripeProduct.id,
-          unit_amount: priceInCents,
-          currency: 'usd',
+          unit_amount: priceInOre,
+          currency: 'nok',
           metadata: {
             product_id: product.id,
           },
         });
-        console.log(`Created price for ${product.name}: $${product.price}`);
+        console.log(`Created price for ${product.name}: ${product.price} NOK`);
       }
 
     } catch (error) {

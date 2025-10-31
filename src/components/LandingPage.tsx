@@ -125,20 +125,9 @@ const LandingPage = () => {
 
               <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between">
                 <div className="flex-1 min-w-0">
-                  {product.price < product.originalPrice ? (
-                    <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
-                      <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                        {formatCurrency(product.price)}
-                      </span>
-                      {/* <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
-                        {formatCurrency(product.originalPrice)}
-                      </span> */}
-                    </div>
-                  ) : (
-                    <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                      {formatCurrency(product.price)}
-                    </span>
-                  )}
+                  <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                    {formatCurrency(product.price)}
+                  </span>
                 </div>
 
                 {/* Quantity + Add to Cart */}

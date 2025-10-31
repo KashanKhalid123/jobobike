@@ -21,11 +21,11 @@ export async function POST(req: Request) {
       mode: "payment",
       line_items: cartItems.map((item: any) => ({
         price_data: {
-          currency: "usd",
+          currency: "nok",
           product_data: {
             name: item.name,
           },
-          unit_amount: Math.round(item.price * 100), // cents
+          unit_amount: Math.round(item.price * 100), // øre
         },
         quantity: item.quantity,
       })),
@@ -41,9 +41,7 @@ export async function POST(req: Request) {
 
       // âœ… Enable shipping address (choose countries)
       shipping_address_collection: {
-        allowed_countries: ["US", "CA", "GB", "PK"], // add/remove as needed
-
-
+        allowed_countries: ["NO", "SE", "DK", "FI"], // Nordic countries
       },
 
    
