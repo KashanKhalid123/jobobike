@@ -320,7 +320,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
                 <button
                   key={weight}
                   type="button"
-                  onClick={() => handleChange('weightPreference', weight)}
+                  onClick={() => handleChange('weightPreference', weight.toLowerCase())}
                   className={`px-3 py-3 rounded-xl border-2 transition-all text-sm font-medium ${
                     formData.weightPreference === weight.toLowerCase()
                       ? 'border-[#12b190] bg-[#12b190] text-white shadow-lg transform scale-105'

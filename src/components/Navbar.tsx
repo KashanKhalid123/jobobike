@@ -120,7 +120,7 @@ export default function Navbar() {
       } finally {
         setIsSearching(false);
       }
-    }, 250);
+    }, 500);
 
     return () => clearTimeout(id);
   }, [query]);
@@ -545,7 +545,7 @@ export default function Navbar() {
 
               {/* Other Navigation Items */}
               {navItems
-                .filter((i) => i.name !== 'E-Bikes')
+                .filter((i) => i.name !== 'El-sykler')
                 .map((item) => (
                   <Link
                     key={item.name}

@@ -91,7 +91,8 @@ export default function ProductPage() {
                   <img 
                     className='object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl'
                     src={product.image} 
-                    alt={product.name} 
+                    alt={product.name}
+                    loading="lazy"
                   />
                 </Link>
               </div>

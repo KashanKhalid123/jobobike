@@ -1,4 +1,4 @@
-// lib/accessoriesProducts.ts
+﻿// lib/accessoriesProducts.ts
 
 export interface AccessoryProduct {
   id: string;
@@ -111,7 +111,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "This waterproof cover bag is specifically designed to protect your JOBOBIKE Sam folding bike from dust, water, and abrasions. The durable material ensures long-lasting protection, while the compact design makes it easy to store and transport your bike. Perfect for travel and storage.",
     price: 65,
     currency: "kr",
-    image: "/images/Thermal/thermal-bag-1.png ",
+    image: "/images/Thermal/thermal-bag-1.png",
     images: [
       "/images/Thermal/thermal-bag-1.png",
       "/images/Thermal/thermal-bag-2.png",
@@ -143,7 +143,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "The JOBOBIKE Lock offers premium security for your electric bike. Featuring a hardened steel construction with anti-pick and anti-drill protection, this lock ensures your bike stays safe. The weather-resistant design works in all conditions, and the compact size makes it easy to carry.",
     price: 35,
     currency: "kr",
-    image : "/images/lock/lock-1.png",
+    image: "/images/lock/lock-1.png",
     images: [
       "/images/lock/lock-1.png",
       "/images/lock/lock-2.png",
@@ -206,7 +206,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "The JOBOBIKE Bicycle Mirror enhances your riding safety with a wide field of view and shatterproof glass. The adjustable arm allows you to find the perfect viewing angle, while the sturdy mounting system keeps it secure even on bumpy roads. The sleek design complements your bike's aesthetics.",
     price: 20,
     currency: "kr",
-    image:"/images/mirror/mirror-1.png",
+    image: "/images/mirror/mirror-1.png",
     images: [
       "/images/mirror/mirror-1.png",
       "/images/mirror/mirror-2.png",
@@ -237,7 +237,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "The JOBOBIKE bicycle helmet was tested for safety by CE EN 1078 in Europe and CPSC in the USA. Impact-resistant PC material on the outside and a shock-absorbing EPS unibody on the inside provide maximum protection. The helmet features optimal ventilation, adjustable fit system, and removable padding for comfort during long rides.",
     price: 49,
     currency: "kr",
-    image:"/images/helmet/helmet-1.png",
+    image: "/images/helmet/helmet-1.png",
     images: [
       "/images/helmet/helmet-1.png",
       "/images/helmet/helmet-2.png",
@@ -271,7 +271,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "Stay hydrated on your rides with the JOBOBIKE Bottle Holder. Made from lightweight aluminum with a secure grip design, it holds bottles firmly in place even on rough terrain. The universal mounting system fits all JOBOBIKE frames, and the sleek design matches your bike's aesthetic.",
     price: 15,
     currency: "kr",
-    image:"/images/bottle/bottle-1.png",
+    image: "/images/bottle/bottle-1.png",
     images: [
       "/images/bottle/bottle-1.png",
       "/images/bottle/bottle-2.png",
@@ -308,7 +308,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/Integrated-basket/basket.png.png",
     images: [
-     "/images/Integrated-basket/basket.png.png",
+     "/images/Integrated-basket/basket.png",
     ],
     category: ["Baskets", "Storage", "Cargo"],
     specifications: [
@@ -357,7 +357,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/holder-shock/holder.png.png",
     images: [
-     "/images/holder-shock/holder.png.png",
+     "/images/holder-shock/holder.png",
     ],
     category: ["Phone Holders", "Accessories", "Navigation"],
     specifications: [
@@ -399,7 +399,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/bottle-logo/bottle-logo.png.png",
     images: [
-      "/images/bottle-logo/bottle-logo.png.png",
+      "/images/bottle-logo/bottle-logo.png",
     ],
     category: ["Accessories", "Hydration", "Bottle Holders"],
     specifications: [
@@ -446,7 +446,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/magnet-holder/magnet-holder.png.png",
     images: [
-     "/images/magnet-holder/magnet-holder.png.png",
+     "/images/magnet-holder/magnet-holder.png",
     ],
     category: ["Accessories", "Hydration", "Bottle Holders", "Magnetic"],
     specifications: [
@@ -482,7 +482,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "Versatile single-side pannier bag designed to attach to your rear rack. Features waterproof construction, reflective strips for safety, and multiple compartments for organized storage. Ideal for commuters who need moderate cargo capacity without the bulk of double panniers. Quick-release mounting system allows easy attachment and removal.",
     price: 66,
     currency: "NOK",
-    image:"/images/pannier/pannier-1.png",
+    image: "/images/pannier/pannier-1.png",
     images: [
       "/images/pannier/pannier-1.png",
       "/images/pannier/pannier-2.png",
@@ -525,7 +525,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/double-bag/bag.png.png",
     images: [
-     "/images/double-bag/bag.png.png",
+     "/images/double-bag/bag.png",
     ],
     category: ["Bags", "Panniers", "Storage", "Cargo", "Touring"],
     specifications: [
@@ -566,7 +566,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/canopy/canopy.png.png",
     images: [
-      "/images/canopy/canopy.png.png",
+      "/images/canopy/canopy.png",
     ],
     category: ["Weather Protection", "Cargo", "Accessories"],
     specifications: [
@@ -606,7 +606,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/monkey-bar/bar.png.png",
     images: [
-      "/images/monkey-bar/bar.png.png",
+      "/images/monkey-bar/bar.png",
     ],
     category: ["Child Transport", "Safety", "Cargo", "Accessories"],
     specifications: [
@@ -644,7 +644,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/chair/chair.png.png",
     images: [
-      "/images/chair/chair.png.png",
+      "/images/chair/chair.png",
     ],
     category: ["Child Transport", "Seating", "Safety", "Cargo"],
     specifications: [
@@ -684,7 +684,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/arm/arm.png.png",
     images: [
-      "/images/arm/arm.png.png",
+      "/images/arm/arm.png",
     ],
     category: ["Comfort", "Cargo", "Accessories", "Seating"],
     specifications: [
@@ -721,7 +721,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/belt/belt.png.png",
     images: [
-     "/images/belt/belt.png.png",
+     "/images/belt/belt.png",
     ],
     category: ["Safety", "Cargo", "Accessories"],
     specifications: [
@@ -758,7 +758,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/cushion/cushion.png.png",
     images: [
-      "/images/cushion/cushion.png.png",
+      "/images/cushion/cushion.png",
     ],
     category: ["Comfort", "Seating", "Accessories"],
     specifications: [
@@ -796,7 +796,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     currency: "NOK",
     image: "/images/plate/plate.png.png",
     images: [
-      "/images/plate/plate.png.png",
+      "/images/plate/plate.png",
     ],
     category: ["Cargo", "Accessories", "Heavy Duty"],
     specifications: [

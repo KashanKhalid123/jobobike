@@ -72,8 +72,13 @@ export default function AccessoriesPage() {
                                     <Link href={`/accessories/${product.slug}`}>
                                         <img
                                             className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
-                                            src={product.images[0]}
+                                            src={product.image}
                                             alt={product.name}
+                                            loading="lazy"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkluZ2VuIGJpbGRlPC90ZXh0Pjwvc3ZnPg==';
+                                            }}
                                         />
                                         {!product.inStock && (
                                             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
