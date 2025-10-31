@@ -28,32 +28,33 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'JOBO Bike | Premium E-Bikes',
-  description: 'Transform your campus experience with Sykkellageret premium e-bikes. Up to 50% OFF Back to School Sale. Free shipping, 2-year warranty, perfect for students.',
-  keywords: 'e-bikes, electric bikes, student bikes, campus transportation, sykkellageret, back to school, folding bikes',
-  authors: [{ name: 'Sykkellageret Cycle Team' }],
+  title: 'JOBOBIKE Norge | Premium El-sykler - Gratis Frakt',
+  description: 'Norges ledende leverandør av premium el-sykler. Over 300 partnere i Europa, 50.000+ solgte sykler. Gratis frakt, 2 års garanti. Fatbike, lastesykkel og pendlersykler.',
+  keywords: 'el-sykkel, elektrisk sykkel, jobobike, fatbike, lastesykkel, pendlersykkel, norge, gratis frakt, el-sykkel norge, elektrisk transport',
+  authors: [{ name: 'JOBOBIKE Norge' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
-    title: 'Sykkellageret',
-    description: 'Premium e-bikes designed for students. Up to 50% OFF + Free Shipping.',
+    title: 'JOBOBIKE Norge - Premium El-sykler med Gratis Frakt',
+    description: 'Norges største utvalg av premium el-sykler. 300+ partnere i Europa, gratis frakt til hele Norge.',
     type: 'website',
-    url: 'https://sykkellageret.no',
-    siteName: 'Sykkellageret',
+    url: 'https://jobobike.no',
+    siteName: 'JOBOBIKE Norge',
+    locale: 'nb_NO',
     images: [
       {
-        url: '/og-image.jpg', // Add your OpenGraph image
+        url: '/images/banner.jpg',
         width: 1200,
         height: 630,
-        alt: 'Sykkellageret E-Bikes for Students',
+        alt: 'JOBOBIKE Premium El-sykler Norge',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sykkellageret',
-    description: 'Premium e-bikes designed for students. Up to 50% OFF + Free Shipping.',
-    images: ['/twitter-image.jpg'], // Add your Twitter image
+    title: 'JOBOBIKE Norge - Premium El-sykler',
+    description: 'Norges største utvalg av premium el-sykler. Gratis frakt til hele Norge.',
+    images: ['/images/banner.jpg'],
   },
 };
 
@@ -63,12 +64,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="nb" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#2563eb" />
+        <meta name="theme-color" content="#12b190" />
+        <link rel="canonical" href="https://jobobike.no" />
+        <meta name="geo.region" content="NO" />
+        <meta name="geo.placename" content="Norge" />
+        <meta name="language" content="Norwegian" />
         
         {/* Preload critical fonts */}
         <link
