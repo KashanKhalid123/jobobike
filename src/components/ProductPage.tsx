@@ -50,9 +50,9 @@ export default function ProductPage() {
 
   const getQuantity = (productId: string) => quantities[productId] || 1;
 
-  // Preload first 6 images for faster loading
+  // Preload all visible images immediately
   useEffect(() => {
-    products.slice(0, 6).forEach(product => {
+    products.forEach(product => {
       const img = new window.Image();
       img.src = product.image;
     });
@@ -103,8 +103,7 @@ export default function ProductPage() {
                     alt={product.name}
                     width={300}
                     height={300}
-                    priority
-                    loading="eager"
+                    unoptimized
                     sizes="(max-width: 640px) 150px, 300px"
                   />
                 </Link>

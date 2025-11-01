@@ -27,9 +27,9 @@ export default function AccessoriesPage() {
                 : product.category === selectedCategory // if category is a single string, compare directly
         );
 
-    // Preload first 6 images for faster loading
+    // Preload all visible images immediately
     useEffect(() => {
-        filteredProducts.slice(0, 6).forEach(product => {
+        filteredProducts.forEach(product => {
             const img = new window.Image();
             img.src = product.image;
         });
@@ -83,8 +83,7 @@ export default function AccessoriesPage() {
                                             alt={product.name}
                                             width={300}
                                             height={300}
-                                            priority
-                                            loading="eager"
+                                            unoptimized
                                             sizes="(max-width: 640px) 150px, 300px"
                                         />
                                         {!product.inStock && (

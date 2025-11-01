@@ -42,7 +42,7 @@ export default function CategoryClient({ products, slug }: CategoryClientProps) 
   }, [sort, page, products]);
 
   useEffect(() => {
-    sortedProducts.slice(0, 6).forEach(product => {
+    sortedProducts.forEach(product => {
       const img = new window.Image();
       img.src = product.image;
     });
@@ -95,8 +95,7 @@ export default function CategoryClient({ products, slug }: CategoryClientProps) 
                     alt={product.name}
                     width={300}
                     height={300}
-                    priority
-                    loading="eager"
+                    unoptimized
                     sizes="(max-width: 640px) 150px, 300px"
                   />
                 </Link>
