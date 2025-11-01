@@ -17,10 +17,17 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    product.images.forEach(src => {
-      const img = new window.Image();
-      img.src = src;
-    });
+    // Preload first image immediately
+    const firstImg = new window.Image();
+    firstImg.src = product.images[0];
+    
+    // Preload other images with slight delay
+    setTimeout(() => {
+      product.images.slice(1).forEach(src => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    }, 100);
   }, [product.images]);
 
   const handleAddToCart = () => {
@@ -57,6 +64,9 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 src={product.images[selectedImage]}
                 alt={product.name}
                 fill
+                priority
+                loading="eager"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -75,6 +85,8 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                     src={image}
                     alt={`${product.name} - View ${index + 1}`}
                     fill
+                    priority
+                    loading="eager"
                     className="object-cover"
                   />
                 </button>
