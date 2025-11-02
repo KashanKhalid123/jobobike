@@ -32,6 +32,8 @@ export default function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   // desktop e-bikes accordion
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+  // navbar dropdown
+  const [navbarDropdownOpen, setNavbarDropdownOpen] = useState(false);
 
   // dynamic categories
   const [categories, setCategories] = useState<any[]>([]);
@@ -156,7 +158,11 @@ export default function Navbar() {
   const moreMenuItems = [
     { name: 'El-sykler', href: '/', dropdown: true },
     { name: 'Sykkelutstyr', href: '/accessorie' },
+    { name: 'Bli forhandler', href: '/bli-forhandler' },
+    { name: 'Om oss', href: '/about' },
     { name: 'Kontakt oss', href: '/contact' },
+    { name: 'Personvernerklæring', href: '/privacy' },
+    { name: 'Vilkår for tjeneste', href: '/terms' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -324,7 +330,59 @@ export default function Navbar() {
         {/* BOTTOM ROW - Secondary Navigation */}
         <div className="border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center h-14 gap-8">
+            <div className="flex items-center h-14 gap-8 relative">
+              <div className="relative">
+                <button
+                  onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
+                  className="flex items-center gap-1 text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                >
+                  <span>El-sykler</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {navbarDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl p-3 z-50 w-[500px]">
+                    <div className="grid grid-cols-3 gap-2">
+                      {categories.map((cat) => (
+                        <Link
+                          key={cat.slug}
+                          href={`/category/${cat.slug}`}
+                          className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                          onClick={() => setNavbarDropdownOpen(false)}
+                        >
+                          <img
+                            src={cat.image}
+                            alt={cat.name}
+                            className="w-14 h-14 object-contain rounded-md border border-gray-200 mb-1 flex-shrink-0"
+                          />
+                          <div className="text-center">
+                            <div className="text-sm font-medium text-gray-900">{cat.name}</div>
+                            <div className="text-xs text-gray-500">{cat.tagline}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <Link
+                      href="/cycle"
+                      className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                      onClick={() => setNavbarDropdownOpen(false)}
+                    >
+                      Se alle el-sykler
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <Link
+                href="/accessorie"
+                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+              >
+                Sykkelutstyr
+              </Link>
+              <Link
+                href="/bli-forhandler"
+                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+              >
+                Bli forhandler
+              </Link>
               <Link
                 href="/about"
                 className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
@@ -332,10 +390,10 @@ export default function Navbar() {
                 Om oss
               </Link>
               <Link
-                href="/bli-forhandler"
+                href="/contact"
                 className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
               >
-                Bli forhandler
+                Kontakt oss
               </Link>
             </div>
           </div>
@@ -469,11 +527,39 @@ export default function Navbar() {
                 Sykkelutstyr
               </Link>
               <Link
+                href="/bli-forhandler"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Bli forhandler
+              </Link>
+              <Link
+                href="/about"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Om oss
+              </Link>
+              <Link
                 href="/contact"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                 onClick={toggleMobileMenu}
               >
                 Kontakt oss
+              </Link>
+              <Link
+                href="/privacy"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Personvernerklæring
+              </Link>
+              <Link
+                href="/terms"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Vilkår for tjeneste
               </Link>
 
             </div>

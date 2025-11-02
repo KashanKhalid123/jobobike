@@ -53,6 +53,7 @@ const Footer = () => {
             <h3 className="font-semibold mb-3 text-base">Support</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/contact" className="hover:text-[#12b190]">Kontakt oss</Link></li>
+              <li><Link href="/afterSale" className="hover:text-[#12b190]">Ettersalgsservice</Link></li>
             </ul>
           </div>
 
@@ -62,7 +63,6 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/privacy" className="hover:text-[#12b190]">Personvernerklæring</Link></li>
               <li><Link href="/terms" className="hover:text-[#12b190]">Vilkår for tjeneste</Link></li>
-              <li><Link href="/afterSale" className="hover:text-[#12b190]">Ettersalgsservice</Link></li>
             </ul>
           </div>
 
