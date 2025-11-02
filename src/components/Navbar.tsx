@@ -356,7 +356,6 @@ export default function Navbar() {
                   alt="JOBOBIKE"
                   className="h-8 w-auto"
                 />
-                <h2 className="text-lg font-bold text-gray-900">JOBOBIKE</h2>
               </div>
               <button
                 onClick={toggleMobileMenu}
