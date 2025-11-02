@@ -329,12 +329,12 @@ export default function Navbar() {
 
         {/* BOTTOM ROW - Secondary Navigation */}
         <div className="border-t border-gray-100">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center h-14 gap-8 relative">
-              <div className="relative">
+          <div className="max-w-7xl mx-auto px-2">
+            <div className="flex items-center h-14 gap-2 md:gap-8 relative overflow-x-auto">
+              <div className="relative flex-shrink-0">
                 <button
                   onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
-                  className="flex items-center gap-1 text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                  className="flex items-center gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap"
                 >
                   <span>El-sykler</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
@@ -373,25 +373,25 @@ export default function Navbar() {
               </div>
               <Link
                 href="/accessorie"
-                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Sykkelutstyr
               </Link>
               <Link
                 href="/bli-forhandler"
-                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Bli forhandler
               </Link>
               <Link
                 href="/about"
-                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Om oss
               </Link>
               <Link
                 href="/contact"
-                className="text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Kontakt oss
               </Link>
