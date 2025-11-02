@@ -41,6 +41,7 @@ export default function Navbar() {
   // refs
   const desktopSearchRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchRef = useRef<HTMLDivElement | null>(null);
+  const navbarDropdownRef = useRef<HTMLDivElement | null>(null);
 
   // fetch categories from products
   useEffect(() => {
@@ -125,14 +126,20 @@ export default function Navbar() {
     return () => clearTimeout(id);
   }, [query]);
 
-  // close search dropdown on outside click
+  // close search dropdown and navbar dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
       const insideDesktop = desktopSearchRef.current?.contains(target);
       const insideMobile = mobileSearchRef.current?.contains(target);
+      const insideNavbarDropdown = navbarDropdownRef.current?.contains(target);
+      
       if (!insideDesktop && !insideMobile) {
         setShowResults(false);
+      }
+      
+      if (!insideNavbarDropdown) {
+        setNavbarDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -209,7 +216,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="fixed top-10 w-full z-40 bg-white border-b shadow-sm">
+      <nav className="fixed top-10 w-full z-50 bg-white border-b shadow-sm">
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 gap-4">
@@ -328,10 +335,10 @@ export default function Navbar() {
         </div>
 
         {/* BOTTOM ROW - Secondary Navigation */}
-        <div className="border-t border-gray-100">
+        <div className="border-t border-gray-100 hidden md:block">
           <div className="max-w-7xl mx-auto px-2">
-            <div className="flex items-center h-14 gap-2 md:gap-8 relative overflow-x-auto">
-              <div className="relative flex-shrink-0">
+            <div className="flex items-center h-14 gap-2 md:gap-8 relative overflow-x-auto overflow-y-visible">
+              <div className="relative flex-shrink-0" ref={navbarDropdownRef}>
                 <button
                   onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
                   className="flex items-center gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap"
@@ -339,37 +346,7 @@ export default function Navbar() {
                   <span>El-sykler</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                {navbarDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl p-3 z-50 w-[500px]">
-                    <div className="grid grid-cols-3 gap-2">
-                      {categories.map((cat) => (
-                        <Link
-                          key={cat.slug}
-                          href={`/category/${cat.slug}`}
-                          className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
-                          onClick={() => setNavbarDropdownOpen(false)}
-                        >
-                          <img
-                            src={cat.image}
-                            alt={cat.name}
-                            className="w-14 h-14 object-contain rounded-md border border-gray-200 mb-1 flex-shrink-0"
-                          />
-                          <div className="text-center">
-                            <div className="text-sm font-medium text-gray-900">{cat.name}</div>
-                            <div className="text-xs text-gray-500">{cat.tagline}</div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                    <Link
-                      href="/cycle"
-                      className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
-                      onClick={() => setNavbarDropdownOpen(false)}
-                    >
-                      Se alle el-sykler
-                    </Link>
-                  </div>
-                )}
+
               </div>
               <Link
                 href="/accessorie"
@@ -400,6 +377,47 @@ export default function Navbar() {
         </div>
 
       </nav>
+
+      {/* Navbar Dropdown - Fixed Position */}
+      {navbarDropdownOpen && (
+        <div className="fixed top-[150px] w-full z-[100]">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                {categories.length > 0 ? categories.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                    onClick={() => setNavbarDropdownOpen(false)}
+                  >
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-14 h-14 object-contain rounded-md border border-gray-200 mb-1 flex-shrink-0"
+                    />
+                    <div className="text-center">
+                      <div className="text-sm font-medium text-gray-900">{cat.name}</div>
+                      <div className="text-xs text-gray-500">{cat.tagline}</div>
+                    </div>
+                  </Link>
+                )) : (
+                  <div className="col-span-full text-center py-4 text-gray-500">
+                    Laster kategorier...
+                  </div>
+                )}
+              </div>
+              <Link
+                href="/cycle"
+                className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                onClick={() => setNavbarDropdownOpen(false)}
+              >
+                Se alle el-sykler
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* MOBILE MENU (unchanged logic, only header matches new top row) */}
       {isMobileMenuOpen && (
