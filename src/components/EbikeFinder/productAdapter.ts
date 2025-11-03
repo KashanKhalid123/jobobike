@@ -3,7 +3,7 @@
 
 import { type Bike } from './calculatorLogic';
 
-// Import your ProductCard interface
+// Import your ProductCard interface - simplified version for adapter
 export interface ProductCard {
   id: string;
   name: string;
@@ -12,31 +12,31 @@ export interface ProductCard {
   image: string;
   category: string[];
   description: string;
-  tekniskeSpesifikasjoner: {
-    generelt: {
-      vekt: string;
-      rammeType: string;
-      sammenleggbar: boolean;
+  tekniskeSpesifikasjoner?: {
+    generelt?: {
+      vekt?: string;
+      rammeType?: string;
+      sammenleggbar?: boolean;
     };
-    motor: {
-      type: string;
-      effekt: string;
-      plassering: string;
+    motor?: {
+      type?: string;
+      effekt?: string;
+      plassering?: string;
     };
-    batteri: {
-      kapasitet: string;
+    batteri?: {
+      kapasitet?: string;
     };
-    ytelse: {
-      rekkevidde: {
-        renElektrisk: string;
-        pedalAssistanse: string;
-        kombinert: string;
+    ytelse?: {
+      rekkevidde?: {
+        renElektrisk?: string;
+        pedalAssistanse?: string;
+        kombinert?: string;
       };
     };
-    komfort: {
-      demping: {
-        foran: boolean;
-        bak: boolean;
+    komfort?: {
+      demping?: {
+        foran?: boolean;
+        bak?: boolean;
       };
     };
   };
@@ -53,8 +53,8 @@ export function adaptProductsToBikes(products: ProductCard[]): Bike[] {
     motor_position: product.tekniskeSpesifikasjoner?.motor?.plassering || 'Mid-drive',
     battery_Ah: parseBatteryAh(product.tekniskeSpesifikasjoner?.batteri?.kapasitet),
     weight_kg: parseWeight(product.tekniskeSpesifikasjoner?.generelt?.vekt),
-    terrain: mapCategoryToTerrain(product.category),
-    usage_type: mapCategoryToUsage(product.category),
+    terrain: mapCategoryToTerrain(product.category || []),
+    usage_type: mapCategoryToUsage(product.category || []),
     comfort_level: determineComfortLevel(product),
     frame_height_cm: estimateFrameHeight(product.tekniskeSpesifikasjoner?.generelt?.rammeType),
     tire_width: 2.0,
@@ -204,7 +204,8 @@ function determineComfortLevel(product: ProductCard): string {
   }
   
   // Check category for sport bikes
-  const isSport = product.category.some(cat => {
+  const categories = product.category || [];
+  const isSport = categories.some(cat => {
     const lower = cat.toLowerCase();
     return lower.includes('sport') || 
            lower.includes('mountain') || 
