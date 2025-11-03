@@ -12,31 +12,31 @@ export interface ProductCard {
   image: string;
   category: string[];
   description: string;
-  technicalSpecifications: {
-    general: {
-      weight: string;
-      frameType: string;
-      foldable: boolean;
+  tekniskeSpesifikasjoner: {
+    generelt: {
+      vekt: string;
+      rammeType: string;
+      sammenleggbar: boolean;
     };
     motor: {
       type: string;
-      power: string;
-      location: string;
+      effekt: string;
+      plassering: string;
     };
-    battery: {
-      capacity: string;
+    batteri: {
+      kapasitet: string;
     };
-    performance: {
-      range: {
-        pureElectric: string;
-        pedalAssist: string;
-        combined: string;
+    ytelse: {
+      rekkevidde: {
+        renElektrisk: string;
+        pedalAssistanse: string;
+        kombinert: string;
       };
     };
-    comfort: {
-      suspension: {
-        front: boolean;
-        rear: boolean;
+    komfort: {
+      demping: {
+        foran: boolean;
+        bak: boolean;
       };
     };
   };
@@ -48,15 +48,15 @@ export function adaptProductsToBikes(products: ProductCard[]): Bike[] {
     name: product.name,
     brand: extractBrand(product.name),
     price: product.price,
-    range_km: parseRangeKm(product.technicalSpecifications?.performance?.range),
-    motor_watt: parseMotorWatt(product.technicalSpecifications?.motor?.power),
-    motor_position: product.technicalSpecifications?.motor?.location || 'Mid-drive',
-    battery_Ah: parseBatteryAh(product.technicalSpecifications?.battery?.capacity),
-    weight_kg: parseWeight(product.technicalSpecifications?.general?.weight),
+    range_km: parseRangeKm(product.tekniskeSpesifikasjoner?.ytelse?.rekkevidde),
+    motor_watt: parseMotorWatt(product.tekniskeSpesifikasjoner?.motor?.effekt),
+    motor_position: product.tekniskeSpesifikasjoner?.motor?.plassering || 'Mid-drive',
+    battery_Ah: parseBatteryAh(product.tekniskeSpesifikasjoner?.batteri?.kapasitet),
+    weight_kg: parseWeight(product.tekniskeSpesifikasjoner?.generelt?.vekt),
     terrain: mapCategoryToTerrain(product.category),
     usage_type: mapCategoryToUsage(product.category),
     comfort_level: determineComfortLevel(product),
-    frame_height_cm: estimateFrameHeight(product.technicalSpecifications?.general?.frameType),
+    frame_height_cm: estimateFrameHeight(product.tekniskeSpesifikasjoner?.generelt?.rammeType),
     tire_width: 2.0,
     image: product.image,
     description: product.description,
@@ -73,7 +73,7 @@ function parseRangeKm(range: any): number {
   if (!range) return 50;
   
   // Try to get the best range value
-  const rangeStr = range.pedalAssist || range.combined || range.pureElectric || '50km';
+  const rangeStr = range.pedalAssistanse || range.kombinert || range.renElektrisk || '50km';
   
   // Extract numbers from string like "80-100km" or "80km"
   const matches = rangeStr.match(/(\d+)/g);
@@ -191,15 +191,15 @@ function mapCategoryToUsage(categories: string[]): string[] {
 }
 
 function determineComfortLevel(product: ProductCard): string {
-  const suspension = product.technicalSpecifications?.comfort?.suspension;
+  const suspension = product.tekniskeSpesifikasjoner?.komfort?.demping;
   
   // Check for full suspension
-  if (suspension?.front && suspension?.rear) {
+  if (suspension?.foran && suspension?.bak) {
     return 'Extra comfort';
   }
   
   // Check for front suspension only
-  if (suspension?.front) {
+  if (suspension?.foran) {
     return 'Normal';
   }
   
