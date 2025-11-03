@@ -32,9 +32,9 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
 }
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.availableSizes[0]);
+  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || "");
+  const [selectedColor, setSelectedColor] = useState(product.availableColors?.[0] || "");
+  const [selectedSize, setSelectedSize] = useState(product.availableSizes?.[0] || "");
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const { updateQuantity } = useCart();
 
