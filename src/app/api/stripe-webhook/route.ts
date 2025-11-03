@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
+import { OrderConfirmationEmail } from "@/app/email/OrderConfirmationEmail";
 
 export const runtime = "nodejs";
 
@@ -44,23 +45,39 @@ export async function POST(req: NextRequest) {
     console.log("💰 Checkout completed:", session.id);
 
     try {
-      // ✅ Build the email content
-      const emailBody = `
-        ✅ New Stripe Payment Successful!
+      // Get full session with line items
+      const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+        expand: ["line_items"],
+      });
 
-        Customer: ${session.customer_details?.name}
-        Email: ${session.customer_details?.email}
-        Amount: ${(session.amount_total ?? 0) / 100} NOK
-        Session ID: ${session.id}
-        Payment Mode: ${session.mode || 'payment'}
-      `;
+      const lineItems = fullSession.line_items?.data ?? [];
+      const items = lineItems.map((item) => ({
+        name: item.description ?? "Unknown Item",
+        quantity: item.quantity ?? 1,
+        price: (item.amount_total ?? 0) / 100,
+      }));
 
-      // ✅ Send simple test email
+      const total = (fullSession.amount_total ?? 0) / 100;
+      const email = fullSession.customer_details?.email;
+      const name = fullSession.customer_details?.name ?? "Customer";
+      const orderId = fullSession.id;
+
+      if (!email) {
+        console.warn("⚠️ No customer email found, skipping email send");
+        return new Response("OK", { status: 200 });
+      }
+
+      // ✅ Send order confirmation email
       const { data, error } = await resend.emails.send({
-        from: "Jobobike <onboarding@resend.dev>", // works without any domain setup
-        to: ["kashankhalid429@gmail.com"], // ✅ your email for testing
-        subject: `✅ New Stripe Payment (${session.id})`,
-        text: emailBody,
+        from: "JOBOBIKE <onboarding@resend.dev>",
+        to: [email],
+        subject: `Order Confirmation #${orderId}`,
+        react: OrderConfirmationEmail({
+          orderId,
+          customerName: name,
+          items,
+          total,
+        }),
       });
 
       if (error) {
@@ -68,10 +85,10 @@ export async function POST(req: NextRequest) {
         return new Response("Resend error", { status: 500 });
       }
 
-      console.log("📨 Resend email sent successfully:", data);
+      console.log("📨 Order confirmation email sent successfully:", data);
     } catch (err) {
-      console.error("❌ Error sending Resend email:", err);
-      return new Response("Webhook email error", { status: 500 });
+      console.error("❌ Error processing order:", err);
+      return new Response("Webhook processing error", { status: 500 });
     }
   }
 

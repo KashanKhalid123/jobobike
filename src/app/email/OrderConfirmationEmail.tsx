@@ -53,7 +53,7 @@ export const OrderConfirmationEmail = ({
     </p>
 
     <footer style={{ marginTop: "30px", fontSize: "12px", color: "#888" }}>
-      © {new Date().getFullYear()} YourStoreName — All rights reserved.
+      © {new Date().getFullYear()} JOBOBIKE — All rights reserved.
     </footer>
   </div>
 );
