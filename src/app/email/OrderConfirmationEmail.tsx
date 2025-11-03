@@ -1,3 +1,5 @@
+// app/email/OrderConfirmationEmail.tsx
+
 import * as React from "react";
 
 interface OrderEmailProps {
@@ -16,7 +18,8 @@ export const OrderConfirmationEmail = ({
   <div style={{ fontFamily: "Arial, sans-serif", color: "#222" }}>
     <h1>Thank you for your order, {customerName}!</h1>
     <p>
-      Your order <strong>#{orderId}</strong> has been successfully received and paid.
+      Your order <strong>#{orderId}</strong> has been successfully received and
+      paid.
     </p>
 
     <h3>Order Summary</h3>
@@ -44,8 +47,9 @@ export const OrderConfirmationEmail = ({
     </p>
 
     <p>
-      We’ll notify you once your order has been shipped.  
-      You can reply to this email for any support inquiries.
+      We’ll notify you once your order has been shipped.
+      <br />
+      You can reply to this email for any questions.
     </p>
 
     <footer style={{ marginTop: "30px", fontSize: "12px", color: "#888" }}>
