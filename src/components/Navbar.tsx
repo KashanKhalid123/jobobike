@@ -53,7 +53,7 @@ export default function Navbar() {
         const product = getProductBySlug(slug);
         if (product && product.category && Array.isArray(product.category)) {
           product.category.forEach((cat: string) => {
-            if (!categoryMap.has(cat)) {
+            if (cat && cat.trim() && !categoryMap.has(cat)) {
               categoryMap.set(cat, {
                 name: formatCategoryName(cat),
                 slug: cat,
@@ -346,7 +346,6 @@ export default function Navbar() {
                   <span>El-sykler</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-
               </div>
               <Link
                 href="/accessorie"

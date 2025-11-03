@@ -273,7 +273,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "USB-ladeport",
     ],
     badge: "All-terreng",
-    category: ["Fatbike", "Gjennomgående"],
+    category: ["Fatbike"],
     rating: 4.7,
     reviewCount: 156,
     specifications: {
@@ -389,7 +389,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Premium all-terreng",
     ],
     badge: "Utvidet rekkevidde",
-    category: ["Fatbike", "Pendler", "Gjennomgående"],
+    category: ["Fatbike", "Pendler"],
     rating: 4.9,
     reviewCount: 98,
     specifications: {
@@ -511,7 +511,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Opptil 150km (økonomodus)",
     ],
     badge: "Nytte",
-    category: ["Sammenleggbar", "Fatbike", "Gjennomgående"],
+    category: ["Sammenleggbar", "Fatbike"],
     rating: 4.6,
     reviewCount: 112,
     specifications: {
@@ -628,7 +628,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Bedre lastekapasitet",
     ],
     badge: "Pro nytte",
-    category: ["Lastesykkel", "Sammenleggbar", "Gjennomgående"],
+    category: ["Lastesykkel", "Sammenleggbar"],
     rating: 4.8,
     reviewCount: 87,
     specifications: {
@@ -865,7 +865,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Robust konstruksjon",
     ],
     badge: "Last",
-    category: ["Lastesykkel", "Sammenleggbar", "Gjennomgående"],
+    category: ["Lastesykkel", "Sammenleggbar"],
     rating: 4.7,
     reviewCount: 76,
     specifications: {
@@ -1201,7 +1201,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Dreiemomentsensor",
       "Smart LCD",
     ],
-    category: ["Pendler", "Hybrid", "Gjennomgående"],
+    category: ["Pendler", "Hybrid"],
     rating: 4.5,
     reviewCount: 89,
     specifications: {
@@ -1305,7 +1305,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     images: ["/images/transer/transer-1.png", "/images/transer/transer-2.png", "/images/transer/transer-3.png"],
     features: ["250W midtmotor", "48V 17,5Ah batteri", "Lastekasse inkludert", "Familievennlig", "Lang ramme"],
     badge: "Familievalg",
-    category: ["Lastesykkel", "Hybrid", "Gjennomgående"],
+    category: ["Lastesykkel", "Hybrid"],
     rating: 4.8,
     reviewCount: 123,
     specifications: {
@@ -1410,11 +1410,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     features: [
       "250W bakhjulsmotor",
       "36V 14Ah batteri",
-      "Gjennomgående ramme",
+      "Lav innsteg ramme",
       "Komfortabel sittestilling",
       "Integrerte lys",
     ],
-    category: ["Pendler", "Gjennomgående"],
+    category: ["Pendler"],
     rating: 4.4,
     reviewCount: 78,
     specifications: {
@@ -1827,8 +1827,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     image: "/images/viva-st/viva-st-1.png",
     images: ["/images/viva-st/viva-st-1.png", "/images/viva-st/viva-st-2.png", "/images/viva-st/viva-st-3.png", "/images/viva-st/viva-st-4.png", "/images/viva-st/viva-st-5.png"],
     features: ["Gjennomgående ramme", "Lett 22kg", "250W bakhjulsmotor", "36V 10,4Ah batteri", "Bypendling"],
-    badge: "Gjennomgående",
-    category: ["Pendler", "Gjennomgående"],
+    badge: "Lettvekt",
+    category: ["Pendler"],
     rating: 4.8,
     reviewCount: 76,
     specifications: {
@@ -2139,7 +2139,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     images: ["/images/triker/triker-1.png", "/images/triker/triker-2.png"],
     features: ["Elektrisk trehjulssykkel", "Stor bakre lastekurv", "Ekstra stabilitet", "250W motor m/differensial", "For seniorer og last"],
     badge: "Trehjuling",
-    category: ["Hybrid", "Gjennomgående"],
+    category: ["Hybrid"],
     rating: 4.9,
     reviewCount: 54,
     specifications: {
@@ -2246,9 +2246,9 @@ export const PRODUCTS_DATA: ProductCard[] = [
     discount: "17%",
     image: "/images/dyno-gt/dyno-gt-1.png",
     images: ["/images/dyno-gt/dyno-gt-1.png", "/images/dyno-gt/dyno-gt-2.png"],
-    features: ["Gjennomgående komfortdesign", "250W motor", "Frontdemping", '26" hjul', "Rimelig kvalitet"],
+    features: ["Lav innsteg komfortdesign", "250W motor", "Frontdemping", '26" hjul', "Rimelig kvalitet"],
     badge: "Best verdi",
-    category: ["Hybrid", "Gjennomgående"],
+    category: ["Hybrid"],
     rating: 4.6,
     reviewCount: 103,
     specifications: {
@@ -2426,14 +2426,7 @@ export const getCommuterBikes = (): ProductCard[] => {
   return PRODUCTS_DATA.filter((product) => product.category.some((c) => ["pendler", "hybrid"].includes(c.toLowerCase())));
 };
 
-// Gjennomgående ramme
-export const getStepThroughBikes = (): ProductCard[] => {
-  return PRODUCTS_DATA.filter(
-    (product) =>
-      product.category.some((c) => c.toLowerCase() === "gjennomgående") ||
-      product.tekniskeSpesifikasjoner.generelt.rammeType.toLowerCase().includes("gjennomgående")
-  );
-};
+
 
 // Hent produkt etter ID
 export const getProductById = (id: string): ProductCard | undefined => {
