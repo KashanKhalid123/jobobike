@@ -26,23 +26,23 @@ const PrivacyPolicy = () => {
             Jobo Europe verdsetter ditt personvern
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            At Jobo Europe, we take your personal privacy seriously and recognize that you expect privacy and security for all your personal information. We understand the need to provide clear and specific information about our websites designed to prevent misuse of your information.
+            Hos Jobo Europe tar vi ditt personvern på alvor og anerkjenner at du forventer personvern og sikkerhet for all din personlige informasjon. Vi forstår behovet for å gi klar og spesifikk informasjon om våre nettsider designet for å forhindre misbruk av din informasjon.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            We encourage you to read this privacy notice (the &quot;Privacy Notice&quot;) carefully to understand the information we collect and what we do with it.
+            Vi oppfordrer deg til å lese denne personvernerklæringen (&quot;Personvernerklæringen&quot;) nøye for å forstå informasjonen vi samler inn og hva vi gjør med den.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Jobo Europe Sp. z o.o. and its affiliates and subsidiaries (collectively &quot;Jobo Europe,&quot; &quot;us,&quot; &quot;our,&quot; or &quot;we&quot;) are responsible for your information, and this Privacy Notice constitutes an agreement between you and Jobo Europe. When you access and use our website (the &quot;Site&quot;) www.jobobike.eu you acknowledge that you have read this Privacy Notice, understood it, and that you do not object to our processing activities.
+            Jobo Europe Sp. z o.o. og dets tilknyttede selskaper og datterselskaper (samlet &quot;Jobo Europe,&quot; &quot;oss,&quot; &quot;vårt,&quot; eller &quot;vi&quot;) er ansvarlige for din informasjon, og denne personvernerklæringen utgjør en avtale mellom deg og Jobo Europe. Når du får tilgang til og bruker vår nettside (&quot;Nettstedet&quot;) www.jobobike.eu erkjenner du at du har lest denne personvernerklæringen, forstått den, og at du ikke motsetter deg våre behandlingsaktiviteter.
           </p>
         </section>
 
         {/* This Privacy Notice describes */}
         <section className="mb-12">
           <p className="text-gray-700 leading-relaxed mb-4">
-            This Privacy Notice describes how Jobo Europe collects, protects, uses, and discloses information and data collected and created in the course of your access to and use of the Jobo Europe Site, products, and services, as well as your interactions with Jobo Europe via telephone, through email or at our physical locations. It also explains what your rights are, which may differ depending on where you are located.
+            Denne personvernerklæringen beskriver hvordan Jobo Europe samler inn, beskytter, bruker og avslører informasjon og data samlet inn og opprettet i løpet av din tilgang til og bruk av Jobo Europe-nettstedet, produkter og tjenester, samt dine interaksjoner med Jobo Europe via telefon, gjennom e-post eller på våre fysiske lokasjoner. Den forklarer også hvilke rettigheter du har, som kan variere avhengig av hvor du befinner deg.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            At certain points in your interaction with the Site, certain third party service providers engaged by Jobo Europe (&quot;Service Providers&quot;) may be responsible for collecting information pertaining to you, and we may also disclose general information. At other points, you will need to submit various pieces of information to a Service Provider in order to take advantage of services offered by Jobo Europe, including but not limited to making a purchase, financing a purchase, applying for credit, or entering a contest. This information you submit is being collected, transmitted or stored by a Service Provider, and in most instances, your information will become subject to terms and conditions and a privacy policy operated by that Service Provider. Please see the &quot;Access to Your Information&quot; section below for more information about our Service Providers.
+            På visse punkter i din interaksjon with nettstedet kan visse tredjeparts tjenesteleverandører engasjert av Jobo Europe (&quot;Tjenesteleverandører&quot;) være ansvarlige for å samle inn informasjon som gjelder deg, og vi kan også avsløre generell informasjon. På andre punkter må du sende inn ulike deler av informasjon til en tjenesteleverandør for å dra nytte av tjenester som tilbys av Jobo Europe, inkludert men ikke begrenset til å gjøre et kjøp, finansiere et kjøp, søke om kreditt eller delta i en konkurranse. Denne informasjonen du sender inn blir samlet inn, overført eller lagret av en tjenesteleverandør, og i de fleste tilfeller vil din informasjon bli underlagt vilkår og betingelser og en personvernpolicy drevet av den tjenesteleverandøren.
           </p>
         </section>
 
@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Samtykke</h2>
           <p className="text-gray-700 leading-relaxed">
-            By accessing this Site, registering with Jobo Europe, creating a user profile on our Site, or submitting information to Jobo Europe, you consent to this Privacy Notice and our collection and use of your information and data as described below. We will also provide you with notice that you agree to different stages of collecting information. If you do not agree with our policies and practices, you may not be able to access or benefit from certain portions of this Site.
+            Ved å få tilgang til dette nettstedet, registrere deg hos Jobo Europe, opprette en brukerprofil på vårt nettsted eller sende inn informasjon til Jobo Europe, samtykker du til denne personvernerklæringen og vår innsamling og bruk av din informasjon og data som beskrevet nedenfor. Vi vil også gi deg beskjed om at du godtar ulike stadier av informasjonsinnsamling. Hvis du ikke er enig i våre retningslinjer og praksis, kan det hende du ikke får tilgang til eller dra nytte av visse deler av dette nettstedet.
           </p>
         </section>
 
@@ -58,15 +58,15 @@ const PrivacyPolicy = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Omfang</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Please be advised that this Privacy Notice applies to information that we collect:
+            Vær oppmerksom på at denne personvernerklæringen gjelder for informasjon som vi samler inn:
           </p>
           <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-            <li>when you visit the Site.</li>
-            <li>when you submit your information to us on the Site.</li>
-            <li>when you create or use a user profile on the Site.</li>
-            <li>when we communicate with you through email and other communications.</li>
-            <li>through Service Providers that we work with to provide our services.</li>
-            <li>by any other means over the course of your use of our services.</li>
+            <li>når du besøker nettstedet.</li>
+            <li>når du sender inn din informasjon til oss på nettstedet.</li>
+            <li>når du oppretter eller bruker en brukerprofil på nettstedet.</li>
+            <li>når vi kommuniserer med deg gjennom e-post og annen kommunikasjon.</li>
+            <li>gjennom tjenesteleverandører som vi samarbeider med for å levere våre tjenester.</li>
+            <li>på andre måter i løpet av din bruk av våre tjenester.</li>
           </ul>
         </section>
 
