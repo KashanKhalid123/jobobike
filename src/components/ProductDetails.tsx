@@ -20,7 +20,7 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
             key={star}
             className={`w-4 h-4 ${
               star <= rating
-                ? "fill-yellow-400 text-yellow-400"
+                ? "fill-[#12b190] text-[#12b190]"
                 : "fill-gray-200 text-gray-200"
             }`}
           />
@@ -143,7 +143,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           <div className="mt-4">
             <AddToCartButton
               product={product}
-              className="w-full bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
+              className="w-full bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
             />
           </div>
 
@@ -359,7 +359,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* Add to Cart Button */}
               <AddToCartButton
                 product={product}
-                className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
+                className="w-44 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
               />
             </div>
 

@@ -149,7 +149,7 @@ export default function AccessoriesPage() {
                                             <AddToCartButton
                                                 product={product}
                                                 quantity={getQuantity(product.id)}
-                                                className="w-full sm:flex-1 rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white sm:bg-[#12b190] sm:hover:bg-[#29ecc5] transition md:text-white md:hover:border-black md:bg-black md:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
+                                                className="w-full sm:flex-1 rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white bg-[#12b190] hover:bg-[#0f9a7a] transition whitespace-nowrap"
                                             />
                                         </div>
                                     </div>

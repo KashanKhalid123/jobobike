@@ -1,4 +1,4 @@
-ï»¿// lib/accessoriesProducts.ts
+// lib/accessoriesProducts.ts
 
 export interface AccessoryProduct {
   id: string;
@@ -471,7 +471,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models"],
     inStock: true,
-    colors: ["Svart", "Grï¿½"]
+    colors: ["Svart", "Grå"]
   },
 
   // 13. Single Side Pannier Bag
@@ -512,7 +512,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Blï¿½"]
+    colors: ["Blå"]
   },
 
   // 14. Double Side Pannier Bag
@@ -553,7 +553,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Svart", "Grï¿½"]
+    colors: ["Svart", "Grå"]
   },
 
   // 15. Canopy
