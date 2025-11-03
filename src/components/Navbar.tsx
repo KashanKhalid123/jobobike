@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -142,9 +142,10 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // close navbar dropdown on route change
+  // close dropdowns on route change
   useEffect(() => {
     setNavbarDropdownOpen(false);
+    setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -510,6 +511,7 @@ export default function Navbar() {
                         key={cat.slug}
                         href={`/category/${cat.slug}`}
                         className="flex items-center p-3 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                        onClick={toggleMobileMenu}
                       >
                         <img
                           src={cat.image}
@@ -525,6 +527,7 @@ export default function Navbar() {
                     <Link
                       href="/cycle"
                       className="block p-3 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center"
+                      onClick={toggleMobileMenu}
                     >
                       Se alle el-sykler
                     </Link>
@@ -536,42 +539,36 @@ export default function Navbar() {
               <Link
                 href="/accessorie"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Sykkelutstyr
               </Link>
               <Link
                 href="/bli-forhandler"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Bli forhandler
               </Link>
               <Link
                 href="/about"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Om oss
               </Link>
               <Link
                 href="/contact"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Kontakt oss
               </Link>
               <Link
                 href="/privacy"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Personvernerklæring
               </Link>
               <Link
                 href="/terms"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Vilkår for tjeneste
               </Link>
