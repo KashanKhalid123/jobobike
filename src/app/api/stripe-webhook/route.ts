@@ -40,23 +40,22 @@ export async function POST(req: NextRequest) {
   }
 
   console.log("✅ Stripe webhook received:", event.type);
-  console.log("📋 Full event data:", JSON.stringify(event, null, 2));
-
-  // ✅ When payment succeeds
+  console.log("📋 Event object type:", event.data.object);
+  
+  // 🔍 Log ALL events to see what we're getting
+  console.log("🎯 Processing event type:", event.type);
+  
+  // ✅ Handle payment success
   if (event.type === "payment_intent.succeeded") {
+    console.log("💫 Payment succeeded, processing...");
+    
     const paymentIntent = event.data.object as Stripe.PaymentIntent;
-
-    console.log("💰 Payment Intent Event:", {
+    
+    console.log("📊 Payment data:", {
       id: paymentIntent.id,
-      status: paymentIntent.status,
-      amount: paymentIntent.amount
+      amount: paymentIntent.amount,
+      status: paymentIntent.status
     });
-
-    // ✅ Only send email if payment is actually succeeded (not just created)
-    if (paymentIntent.status !== "succeeded") {
-      console.log("⏳ Payment not succeeded yet, status:", paymentIntent.status);
-      return new Response("OK", { status: 200 });
-    }
 
     try {
       const total = (paymentIntent.amount ?? 0) / 100;
@@ -64,15 +63,14 @@ export async function POST(req: NextRequest) {
       const name = paymentIntent.shipping?.name ?? "Customer";
       const orderId = paymentIntent.id;
 
-      console.log("📧 Email details:", { email, name, orderId, total, status: paymentIntent.status });
+      console.log("📧 Email details:", { email, name, orderId, total });
 
       if (!email) {
         console.warn("⚠️ No customer email found, skipping email send");
         return new Response("OK", { status: 200 });
       }
 
-      // ✅ Send confirmation email only for succeeded payments
-      console.log("🚀 Sending confirmation email for succeeded payment...");
+      console.log("🚀 Sending confirmation email...");
       
       const { data, error } = await resend.emails.send({
         from: "onboarding@resend.dev",
@@ -86,7 +84,7 @@ export async function POST(req: NextRequest) {
         return new Response("Resend error", { status: 500 });
       }
 
-      console.log("📨 Payment confirmation email sent successfully:", data);
+      console.log("📨 Email sent successfully:", data);
     } catch (err) {
       console.error("❌ Error processing payment:", err);
       return new Response("Webhook processing error", { status: 500 });
