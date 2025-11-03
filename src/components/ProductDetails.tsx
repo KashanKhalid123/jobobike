@@ -69,7 +69,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         {/* MOBILE IMAGE SECTION */}
         <div className="mt-6">
           {/* Main Image */}
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <Image
               src={selectedImage}
               alt={product.name}
@@ -77,6 +77,31 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               height={600}
               className="w-full h-auto object-contain rounded-lg"
             />
+            {/* Navigation Arrows */}
+            {product.images.length > 1 && (
+              <>
+                <button
+                  onClick={() => {
+                    const currentIndex = product.images.indexOf(selectedImage);
+                    const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
+                    setSelectedImage(product.images[prevIndex]);
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                >
+                  <ChevronLeft size={20} className="text-gray-700" />
+                </button>
+                <button
+                  onClick={() => {
+                    const currentIndex = product.images.indexOf(selectedImage);
+                    const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
+                    setSelectedImage(product.images[nextIndex]);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                >
+                  <ChevronRight size={20} className="text-gray-700" />
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Thumbnails - Arrow Navigation */}
@@ -243,7 +268,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         <div className=" justify-center grid grid-cols-[3fr_2fr] gap-6 w-full">
           <div className=" w-full max-w-5xl ">
             {/* MAIN IMAGE */}
-            <div>
+            <div className="relative">
               <Image
                 src={selectedImage}
                 alt={product.name}
@@ -251,6 +276,31 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 height={800}
                 className="w-full max-h-[600px] object-contain"
               />
+              {/* Navigation Arrows */}
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      const currentIndex = product.images.indexOf(selectedImage);
+                      const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
+                      setSelectedImage(product.images[prevIndex]);
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronLeft size={20} className="text-gray-700" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const currentIndex = product.images.indexOf(selectedImage);
+                      const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
+                      setSelectedImage(product.images[nextIndex]);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronRight size={20} className="text-gray-700" />
+                  </button>
+                </>
+              )}
             </div>
 
             <div className="relative">

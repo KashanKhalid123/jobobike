@@ -10,6 +10,8 @@ import { formatCurrency } from '@/utils/currency';
 export default function AccessoriesPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+    const [selectedColors, setSelectedColors] = useState<{ [key: string]: string }>({});
+    const [selectedImages, setSelectedImages] = useState<{ [key: string]: number }>({});
 
     const updateQuantity = (productId: string, newQuantity: number) => {
         if (newQuantity < 1) return;
@@ -17,6 +19,29 @@ export default function AccessoriesPage() {
     };
 
     const getQuantity = (productId: string) => quantities[productId] || 1;
+    
+    const getSelectedColor = (productId: string) => selectedColors[productId] || (accessoriesProducts.find(p => p.id === productId)?.colors?.[0] || '');
+    const getSelectedImageIndex = (productId: string) => selectedImages[productId] || 0;
+    
+    const updateSelectedColor = (productId: string, color: string) => {
+        setSelectedColors(prev => ({ ...prev, [productId]: color }));
+        const product = accessoriesProducts.find(p => p.id === productId);
+        if (product && product.colorImages && product.colorImages[color]) {
+            const colorImageUrl = product.colorImages[color];
+            const imageIndex = product.images.findIndex(img => img === colorImageUrl);
+            if (imageIndex !== -1) {
+                setSelectedImages(prev => ({ ...prev, [productId]: imageIndex }));
+            }
+        }
+    };
+    
+    const colorMap: { [key: string]: string } = {
+        'Svart': '#000000',
+        'Blå': '#0066CC',
+        'Rød': '#CC0000',
+        'Grå': '#808080',
+        'Hvit': '#FFFFFF'
+    };
 
     // Filter products based on selected category
     const filteredProducts = selectedCategory === 'All'
@@ -79,7 +104,7 @@ export default function AccessoriesPage() {
                                     <Link href={`/accessories/${product.slug}`}>
                                         <Image
                                             className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
-                                            src={product.image}
+                                            src={product.images[getSelectedImageIndex(product.id)] || product.image}
                                             alt={product.name}
                                             width={300}
                                             height={300}
@@ -108,6 +133,27 @@ export default function AccessoriesPage() {
                                             <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
                                                 {formatCurrency(product.price)}
                                             </span>
+                                            
+                                            {/* Color Selection */}
+                                            {product.colors && product.colors.length > 0 && (
+                                                <div className="mt-2">
+                                                    <div className="flex gap-1">
+                                                        {product.colors.map((color) => (
+                                                            <button
+                                                                key={color}
+                                                                onClick={() => updateSelectedColor(product.id, color)}
+                                                                className={`w-4 h-4 rounded-full border transition-all ${
+                                                                    getSelectedColor(product.id) === color
+                                                                        ? 'border-black scale-110'
+                                                                        : 'border-gray-300'
+                                                                }`}
+                                                                style={{ backgroundColor: colorMap[color] || color }}
+                                                                title={color}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
                                             
                                             {product.features?.length && (
                                                 <ul className="mt-1 flex flex-col gap-1 text-[8px] text-gray-700 sm:hidden">

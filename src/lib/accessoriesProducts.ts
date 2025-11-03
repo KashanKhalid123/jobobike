@@ -20,6 +20,7 @@ export interface AccessoryProduct {
   inStock: boolean;
   sizes?: string[];
   colors?: string[];
+  colorImages?: { [color: string]: string };
 }
 
 export const accessoriesProducts: AccessoryProduct[] = [
@@ -189,6 +190,11 @@ export const accessoriesProducts: AccessoryProduct[] = [
       { label: "Rotasjon", value: "360°" }
     ],
     colors: ["Svart", "Blå", "Rød"],
+    colorImages: {
+      "Rød": "/images/holder/holder-1.png",
+      "Svart": "/images/holder/holder-2.png",
+      "Blå": "/images/holder/holder-3.png"
+    },
     features: [
       "Vanntett berøringsskjerm deksel",
       "360° rotasjon",
@@ -262,7 +268,11 @@ export const accessoriesProducts: AccessoryProduct[] = [
     compatibility: ["Universal"],
     inStock: true,
     sizes: ["S (52-56cm)", "M (56-60cm)", "L (60-64cm)"],
-    colors: ["Svart", "Blå" ]
+    colors: ["Svart", "Blå" ],
+    colorImages: {
+      "Svart": "/images/helmet/helmet-1.png",
+      "Blå": "/images/helmet/helmet-2.png"
+    }
   },
   {
     id: "8",
@@ -553,7 +563,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Svart", "Gr�"]
+    colors: ["Svart"]
   },
 
   // 15. Canopy
