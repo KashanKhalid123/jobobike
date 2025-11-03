@@ -1025,94 +1025,94 @@ export const PRODUCTS_DATA: ProductCard[] = [
       anbefalteHøyde: "170-195cm"
     },
     motor: {
-      type: "Mid-drive motor",
-      power: "500W",
-      peakPower: "750W",
-      torque: "95Nm",
-      location: "Center",
-      torqueSensor: true
+      type: "Midtmotor",
+      effekt: "500W",
+      toppEffekt: "750W",
+      dreiemoment: "95Nm",
+      plassering: "Senter",
+      dreiemomentSensor: true
     },
-    battery: {
-      type: "Samsung Lithium-ion with BMS",
-      voltage: "48V",
-      capacity: "17.5Ah",
-      capacityWh: "840Wh",
-      removable: true,
-      chargingTime: "6-8 hours",
-      batteryLife: "1000+ charge cycles"
+    batteri: {
+      type: "Samsung Lithium-ion med BMS",
+      spenning: "48V",
+      kapasitet: "17.5Ah",
+      kapasitetWh: "840Wh",
+      avtakbar: true,
+      ladetid: "6-8 timer",
+      batteriLevetid: "1000+ ladesykluser"
     },
-    performance: {
-      maxSpeed: "25 km/h (EU) / 32 km/h (configurable)",
-      range: {
-        pureElectric: "50km",
-        pedalAssist: "120km",
-        combined: "80km"
+    ytelse: {
+      maksFart: "25 km/h (EU) / 32 km/h (konfigurerbar)",
+      rekkevidde: {
+        renElektrisk: "50km",
+        pedalAssistanse: "120km",
+        kombinert: "80km"
       },
-      gradability: "25°",
-      turningRadius: "2.8m"
+      stigningsevne: "25°",
+      svingradius: "2.8m"
     },
-    wheels: {
-      size: "27.5\"",
-      tireType: "All-terrain plus tires",
-      tireSize: "27.5\" x 2.8\"",
-      rimMaterial: "Double-wall aluminum alloy"
+    hjul: {
+      størrelse: "27.5\"",
+      dekkType: "All-terreng plus dekk",
+      dekkStørrelse: "27.5\" x 2.8\"",
+      felgMateriale: "Dobbeltvegg aluminiumslegering"
     },
-    brakes: {
-      front: "Tektro hydraulic disc 180mm",
-      rear: "Tektro hydraulic disc 180mm",
-      type: "Hydraulic disc with motor cutoff"
+    bremser: {
+      foran: "Tektro hydraulisk skive 180mm",
+      bak: "Tektro hydraulisk skive 180mm",
+      type: "Hydraulisk skive med motoravbrudd"
     },
-    transmission: {
-      type: "External derailleur",
-      gears: "9-speed Shimano",
-      shifter: "Shimano Alivio"
+    giring: {
+      type: "Ekstern girkasse",
+      gir: "9-trinns Shimano",
+      girskifter: "Shimano Alivio"
     },
-    electrical: {
-      display: "Premium color LCD with Bluetooth",
-      lights: {
-        front: true,
-        rear: true,
-        type: "High-power LED with multiple modes"
+    elektrisk: {
+      display: "Premium farget LCD med Bluetooth",
+      lys: {
+        foran: true,
+        bak: true,
+        type: "Høyeffekt LED med flere moduser"
       },
       horn: true,
-      throttle: false,
-      assistLevels: "5 levels + walk mode"
+      gasspedal: false,
+      assistanseNivåer: "5 nivåer + gåmodus"
     },
-    comfort: {
-      suspension: {
-        front: true,
-        rear: true,
-        type: "Full suspension - Front: 120mm travel, Rear: 100mm travel"
+    komfort: {
+      demping: {
+        foran: true,
+        bak: true,
+        type: "Full demping - Foran: 120mm vandring, Bak: 100mm vandring"
       },
-      seat: {
-        type: "Performance saddle",
-        adjustable: true,
-        material: "Premium synthetic leather"
+      sete: {
+        type: "Ytelsessadel",
+        justerbar: true,
+        materiale: "Premium syntetisk lær"
       },
-      handlebar: {
-        type: "MTB riser bar 760mm",
-        adjustable: false,
-        material: "Aluminum alloy"
+      styre: {
+        type: "MTB riser styre 760mm",
+        justerbar: false,
+        materiale: "Aluminiumslegering"
       }
     },
-    safety: {
-      reflectors: true,
-      bell: true,
-      waterResistance: "IPX5",
-      certification: ["EN15194", "CE", "TUV"]
+    sikkerhet: {
+      reflekser: true,
+      bjelle: true,
+      vannMotstand: "IPX5",
+      sertifisering: ["EN15194", "CE", "TUV"]
     },
-    connectivity: {
+    tilkobling: {
       app: true,
       gps: false,
       bluetooth: true,
       usb: true
     },
-    accessories: {
-      kickstand: true,
-      mudguards: true,
-      rack: false,
-      basket: false,
-      bottleHolder: true
+    tilbehør: {
+      sidestøtte: true,
+      skjermer: true,
+      bagasjebrett: false,
+      kurv: false,
+      flaskeholder: true
     }
   },
   description: "JOBOBIKE Ace Pro er den ultimate ytelse el-terrengsykkelen designet for seriøse syklister som krever det beste. Med en kraftig 500W Bafang midtmotor med 95Nm dreiemoment, full dempingssystem og premium komponenter gjennom hele sykkelen, erobrer Ace Pro de tøffeste stiene med letthet samtidig som den leverer en spennende kjøreopplevelse.",
