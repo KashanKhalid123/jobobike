@@ -44,10 +44,10 @@ export interface ProductCard {
     };
     motor: {
       type: string;
-      effekt: string;
-      toppEffekt: string;
+      effekt?: string;
+      toppEffekt?: string;
       dreiemoment?: string;
-      plassering: string;
+      plassering?: string;
       dreiemomentSensor?: boolean;
       // English properties for compatibility
       power?: string;
@@ -58,12 +58,12 @@ export interface ProductCard {
     };
     batteri: {
       type: string;
-      spenning: string;
-      kapasitet: string;
-      kapasitetWh: string;
-      avtakbar: boolean;
-      ladetid: string;
-      batteriLevetid: string;
+      spenning?: string;
+      kapasitet?: string;
+      kapasitetWh?: string;
+      avtakbar?: boolean;
+      ladetid?: string;
+      batteriLevetid?: string;
       // English properties for compatibility
       voltage?: string;
       capacity?: string;
@@ -73,17 +73,17 @@ export interface ProductCard {
       batteryLife?: string;
     };
     ytelse: {
-      maksFart: string;
-      rekkevidde: {
-        renElektrisk: string;
-        pedalAssistanse: string;
-        kombinert: string;
+      maksFart?: string;
+      rekkevidde?: {
+        renElektrisk?: string;
+        pedalAssistanse?: string;
+        kombinert?: string;
         // English properties for compatibility
         pureElectric?: string;
         pedalAssist?: string;
         combined?: string;
       };
-      stigningsevne: string;
+      stigningsevne?: string;
       svingradius?: string;
       // English properties for compatibility
       maxSpeed?: string;
@@ -96,9 +96,9 @@ export interface ProductCard {
       turningRadius?: string;
     };
     hjul: {
-      størrelse: string;
-      dekkType: string;
-      dekkStørrelse: string;
+      størrelse?: string;
+      dekkType?: string;
+      dekkStørrelse?: string;
       felgMateriale?: string;
       // English properties for compatibility
       size?: string;
@@ -107,15 +107,15 @@ export interface ProductCard {
       rimMaterial?: string;
     };
     bremser: {
-      foran: string;
-      bak: string;
+      foran?: string;
+      bak?: string;
       type: string;
       // English properties for compatibility
       front?: string;
       rear?: string;
     };
     giring: {
-      type: string;
+      type?: string;
       gir?: string;
       girskifter?: string;
       // English properties for compatibility
@@ -123,18 +123,18 @@ export interface ProductCard {
       shifter?: string;
     };
     elektrisk: {
-      display: string;
-      lys: {
-        foran: boolean;
-        bak: boolean;
+      display?: string;
+      lys?: {
+        foran?: boolean;
+        bak?: boolean;
         type?: string;
         // English properties for compatibility
         front?: boolean;
         rear?: boolean;
       };
-      horn: boolean;
-      gasspedal: boolean;
-      assistanseNivåer: string;
+      horn?: boolean;
+      gasspedal?: boolean;
+      assistanseNivåer?: string;
       // English properties for compatibility
       lights?: {
         front?: boolean;
@@ -145,25 +145,25 @@ export interface ProductCard {
       assistLevels?: string;
     };
     komfort: {
-      demping: {
-        foran: boolean;
-        bak: boolean;
+      demping?: {
+        foran?: boolean;
+        bak?: boolean;
         type?: string;
         // English properties for compatibility
         front?: boolean;
         rear?: boolean;
       };
-      sete: {
-        type: string;
-        justerbar: boolean;
+      sete?: {
+        type?: string;
+        justerbar?: boolean;
         materiale?: string;
         // English properties for compatibility
         adjustable?: boolean;
         material?: string;
       };
-      styre: {
-        type: string;
-        justerbar: boolean;
+      styre?: {
+        type?: string;
+        justerbar?: boolean;
         materiale?: string;
         // English properties for compatibility
         adjustable?: boolean;
@@ -187,9 +187,9 @@ export interface ProductCard {
       };
     };
     sikkerhet: {
-      reflekser: boolean;
-      bjelle: boolean;
-      vannMotstand: string;
+      reflekser?: boolean;
+      bjelle?: boolean;
+      vannMotstand?: string;
       sertifisering?: string[];
       // English properties for compatibility
       reflectors?: boolean;
@@ -211,11 +211,11 @@ export interface ProductCard {
       usb?: boolean;
     };
     tilbehør: {
-      sidestøtte: boolean;
-      skjermer: boolean;
-      bagasjebrett: boolean;
-      kurv: boolean;
-      flaskeholder: boolean;
+      sidestøtte?: boolean;
+      skjermer?: boolean;
+      bagasjebrett?: boolean;
+      kurv?: boolean;
+      flaskeholder?: boolean;
       // English properties for compatibility
       kickstand?: boolean;
       mudguards?: boolean;
