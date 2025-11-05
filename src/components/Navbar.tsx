@@ -218,7 +218,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="fixed top-10 w-full z-50 bg-white border-b shadow-sm">
+      <nav className="fixed top-8 w-full z-50 bg-white border-b shadow-sm">
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 gap-4">
@@ -381,7 +381,7 @@ export default function Navbar() {
 
       {/* Navbar Dropdown - Fixed Position */}
       {navbarDropdownOpen && (
-        <div className="fixed top-[150px] w-full z-[100]">
+        <div className="fixed top-[142px] w-full z-[100]">
           <div className="max-w-7xl mx-auto px-4">
             <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px]">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2">

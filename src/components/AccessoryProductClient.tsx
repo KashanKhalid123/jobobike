@@ -5,26 +5,54 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AccessoryProduct } from '@/lib/accessoriesProducts';
 import { formatCurrency } from '@/utils/currency';
+import { useCart } from '@/components/CartContext';
 
 interface AccessoryProductClientProps {
   product: AccessoryProduct;
 }
 
 export default function AccessoryProductClient({ product }: AccessoryProductClientProps) {
+  const { addToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || '');
   const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
 
   const handleAddToCart = () => {
-    // Add to cart logic here
-    console.log('Added to cart:', {
-      product: product.slug,
-      quantity,
-      size: selectedSize,
-      color: selectedColor
-    });
-    alert('Product added to cart!');
+    if (isAdding) return;
+    
+    setIsAdding(true);
+    
+    // Create product name with size and/or color if selected
+    let productName = product.name;
+    const variants = [];
+    
+    if (selectedSize) variants.push(selectedSize);
+    if (selectedColor) variants.push(selectedColor);
+    
+    if (variants.length > 0) {
+      productName = `${product.name} (${variants.join(', ')})`;
+    }
+    
+    // Create unique ID with color/size if selected
+    const uniqueId = selectedColor || selectedSize ? 
+      `${product.id}-${selectedColor || ''}-${selectedSize || ''}` : 
+      product.id;
+    
+    // Add to cart with modified name and unique ID
+    addToCart({
+      id: uniqueId,
+      name: productName,
+      price: product.price,
+      image: product.image,
+      category: product.category
+    }, quantity);
+    
+    // Reset after 2 seconds
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 2000);
   };
 
   return (
@@ -175,14 +203,14 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               {/* Add to Cart - Mobile */}
               <button
                 onClick={handleAddToCart}
-                disabled={!product.inStock}
+                disabled={!product.inStock || isAdding}
                 className={`w-full py-4 rounded-lg font-medium transition-all mb-6 ${
-                  product.inStock
+                  product.inStock && !isAdding
                     ? 'bg-[#12b190] text-white hover:bg-[#0f9a7a]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                {product.inStock ? 'LEGG I HANDLEKURV' : 'IKKE PÅ LAGER'}
+                {!product.inStock ? 'IKKE PÅ LAGER' : isAdding ? 'LEGGER TIL...' : 'LEGG I HANDLEKURV'}
               </button>
             </div>
 
@@ -292,14 +320,14 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
             <div className="hidden lg:block space-y-3 pt-4">
               <button
                 onClick={handleAddToCart}
-                disabled={!product.inStock}
+                disabled={!product.inStock || isAdding}
                 className={`w-full py-4 rounded-lg font-medium transition-all ${
-                  product.inStock
+                  product.inStock && !isAdding
                     ? 'bg-[#12b190] text-white hover:bg-[#0f9a7a]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                {product.inStock ? 'LEGG I HANDLEKURV' : 'IKKE PÅ LAGER'}
+                {!product.inStock ? 'IKKE PÅ LAGER' : isAdding ? 'LEGGER TIL...' : 'LEGG I HANDLEKURV'}
               </button>
             </div>
 
