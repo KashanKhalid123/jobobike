@@ -51,7 +51,7 @@ export default function CheckoutClient() {
     // Check if cart is empty
     if (!cartItems || cartItems.length === 0) {
       console.log('Cart is empty');
-      setError('Your cart is empty. Please add some products to your cart before checkout.');
+      setError('Handlekurven din er tom. Legg til produkter i handlekurven før du går til kassen.');
       setLoading(false);
       return;
     }
@@ -121,10 +121,10 @@ export default function CheckoutClient() {
     return (
       <div className="space-y-4">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="font-semibold text-blue-800 mb-2">Loading your cart...</h3>
+          <h3 className="font-semibold text-blue-800 mb-2">Laster handlekurven din...</h3>
           <div className="flex items-center gap-3">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <p className="text-sm text-blue-700">Please wait while we load your cart items</p>
+            <p className="text-sm text-blue-700">Vennligst vent mens vi laster handlekurven din</p>
           </div>
         </div>
       </div>
@@ -201,7 +201,7 @@ export default function CheckoutClient() {
       {loading && cartItems.length > 0 && (
         <div className="bg-white p-8 rounded-lg border text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4">Setting up your payment...</p>
+          <p className="mt-4">Setter opp betaling...</p>
         </div>
       )}
 
@@ -212,6 +212,7 @@ export default function CheckoutClient() {
             <Elements 
               options={{
                 clientSecret,
+                locale: 'nb',
                 appearance: {
                   theme: 'stripe' as const,
                   variables: {
