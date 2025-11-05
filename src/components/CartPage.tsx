@@ -346,7 +346,7 @@ const CartPage: React.FC = () => {
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600">
                      
                       <span className="font-medium">Handlekurven din lagres automatisk</span>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </div>
