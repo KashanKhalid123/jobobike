@@ -340,15 +340,11 @@ const CartPage: React.FC = () => {
                   
                   <div className="text-center mt-8 pt-6 border-t border-gray-200">
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600 mb-3">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-green-600 text-sm font-bold">âœ“</span>
-                      </div>
+                     
                       <span className="font-medium">Kopi av E-sykkel manualen vil bli sendt på e-post med sporingsnummer</span>
                     </div>
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600">
-                      <div className="w-6 h-6 bg-[#12b190] rounded-full flex items-center justify-center">
-                        <span className="text-[#12b190] text-sm font-bold">ðŸ’¾</span>
-                      </div>
+                     
                       <span className="font-medium">Handlekurven din lagres automatisk</span>
                     </div>
                   </div>

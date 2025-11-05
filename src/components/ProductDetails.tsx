@@ -172,6 +172,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             />
           </div>
 
+
+
           {/* Mobile Description */}
           <div className="mt-6">
             <h2 className="text-lg font-bold mb-3 text-black">Om produktet</h2>
@@ -412,6 +414,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 className="w-44 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
               />
             </div>
+
+
 
 
             {/* SPECIFICATIONS */}
