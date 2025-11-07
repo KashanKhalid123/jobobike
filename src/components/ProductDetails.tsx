@@ -9,6 +9,8 @@ import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Minus, Plus , Star} 
 
 import { useCart } from "./CartContext";
 import TechnicalSpecifications from "./TechnicalSpecs";
+import BikePackageBuilder from "./BikePackageBuilder";
+
 import { formatCurrency } from "@/utils/currency";
 
 function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; reviewCount?: number }) {
@@ -483,6 +485,9 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         </div>
       </div>
       
+
+      {/* BIKE PACKAGE BUILDER SECTION */}
+      <BikePackageBuilder product={product} />
 
       {/* TECHNICAL SPECIFICATIONS SECTION - Add this after the desktop layout closing div */}
      <TechnicalSpecifications product={product}/>

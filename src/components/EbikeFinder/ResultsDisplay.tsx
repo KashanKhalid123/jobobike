@@ -139,7 +139,7 @@ export default function ResultsDisplay({
               <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-200">
                 {topRecommendation.motor_watt && (
                   <div className="bg-gray-50 rounded-lg p-3 text-center">
-                    <div className="text-xs text-gray-600 mb-1">Motoreffekt</div>
+                    <div className="text-xs text-gray-600 mb-1">Motor</div>
                     <div className="font-bold text-gray-900">{topRecommendation.motor_watt}W</div>
                   </div>
                 )}

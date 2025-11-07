@@ -12,22 +12,22 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
 
   return (
     <div className="mt-16 -mx-6 lg:-mx-8">
-      <div className="bg-black w-full px-6 py-8 lg:px-8 lg:py-12">
-        <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2 ">
+      <div className="bg-white w-full px-6 py-8 lg:px-8 lg:py-12">
+        <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2 ">
           Tekniske Spesifikasjoner
         </h2>
-        <div className="w-full h-px bg-white mb-8"></div>
+        <div className="w-full h-px bg-black mb-8"></div>
 
         <div className="w-full   space-y-0 items-start">
           {/* GENERAL INFORMATION Section */}
-          <div className="border-b border-gray-700">
+          <div className="border-b border-gray-200">
             <button
               onClick={() => toggleAccordion("general")}
               className="w-full py-4 flex items-center justify-between text-left"
             >
-              <span className="text-lg font-bold text-white uppercase">GENERELL INFORMASJON</span>
+              <span className="text-lg font-bold text-black uppercase">GENERELL INFORMASJON</span>
               <ChevronDown 
-                className={`text-white transition-transform duration-200 ${
+                className={`text-black transition-transform duration-200 ${
                   openAccordion === "general" ? "rotate-180" : ""
                 }`}
               />
@@ -52,14 +52,14 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
           </div>
 
           {/* MOTOR & POWER Section */}
-          <div className="border-b border-gray-700">
+          <div className="border-b border-gray-200">
             <button
               onClick={() => toggleAccordion("motor")}
               className="w-full py-4 flex items-center justify-between text-left"
             >
-              <span className="text-lg font-bold text-white uppercase">MOTOR & KRAFT</span>
+              <span className="text-lg font-bold text-black uppercase">MOTOR & KRAFT</span>
               <ChevronDown 
-                className={`text-white transition-transform duration-200 ${
+                className={`text-black transition-transform duration-200 ${
                   openAccordion === "motor" ? "rotate-180" : ""
                 }`}
               />
@@ -81,14 +81,14 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
           </div>
 
           {/* BATTERY & CHARGING Section */}
-          <div className="border-b border-gray-700">
+          <div className="border-b border-gray-200">
             <button
               onClick={() => toggleAccordion("battery")}
               className="w-full py-4 flex items-center justify-between text-left"
             >
-              <span className="text-lg font-bold text-white uppercase">BATTERI & LADING</span>
+              <span className="text-lg font-bold text-black uppercase">BATTERI & LADING</span>
               <ChevronDown 
-                className={`text-white transition-transform duration-200 ${
+                className={`text-black transition-transform duration-200 ${
                   openAccordion === "battery" ? "rotate-180" : ""
                 }`}
               />
@@ -109,14 +109,14 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
           </div>
 
           {/* PERFORMANCE Section */}
-          <div className="border-b border-gray-700">
+          <div className="border-b border-gray-200">
             <button
               onClick={() => toggleAccordion("performance")}
               className="w-full py-4 flex items-center justify-between text-left"
             >
-              <span className="text-lg font-bold text-white uppercase">YTELSE</span>
+              <span className="text-lg font-bold text-black uppercase">YTELSE</span>
               <ChevronDown 
-                className={`text-white transition-transform duration-200 ${
+                className={`text-black transition-transform duration-200 ${
                   openAccordion === "performance" ? "rotate-180" : ""
                 }`}
               />
@@ -143,9 +143,9 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
               onClick={() => toggleAccordion("wheels")}
               className="w-full py-4 flex items-center justify-between text-left"
             >
-              <span className="text-lg font-bold text-white uppercase">HJUL & BREMSER</span>
+              <span className="text-lg font-bold text-black uppercase">HJUL & BREMSER</span>
               <ChevronDown 
-                className={`text-white transition-transform duration-200 ${
+                className={`text-black transition-transform duration-200 ${
                   openAccordion === "wheels" ? "rotate-180" : ""
                 }`}
               />
@@ -176,8 +176,8 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between items-start py-1">
-      <span className="text-gray-300 mr-4 min-w-0 flex-shrink">{label}</span>
-      <span className="text-white text-right font-medium">{value}</span>
+      <span className="text-gray-600 mr-4 min-w-0 flex-shrink">{label}</span>
+      <span className="text-black text-right font-medium">{value}</span>
     </div>
   );
 }

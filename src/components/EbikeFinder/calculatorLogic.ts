@@ -64,35 +64,35 @@ export function calculateBikeMatch(
     const terrainScore = calculateTerrainScore(preferences.terrain, bike.terrain, bike.motor_watt);
     totalScore += terrainScore * WEIGHTS.terrain;
     if (terrainScore > 0.7) {
-      reasons.push(`Perfect for ${preferences.terrain.toLowerCase()} terrain`);
+      reasons.push(`Perfekt for ${preferences.terrain.toLowerCase()} terreng`);
     }
 
     // Usage type matching (20%)
     const usageScore = calculateUsageScore(preferences.usageType, bike.usage_type);
     totalScore += usageScore * WEIGHTS.usage;
     if (usageScore > 0.7) {
-      reasons.push(`Ideal for ${preferences.usageType.join(' and ')}`);
+      reasons.push(`Ideell for ${preferences.usageType.join(' og ')}`);
     }
 
     // Range matching (20%)
     const rangeScore = calculateRangeScore(preferences.rangeRequirement, bike.range_km);
     totalScore += rangeScore * WEIGHTS.range;
     if (rangeScore > 0.8) {
-      reasons.push(`Excellent range of ${bike.range_km}km`);
+      reasons.push(`Utmerket rekkevidde på ${bike.range_km}km`);
     }
 
     // Budget matching (15%)
     const budgetScore = calculateBudgetScore(preferences.budget, bike.price);
     totalScore += budgetScore * WEIGHTS.budget;
     if (budgetScore === 1) {
-      reasons.push('Within your budget');
+      reasons.push('Innenfor ditt budsjett');
     }
 
     // Physical fit matching (10%)
     const fitScore = calculatePhysicalFitScore(preferences.height, bike.frame_height_cm);
     totalScore += fitScore * WEIGHTS.physicalFit;
     if (fitScore > 0.8) {
-      reasons.push('Great fit for your height');
+      reasons.push('Perfekt størrelse for din høyde');
     }
 
     // Comfort matching (10%)
@@ -103,7 +103,7 @@ export function calculateBikeMatch(
     if (preferences.motorPreference !== 'Not sure' && 
         bike.motor_position?.toLowerCase() === preferences.motorPreference.toLowerCase()) {
       totalScore += 0.05;
-      reasons.push(`${bike.motor_position} motor as preferred`);
+      reasons.push(`${bike.motor_position} motor som ønsket`);
     }
 
     return {

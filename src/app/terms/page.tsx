@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 
 interface AccordionItem {
@@ -58,25 +58,46 @@ Varen må være ubrukt og i original emballasje.
 
 Returfrakt betales av kunden.`
     },
-    {
-      id: 'reklamasjon',
-      title: '6. Reklamasjon',
-      content: `Du har 2 års reklamasjonsrett etter Forbrukerkjøpsloven.
 
-Reklamasjonen gjelder feil som ikke skyldes normal slitasje eller feil bruk.`
-    },
     {
       id: 'personvern',
       title: '7. Personvern',
       content: `Vi behandler personopplysninger i samsvar med vår personvernerklæring og gjeldende lover (GDPR).`
+    },
+    {
+      id: 'retur',
+      title: '8. Retur',
+      content: `Retur må alltid avtales med oss på forhånd. Når vi har bekreftet at returen oppfyller våre retningslinjer, vil du motta nødvendig informasjon som returadresse og videre prosedyre.
+
+Vi tilbyr 14 dagers angrerett fra den dagen du mottar varen, i tråd med angrerettloven.
+• Produktet må returneres i original stand og emballasje.
+• Kunden dekker returkostnader med mindre annet er avtalt.
+• Ved feil eller mangler dekkes returkostnadene av oss.
+
+For å avtale retur, kontakt oss på support@jobobike.no med ordrenummer og informasjon om varen du ønsker å returnere.`
+    },
+    {
+      id: 'reklamasjon',
+      title: '9. Reklamasjon',
+      content: `Du har 2 års reklamasjonsrett etter Forbrukerkjøpsloven.
+
+Reklamasjonen gjelder feil som ikke skyldes normal slitasje eller feil bruk.
+
+Reklamasjon må alltid avtales med oss på forhånd. Når vi har bekreftet at reklamasjonen oppfyller våre retningslinjer, vil du motta nødvendig informasjon som returadresse og videre prosedyre.
+
+• Produktet må returneres i original stand og emballasje.
+• Kunden dekker returkostnader med mindre annet er avtalt.
+• Ved feil eller mangler dekkes returkostnadene av oss.
+
+For å avtale reklamasjon, kontakt oss på support@jobobike.no med ordrenummer og informasjon om varen du ønsker å reklamere.`
     }
   ]
 
   return (
-    <div className="min-h-screen mt-52 md:mt-36">
+    <div className="min-h-screen mt-32 md:mt-24">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-2 py-3 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-6 py-3 text-sm">
           <li>
             <Link href="/" className="text-gray-600 hover:text-black transition">
               Hjem
@@ -89,18 +110,18 @@ Reklamasjonen gjelder feil som ikke skyldes normal slitasje eller feil bruk.`
 
       {/* Header */}
       <div className="bg-white shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-gray-900 text-center mb-2">
+        <div className="max-w-4xl mx-auto px-4 py-6 md:py-8">
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-900 text-center mb-2">
             Kjøpsvilkår
           </h1>
-          <p className="text-gray-600 text-center">
+          <p className="text-sm md:text-base text-gray-600 text-center">
             Vennligst les disse vilkårene nøye før du handler hos oss
           </p>
         </div>
       </div>
 
       {/* Accordion Content */}
-      <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="max-w-5xl mx-auto px-4 py-8 md:py-12">
         <div className="bg-white rounded-lg shadow-sm">
           {accordionItems.map((item, index) => (
             <div
@@ -108,19 +129,19 @@ Reklamasjonen gjelder feil som ikke skyldes normal slitasje eller feil bruk.`
               className={`border-b border-gray-200 ${index === accordionItems.length - 1 ? 'border-b-0' : ''}`}
             >
               <button
-                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors duration-200"
+                className="w-full px-4 md:px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors duration-200"
                 onClick={() => toggleAccordion(item.id)}
                 aria-expanded={openAccordion === item.id}
                 aria-controls={`accordion-content-${item.id}`}
               >
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">
                   {item.title}
                 </h3>
                 <div className="flex-shrink-0 ml-4">
                   {openAccordion === item.id ? (
-                    <ChevronUpIcon className="h-5 w-5 text-gray-500" />
+                    <ChevronUp className="h-5 w-5 text-gray-500" />
                   ) : (
-                    <ChevronDownIcon className="h-5 w-5 text-gray-500" />
+                    <ChevronDown className="h-5 w-5 text-gray-500" />
                   )}
                 </div>
               </button>
@@ -128,10 +149,10 @@ Reklamasjonen gjelder feil som ikke skyldes normal slitasje eller feil bruk.`
               {openAccordion === item.id && (
                 <div
                   id={`accordion-content-${item.id}`}
-                  className="px-6 pb-6 pt-2 animate-fade-in"
+                  className="px-4 md:px-6 pb-6 pt-2 animate-fade-in"
                 >
                   <div className="prose prose-gray max-w-none">
-                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed whitespace-pre-line">
                       {item.content}
                     </p>
                   </div>

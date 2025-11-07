@@ -28,53 +28,21 @@ export default function BliForhandlerPage() {
 
   return (
     <div className="min-h-screen bg-white mt-32 md:mt-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
             Bli forhandler av våre elsykler
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ønsker du å selge moderne, pålitelige elsykler i din butikk eller nettbutikk? 
-            Vi tilbyr et enkelt og lønnsomt samarbeid for butikker, verksteder og 
+            Vil du tilby kundene dine moderne og pålitelige elsykler?<br/>
+            Vi tilbyr et enkelt, lønnsomt og fleksibelt samarbeid for butikker, verksteder og<br/>
             forhandlere over hele Norge.
           </p>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-black mb-8 text-center">
-            Fordeler som forhandler
-          </h2>
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Form Section - Left */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
-                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-gray-800 font-medium">Konkurransedyktige innkjøpspriser</span>
-              </div>
-              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
-                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-gray-800 font-medium">Norsk garanti og support</span>
-              </div>
-              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
-                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-gray-800 font-medium">Tilgang til produktbilder og markedsmateriell</span>
-              </div>
-              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
-                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-gray-800 font-medium">Rask levering fra Norge/EU</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-black mb-8 text-center">
             Registrer din interesse
           </h2>
@@ -218,6 +186,40 @@ export default function BliForhandlerPage() {
               Ved å sende inn godtar du at vi kontakter deg med informasjon om forhandlerbetingelser.
             </p>
           </form>
+          </div>
+
+          {/* Benefits Section - Right */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-black mb-8 text-center">
+              Fordeler som forhandler
+            </h2>
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
+                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-gray-800 font-medium">Konkurransedyktige innkjøpspriser</span>
+              </div>
+              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
+                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-gray-800 font-medium">Norsk garanti og support</span>
+              </div>
+              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
+                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-gray-800 font-medium">Tilgang til produktbilder og markedsmateriell</span>
+              </div>
+              <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
+                <div className="w-12 h-12 bg-[#12b190] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-gray-800 font-medium">Rask levering fra Norge/EU</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
