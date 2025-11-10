@@ -34,7 +34,7 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
 }
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
-  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || "");
+  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image || "");
   const [selectedSize, setSelectedSize] = useState(product.availableSizes?.[0] || "");
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const { updateQuantity } = useCart();
@@ -155,29 +155,12 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           </div>
         </div>
 
-        {/* MOBILE TECHNICAL SPECIFICATIONS */}
-        <TechnicalSpecifications product={product} />
-
         {/* MOBILE PRODUCT INFO */}
         <div className="mt-6 space-y-4">
           <div>
   <h1 className="text-xl font-bold text-black">{product.name}</h1>
   <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
 </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-xl font-bold text-black">{formatCurrency(product.originalPrice)}</span>
-          </div>
-
-          {/* Mobile Add to Cart Button */}
-          <div className="mt-4">
-            <AddToCartButton
-              product={product}
-              className="w-full bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0e9a7a]"
-            />
-          </div>
-
-
 
           {/* Mobile Description */}
           <div className="mt-6">
@@ -362,17 +345,17 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         </div>
       </div>
       
-      {/* SPECIFICATIONS AND PACKAGE LAYOUT */}
+      {/* PACKAGE AND SPECIFICATIONS LAYOUT */}
       <div className="mt-16 -mx-6 lg:-mx-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full">
-          {/* SPECIFICATIONS HALF */}
-          <div className="w-full">
-            <TechnicalSpecifications product={product} />
+          {/* PACKAGE BUILDER HALF - First on mobile, left on desktop */}
+          <div className="bg-white px-6 lg:px-8 py-6 order-1 lg:order-2">
+            <BikePackageBuilder product={product} />
           </div>
           
-          {/* PACKAGE BUILDER HALF */}
-          <div className="bg-white px-6 lg:px-8 py-6">
-            <BikePackageBuilder product={product} />
+          {/* SPECIFICATIONS HALF - Second on mobile, right on desktop */}
+          <div className="w-full order-2 lg:order-1">
+            <TechnicalSpecifications product={product} />
           </div>
         </div>
       </div>

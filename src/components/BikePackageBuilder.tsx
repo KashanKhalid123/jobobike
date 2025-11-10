@@ -22,12 +22,30 @@ interface PackageItem {
 }
 
 export default function BikePackageBuilder({ product }: BikePackageBuilderProps) {
-  // Get compatible accessories
-  const compatibleAccessories = accessoriesProducts.filter(
-    (accessory) =>
-      accessory.compatibility.includes(product.name) ||
-      accessory.compatibility.includes("Universal")
-  );
+  // Get accessories specifically compatible with this bike
+  // Match by checking if compatibility array includes the bike name or a partial match
+  const bikeSpecificAccessories = accessoriesProducts.filter((accessory) => {
+    return accessory.compatibility.some((compat) => {
+      // Check for exact match or if bike name contains the compatibility name
+      const bikeName = product.name.toUpperCase();
+      const compatName = compat.toUpperCase();
+      return (
+        bikeName.includes(compatName) ||
+        compatName.includes(bikeName.split(' ')[0]) || // Match first word (e.g., "ROBIN")
+        compat === product.name
+      );
+    });
+  });
+
+  // Get universal accessories (not bike-specific)
+  const universalAccessories = accessoriesProducts.filter((accessory) => {
+    return accessory.compatibility.some((compat) =>
+      compat.includes("Universal") || compat.includes("All models")
+    );
+  });
+
+  // Combine: bike-specific accessories + universal accessories
+  const compatibleAccessories = [...bikeSpecificAccessories, ...universalAccessories];
 
   // Create suggested package (bike + top accessories)
   const suggestedAccessories = compatibleAccessories.slice(0, 5);
