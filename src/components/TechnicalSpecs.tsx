@@ -367,7 +367,7 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
                   {openAccordion === "size" && (
                     <div className="pb-6">
                       <div className="grid grid-cols-1 gap-y-2 text-sm">
-                        {product.availableSizes.map((size, index) => (
+                        {product.availableSizes.map((size: string, index: number) => (
                           <SpecRow key={index} label={`Størrelse ${index + 1}`} value={size} />
                         ))}
                       </div>
