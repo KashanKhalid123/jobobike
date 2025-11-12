@@ -86,10 +86,16 @@ export async function POST(req: Request) {
       });
     } catch (couponError: any) {
       console.error('Coupon retrieve error:', couponError);
-      return NextResponse.json({ error: 'Ugyldig kupongkode', valid: false }, { status: 400 });
+      const errorMessage = process.env.NODE_ENV === 'production' 
+        ? 'Kupongkoden finnes ikke. Vennligst kontakt support hvis du mener dette er en feil.'
+        : 'Ugyldig kupongkode';
+      return NextResponse.json({ error: errorMessage, valid: false }, { status: 400 });
     }
   } catch (error: any) {
     console.error('Coupon validation error:', error);
-    return NextResponse.json({ error: 'Ugyldig kupongkode', valid: false }, { status: 400 });
+    const errorMessage = process.env.NODE_ENV === 'production'
+      ? 'Kunne ikke validere kupongkode. Vennligst prøv igjen senere.'
+      : 'Ugyldig kupongkode';
+    return NextResponse.json({ error: errorMessage, valid: false }, { status: 400 });
   }
 }
