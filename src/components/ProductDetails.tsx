@@ -549,13 +549,62 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
         </div>
       </div>
       
+      {/* Mobile Add to Cart */}
+      <div className="lg:hidden mt-8 px-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-black">{formatCurrency(totalPrice)}</span>
+            {selectedAccessories.length > 0 && (
+              <span className="text-sm text-gray-500">({selectedAccessories.length} tilbehør)</span>
+            )}
+          </div>
+          {selectedAccessories.length > 0 && (
+            <div className="text-sm text-gray-600">
+              Sykkel: {formatCurrency(product.originalPrice)} + Tilbehør: {formatCurrency(selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
+            </div>
+          )}
+          
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleQuantityChange(quantity - 1)}
+                className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <Minus className="h-4 w-4 text-gray-600" />
+              </button>
+              <span className="text-base font-semibold min-w-[32px] text-center text-black">
+                {quantity}
+              </span>
+              <button
+                onClick={() => handleQuantityChange(quantity + 1)}
+                className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <Plus className="h-4 w-4 text-gray-600" />
+              </button>
+            </div>
+
+            <button
+              onClick={() => {
+                addToCart({ ...product, size: selectedSize }, quantity);
+                selectedAccessories.forEach(acc => {
+                  addToCart(acc as any, 1);
+                });
+              }}
+              className="flex-1 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0e9a7a]"
+            >
+              Legg til i handlekurv
+            </button>
+          </div>
+        </div>
+      </div>
+      
       <div className="mt-16 -mx-6 lg:-mx-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full">
-          <div className="bg-white px-6 lg:px-8 py-6 order-1 lg:order-2">
+          <div className="bg-white px-6 lg:px-8 py-6 order-2 lg:order-2">
             <BikePackageBuilder product={product} />
           </div>
           
-          <div className="w-full order-2 lg:order-1">
+          <div className="w-full order-1 lg:order-1">
             <TechnicalSpecifications product={product} />
           </div>
         </div>

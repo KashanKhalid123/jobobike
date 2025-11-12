@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 export async function POST(req: Request) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('STRIPE_SECRET_KEY is not set');
       return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
     }
 
@@ -12,6 +13,7 @@ export async function POST(req: Request) {
     });
 
     const { couponCode } = await req.json();
+    console.log('Validating coupon code:', couponCode);
 
     if (!couponCode) {
       return NextResponse.json({ error: 'Kupongkode er påkrevd', valid: false }, { status: 400 });
