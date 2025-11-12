@@ -56,13 +56,17 @@ export default function CheckoutClient() {
       return;
     }
     
+    // Check for applied coupon in localStorage
+    const storedCoupon = localStorage.getItem('appliedCoupon');
+    const couponData = storedCoupon ? JSON.parse(storedCoupon) : null;
+    
     // Cart has items, create payment intent
     console.log('Creating payment intent for items:', cartItems);
-    createPaymentIntent(cartItems);
+    createPaymentIntent(cartItems, couponData);
     
   }, [cartItems, cartLoading, totalItems]); // React to changes in cart
 
-  const createPaymentIntent = async (items: CartItem[]) => {
+  const createPaymentIntent = async (items: CartItem[], couponData?: any) => {
     console.log('=== CREATING PAYMENT INTENT ===');
     console.log('Items to process:', items);
     
@@ -70,7 +74,7 @@ export default function CheckoutClient() {
     setError(null);
     
     try {
-      const requestBody = {
+      const requestBody: any = {
         items: items.map(item => ({
           id: item.id,
           name: item.name,
@@ -79,6 +83,10 @@ export default function CheckoutClient() {
           category: item.category || 'general'
         }))
       };
+      
+      if (couponData) {
+        requestBody.couponData = couponData;
+      }
       
       console.log('Sending to API:', requestBody);
       

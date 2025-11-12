@@ -28,12 +28,26 @@ export default function PaymentForm() {
         phone: ''
     });
     const [saveInfo, setSaveInfo] = useState(false);
+    const [couponCode, setCouponCode] = useState('');
+    const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+    const [couponError, setCouponError] = useState('');
+    const [applyingCoupon, setApplyingCoupon] = useState(false);
 
     // ðŸ§® Calculate totals from cart
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const saved = 0;
     const taxId = 0;
-    const total = subtotal - saved + taxId;
+    
+    let discount = 0;
+    if (appliedCoupon) {
+        if (appliedCoupon.percent_off) {
+            discount = (subtotal * appliedCoupon.percent_off) / 100;
+        } else if (appliedCoupon.amount_off) {
+            discount = appliedCoupon.amount_off / 100;
+        }
+    }
+    
+    const total = subtotal - saved - discount + taxId;
 
     // ðŸ’± Currency options - Only NOK
     const currencies = [
@@ -42,6 +56,41 @@ export default function PaymentForm() {
 
     const currentCurrency = currencies[0];
     const convertPrice = (price: number) => price * currentCurrency.rate;
+
+    const handleApplyCoupon = async () => {
+        if (!couponCode.trim()) {
+            setCouponError('Vennligst skriv inn en kupongkode');
+            return;
+        }
+        setApplyingCoupon(true);
+        setCouponError('');
+        try {
+            const response = await fetch('/api/validate-coupon', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ couponCode: couponCode.trim() })
+            });
+            const data = await response.json();
+            if (response.ok && data.valid) {
+                setAppliedCoupon(data.coupon);
+                setCouponError('');
+            } else {
+                setCouponError(data.error || 'Ugyldig kupongkode');
+                setAppliedCoupon(null);
+            }
+        } catch (error) {
+            setCouponError('Kunne ikke validere kupongkode');
+            setAppliedCoupon(null);
+        } finally {
+            setApplyingCoupon(false);
+        }
+    };
+
+    const handleRemoveCoupon = () => {
+        setAppliedCoupon(null);
+        setCouponCode('');
+        setCouponError('');
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -123,10 +172,18 @@ export default function PaymentForm() {
                         <span>Delsum</span>
                         <span>{formatCurrency(convertPrice(subtotal))}</span>
                     </div>
-                    <div className="flex justify-between text-sm text-green-600">
-                        <span>SPART</span>
-                        <span>{formatCurrency(convertPrice(saved))}</span>
-                    </div>
+                    {saved > 0 && (
+                        <div className="flex justify-between text-sm text-green-600">
+                            <span>SPART</span>
+                            <span>{formatCurrency(convertPrice(saved))}</span>
+                        </div>
+                    )}
+                    {appliedCoupon && discount > 0 && (
+                        <div className="flex justify-between text-sm text-green-600">
+                            <span>Rabatt ({appliedCoupon.name || couponCode})</span>
+                            <span>-{formatCurrency(convertPrice(discount))}</span>
+                        </div>
+                    )}
                     <div className="flex justify-between text-sm text-black">
                         <span>MVA</span>
                         <span className="text-black">Inkludert i prisen</span>
@@ -135,6 +192,49 @@ export default function PaymentForm() {
                         <span>Totalt å betale</span>
                         <span>{formatCurrency(convertPrice(total))}</span>
                     </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t">
+                    <h3 className="font-medium mb-3 text-black">Har du en kupongkode?</h3>
+                    {!appliedCoupon ? (
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                                placeholder="Skriv inn kode"
+                                className="flex-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                                disabled={applyingCoupon}
+                            />
+                            <button
+                                type="button"
+                                onClick={handleApplyCoupon}
+                                disabled={applyingCoupon || !couponCode.trim()}
+                                className="px-6 py-3 bg-[#12b190] text-white rounded hover:bg-[#0f9a7a] disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {applyingCoupon ? 'Sjekker...' : 'Bruk'}
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded">
+                            <div className="flex items-center gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span className="text-sm text-green-700">
+                                    Kupong brukt: {appliedCoupon.name || couponCode}
+                                </span>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={handleRemoveCoupon}
+                                className="text-sm text-red-600 hover:text-red-700"
+                            >
+                                Fjern
+                            </button>
+                        </div>
+                    )}
+                    {couponError && (
+                        <p className="mt-2 text-sm text-red-600">{couponError}</p>
+                    )}
                 </div>
             </div>
 

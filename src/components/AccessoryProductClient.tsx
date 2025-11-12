@@ -16,6 +16,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || '');
+  const [selectedCompatibility, setSelectedCompatibility] = useState(product?.compatibility?.[0] || '');
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
 
@@ -24,7 +25,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
     
     setIsAdding(true);
     
-    // Create product name with size and/or color if selected
     let productName = product.name;
     const variants = [];
     
@@ -35,12 +35,10 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
       productName = `${product.name} (${variants.join(', ')})`;
     }
     
-    // Create unique ID with color/size if selected
     const uniqueId = selectedColor || selectedSize ? 
       `${product.id}-${selectedColor || ''}-${selectedSize || ''}` : 
       product.id;
     
-    // Add to cart with modified name and unique ID
     addToCart({
       id: uniqueId,
       name: productName,
@@ -49,7 +47,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
       category: product.category
     }, quantity);
     
-    // Reset after 2 seconds
     setTimeout(() => {
       setIsAdding(false);
     }, 2000);
@@ -57,7 +54,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
 
   return (
     <div className="min-h-screen bg-white mt-32">
-      {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="text-sm text-gray-500">
           <Link href="/" className="hover:text-gray-900">Hjem</Link>
@@ -70,9 +66,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Image Gallery */}
           <div className="space-y-4">
-            {/* Main Image */}
             <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
               <Image
                 src={product.images[selectedImage]}
@@ -80,7 +74,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 fill
                 className="object-cover"
               />
-              {/* Navigation Arrows */}
               {product.images.length > 1 && (
                 <>
                   <button
@@ -109,7 +102,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               )}
             </div>
 
-            {/* Thumbnail Images */}
             <div className="grid grid-cols-6 gap-2">
               {product.images.map((image, index) => (
                 <button
@@ -129,14 +121,13 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               ))}
             </div>
 
-            {/* Color Selection - Mobile Only (Under Images) */}
             {product.colors && product.colors.length > 0 && (
               <div className="lg:hidden">
                 <label className="block text-sm font-medium text-gray-900 mb-2">
                   Farge:
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {product.colors.map((color, index) => {
+                  {product.colors.map((color) => {
                     const colorMap: { [key: string]: string } = {
                       'Svart': '#000000',
                       'Blå': '#0066CC',
@@ -171,24 +162,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Compatibility - Desktop Only */}
-            {product.compatibility && product.compatibility.length > 0 && (
-              <div className="hidden lg:block border-t pt-6 mt-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-3">Kompatibilitet</h2>
-                <div className="flex flex-wrap gap-2">
-                  {product.compatibility.map((model, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                    >
-                      {model}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Features - Desktop Only */}
             {product.features && product.features.length > 0 && (
               <div className="hidden lg:block border-t pt-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-3">Funksjoner</h2>
@@ -204,39 +177,32 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
             )}
           </div>
 
-          {/* Product Details */}
           <div className="space-y-6">
-            {/* Title and Description */}
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {product.name}
+                {product.name}{selectedCompatibility && ` - ${selectedCompatibility.replace(/JOBOBIKE\s+/i, '').toUpperCase()} JoboBike`}
               </h1>
-              <p className="text-gray-600 mb-2">{product.description}</p>
-              
-
-
-              {/* Mobile: Compatibility Tags */}
-              <div className="lg:hidden mb-4">
-                {/* Compatibility Tags - Mobile */}
-                {product.compatibility && product.compatibility.length > 0 && (
-                  <div className="mb-3">
-                    <p className="text-sm text-gray-500 mb-2">Kompatibel med:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {product.compatibility.map((model, index) => (
-                        <span
-                          key={index}
-                          className="px-2 py-1 bg-[#12b190]/10 text-[#12b190] rounded text-xs font-medium"
-                        >
-                          {model}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <p className="text-gray-600 mb-4">{product.description.replace(/^Kompatibel med:.*?\. /, '')}</p>
             </div>
 
-            {/* Price and Quantity - Mobile */}
+            {product.compatibility && product.compatibility.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {product.compatibility.map((model, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedCompatibility(model)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedCompatibility === model
+                        ? 'bg-[#12b190] text-white'
+                        : 'bg-gray-100 text-[#12b190] hover:bg-[#12b190] hover:text-white'
+                    }`}
+                  >
+                    {model}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="lg:hidden">
               <div className="flex items-center justify-between gap-4 mb-4 px-4">
                 <div className="flex items-baseline gap-2">
@@ -264,7 +230,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 </div>
               </div>
               
-              {/* Add to Cart - Mobile */}
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock || isAdding}
@@ -278,7 +243,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </button>
             </div>
 
-            {/* Price - Desktop */}
             <div className="hidden lg:block">
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-bold text-gray-900">
@@ -290,7 +254,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             </div>
 
-            {/* Size Selection */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
                 <label className="block text-sm font-medium text-gray-900 mb-3">
@@ -314,14 +277,13 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-             {/* Color Selection - Desktop Only */}
             {product.colors && product.colors.length > 0 && (
               <div className="hidden lg:block">
                 <label className="block text-sm font-medium text-gray-900 mb-3">
                   Farge:
                 </label>
                 <div className="flex flex-wrap gap-3">
-                  {product.colors.map((color, index) => {
+                  {product.colors.map((color) => {
                     const colorMap: { [key: string]: string } = {
                       'Svart': '#000000',
                       'Blå': '#0066CC',
@@ -356,7 +318,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Quantity Selector - Desktop Only */}
             <div className="hidden lg:block">
               <label className="block text-sm font-medium text-gray-900 mb-3">
                 Antall:
@@ -378,9 +339,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             </div>
 
-           
-
-            {/* Add to Cart - Desktop */}
             <div className="hidden lg:block space-y-3 pt-4">
               <button
                 onClick={handleAddToCart}
@@ -395,13 +353,11 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </button>
             </div>
 
-            {/* Full Description */}
             <div className="border-t pt-6">
               <h2 className="text-xl font-bold text-gray-900 mb-3">Beskrivelse</h2>
               <p className="text-gray-600 leading-relaxed">{product.fullDescription}</p>
             </div>
 
-            {/* Specifications */}
             {product.specifications && product.specifications.length > 0 && (
               <div className="border-t pt-6 mt-8">
                 <h2 className="text-xl font-bold text-gray-900 mb-3">Spesifikasjoner</h2>
@@ -416,24 +372,6 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Compatibility - Mobile Only */}
-            {product.compatibility && product.compatibility.length > 0 && (
-              <div className="lg:hidden border-t pt-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-3">Kompatibilitet</h2>
-                <div className="flex flex-wrap gap-2">
-                  {product.compatibility.map((model, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                    >
-                      {model}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Features - Mobile Only */}
             {product.features && product.features.length > 0 && (
               <div className="lg:hidden border-t pt-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-3">Funksjoner</h2>

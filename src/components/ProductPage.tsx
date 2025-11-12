@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
 import { PRODUCTS_DATA } from "@/lib/productData";
+import { getCombinedProducts } from "@/lib/productVariants";
 import { useCart } from "./CartContext";
 
 /**
@@ -33,15 +34,16 @@ export default function ProductPage() {
   const { updateQuantity } = useCart();
 
   const perPage = 24;
-  const total = PRODUCTS_DATA.length;
+  const combinedProducts = useMemo(() => getCombinedProducts(), []);
+  const total = combinedProducts.length;
 
   const products = useMemo(() => {
-    let arr = [...PRODUCTS_DATA];
-    if (sort === "price-asc") arr.sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") arr.sort((a, b) => b.price - a.price);
+    let arr = [...combinedProducts];
+    if (sort === "price-asc") arr.sort((a, b) => a.variants[0].originalProduct.price - b.variants[0].originalProduct.price);
+    if (sort === "price-desc") arr.sort((a, b) => b.variants[0].originalProduct.price - a.variants[0].originalProduct.price);
     if (sort === "new") arr.reverse();
     return arr.slice((page - 1) * perPage, page * perPage);
-  }, [sort, page]);
+  }, [sort, page, combinedProducts]);
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -92,14 +94,16 @@ export default function ProductPage() {
 
         {/* Grid - Mobile: 2 columns, Desktop: 3 columns */}
         <ul role="list" className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
-          {PRODUCTS_DATA.map((product) => (
-            <li key={product.id} className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black h-[360px] sm:h-[360px] flex flex-col">
+          {products.map((combined) => {
+            const baseProduct = combined.variants[0].originalProduct;
+            return (
+            <li key={combined.baseId} className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black h-[360px] sm:h-[360px] flex flex-col">
               <div className="relative mb-2 sm:mb-8 h-[140px] sm:h-[160px] flex items-center justify-center">
-                <Link href={`/products/${product.slug}`} className="relative w-full h-full flex items-center justify-center">
+                <Link href={`/products/${combined.baseSlug}`} className="relative w-full h-full flex items-center justify-center">
                   <Image 
                     className="object-contain rounded-lg sm:rounded-xl max-w-full max-h-full"
-                    src={product.image} 
-                    alt={product.name}
+                    src={combined.image} 
+                    alt={combined.name}
                     width={250}
                     height={250}
                     unoptimized
@@ -110,18 +114,18 @@ export default function ProductPage() {
 
               <div className="flex-1 flex flex-col">
                 <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight h-[32px] sm:h-[36px] flex items-start">
-                  <Link href={`/products/${product.slug}`} className="break-words line-clamp-2">{product.name}</Link>
+                  <Link href={`/products/${combined.baseSlug}`} className="break-words line-clamp-2">{baseProduct.name}</Link>
                 </h3>
 
                 <div className="mt-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">
                 <div className="flex-1 min-w-0">
                   <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                    {formatCurrency(product.price)}
+                    {formatCurrency(baseProduct.price)}
                   </span>
 
-                  {product.features?.length && (
+                  {combined.features?.length && (
                     <ul className="mt-1 flex flex-col gap-1 text-[8px] sm:text-[10px] text-gray-700">
-                      {product.features.slice(0, 2).map((f, i) => (
+                      {combined.features.slice(0, 2).map((f, i) => (
                         <li key={i} className="rounded-md border border-gray-200 px-1 sm:px-1.5 py-0.5 w-fit text-ellipsis overflow-hidden max-w-full">
                           {f}
                         </li>
@@ -135,16 +139,16 @@ export default function ProductPage() {
                   {/* Compact Quantity Selector */}
                   <div className="flex items-center border border-gray-200 rounded-md w-fit">
                     <button
-                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) - 1)}
+                      onClick={() => handleQuantityChange(baseProduct.id, getQuantity(baseProduct.id) - 1)}
                       className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
                     >
                       <Minus className="h-3 w-3 text-gray-600" />
                     </button>
                     <span className="text-xs font-semibold min-w-[16px] text-center text-black px-1">
-                      {getQuantity(product.id)}
+                      {getQuantity(baseProduct.id)}
                     </span>
                     <button
-                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) + 1)}
+                      onClick={() => handleQuantityChange(baseProduct.id, getQuantity(baseProduct.id) + 1)}
                       className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
                     >
                       <Plus className="h-3 w-3 text-gray-600" />
@@ -153,15 +157,15 @@ export default function ProductPage() {
                   
                   {/* Add to Cart Button */}
                   <AddToCartButton 
-                    product={product}
-                    quantity={getQuantity(product.id)}
+                    product={baseProduct}
+                    quantity={getQuantity(baseProduct.id)}
                     className="w-full sm:flex-1 rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white sm:bg-[#12b190] sm:hover:bg-[#29ecc5] transition md:text-white md:hover:border-black md:bg-black md:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
                   />
                 </div>
               </div>
               </div>
             </li>
-          ))}
+          );})}
         </ul>
 
         {/* SEO text */}

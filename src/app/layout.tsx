@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'JOBOBIKE Norge' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
+  icons: {
+    icon: '/images/favicon.jpg',
+  },
   openGraph: {
     title: 'JOBOBIKE Norge - Premium El-sykler med Gratis Frakt',
     description: 'Norges største utvalg av premium el-sykler. 300+ partnere i Europa, gratis frakt til hele Norge.',

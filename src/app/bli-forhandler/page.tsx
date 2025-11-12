@@ -17,18 +17,67 @@ export default function BliForhandlerPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
 
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formData.firmanavn || formData.firmanavn.length < 2) {
+      newErrors.firmanavn = 'Firmanavn må være minst 2 tegn';
+    }
+    
+    if (!formData.orgnr || !/^[0-9]{9}$/.test(formData.orgnr)) {
+      newErrors.orgnr = 'Organisasjonsnummer må være 9 siffer';
+    }
+    
+    if (!formData.kontaktperson || formData.kontaktperson.length < 2) {
+      newErrors.kontaktperson = 'Kontaktperson må være minst 2 tegn';
+    }
+    if (formData.kontaktperson && !/^[a-zA-ZÀ-ÿ\s]+$/.test(formData.kontaktperson)) {
+      newErrors.kontaktperson = 'Kontaktperson kan kun inneholde bokstaver';
+    }
+    
+    if (!formData.epost || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.epost)) {
+      newErrors.epost = 'Vennligst skriv inn en gyldig e-postadresse';
+    }
+    
+    const hasDigit = /\d/.test(formData.telefon)
+    if (formData.telefon && hasDigit) {
+      const digitsOnly = formData.telefon.replace(/[^0-9]/g, '')
+      if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+        newErrors.telefon = 'Telefonnummer må være 8-15 siffer (kan inkludere landskode)';
+      }
+    }
+    
+    if (!formData.typeVirksomhet) {
+      newErrors.typeVirksomhet = 'Vennligst velg type virksomhet';
+    }
+    
+    return newErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -42,15 +91,6 @@ export default function BliForhandlerPage() {
       
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({
-          firmanavn: '',
-          orgnr: '',
-          kontaktperson: '',
-          epost: '',
-          telefon: '',
-          typeVirksomhet: '',
-          beskrivelse: ''
-        });
       } else {
         setSubmitStatus('error');
       }
@@ -78,26 +118,53 @@ export default function BliForhandlerPage() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Form Section - Left */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-black mb-8 text-center">
-            Registrer din interesse
-          </h2>
-          
-
-
-          <form onSubmit={handleSubmit} className="space-y-6">
+          {submitStatus === 'success' ? (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="w-20 h-20 bg-[#12b190] rounded-full flex items-center justify-center mb-6 animate-bounce">
+                <Check className="w-12 h-12 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-black mb-4">Takk for din interesse!</h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Vi kontakter deg snart med informasjon om forhandlerbetingelser.
+              </p>
+              <button
+                onClick={() => {
+                  setSubmitStatus('idle');
+                  setFormData({
+                    firmanavn: '',
+                    orgnr: '',
+                    kontaktperson: '',
+                    epost: '',
+                    telefon: '',
+                    typeVirksomhet: '',
+                    beskrivelse: ''
+                  });
+                }}
+                className="px-8 py-3 rounded-lg font-medium text-white bg-[#12b190] hover:bg-[#0f9a7a] transition-colors"
+              >
+                Send ny forespørsel
+              </button>
+            </div>
+          ) : (
+            <>
+              <h2 className="text-2xl font-bold text-black mb-8 text-center">
+                Registrer din interesse
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="firmanavn" className="block text-sm font-medium text-gray-700 mb-2">
                   Firmanavn *
                 </label>
+                {errors.firmanavn && <p className="text-red-600 text-sm mb-1">{errors.firmanavn}</p>}
                 <input
                   type="text"
                   id="firmanavn"
                   name="firmanavn"
-                  required
                   value={formData.firmanavn}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.firmanavn ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Skriv inn firmanavn"
                 />
               </div>
               
@@ -105,14 +172,15 @@ export default function BliForhandlerPage() {
                 <label htmlFor="orgnr" className="block text-sm font-medium text-gray-700 mb-2">
                   Org.nr. *
                 </label>
+                {errors.orgnr && <p className="text-red-600 text-sm mb-1">{errors.orgnr}</p>}
                 <input
                   type="text"
                   id="orgnr"
                   name="orgnr"
-                  required
                   value={formData.orgnr}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.orgnr ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="123456789"
                 />
               </div>
             </div>
@@ -122,14 +190,15 @@ export default function BliForhandlerPage() {
                 <label htmlFor="kontaktperson" className="block text-sm font-medium text-gray-700 mb-2">
                   Kontaktperson *
                 </label>
+                {errors.kontaktperson && <p className="text-red-600 text-sm mb-1">{errors.kontaktperson}</p>}
                 <input
                   type="text"
                   id="kontaktperson"
                   name="kontaktperson"
-                  required
                   value={formData.kontaktperson}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.kontaktperson ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Ola Nordmann"
                 />
               </div>
               
@@ -137,14 +206,15 @@ export default function BliForhandlerPage() {
                 <label htmlFor="epost" className="block text-sm font-medium text-gray-700 mb-2">
                   E-post *
                 </label>
+                {errors.epost && <p className="text-red-600 text-sm mb-1">{errors.epost}</p>}
                 <input
                   type="email"
                   id="epost"
                   name="epost"
-                  required
                   value={formData.epost}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.epost ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="din@epost.no"
                 />
               </div>
             </div>
@@ -152,16 +222,17 @@ export default function BliForhandlerPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="telefon" className="block text-sm font-medium text-gray-700 mb-2">
-                  Telefon *
+                  Telefon
                 </label>
+                {errors.telefon && <p className="text-red-600 text-sm mb-1">{errors.telefon}</p>}
                 <input
                   type="tel"
                   id="telefon"
                   name="telefon"
-                  required
                   value={formData.telefon}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.telefon ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="+47 123 45 678"
                 />
               </div>
               
@@ -169,13 +240,13 @@ export default function BliForhandlerPage() {
                 <label htmlFor="typeVirksomhet" className="block text-sm font-medium text-gray-700 mb-2">
                   Type virksomhet *
                 </label>
+                {errors.typeVirksomhet && <p className="text-red-600 text-sm mb-1">{errors.typeVirksomhet}</p>}
                 <select
                   id="typeVirksomhet"
                   name="typeVirksomhet"
-                  required
                   value={formData.typeVirksomhet}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.typeVirksomhet ? 'border-red-500' : 'border-gray-300'}`}
                 >
                   <option value="">Velg type virksomhet</option>
                   <option value="butikk">Butikk</option>
@@ -202,36 +273,30 @@ export default function BliForhandlerPage() {
               />
             </div>
 
-            {submitStatus === 'success' && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800">
-                  Takk for din interesse! Vi kontakter deg snart med informasjon om forhandlerbetingelser.
-                </p>
-              </div>
-            )}
-            
-            {submitStatus === 'error' && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800">
-                  Det oppstod en feil ved innsending. Vennligst prøv igjen eller kontakt oss direkte.
-                </p>
-              </div>
-            )}
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800">
+                      Det oppstod en feil ved innsending. Vennligst prøv igjen eller kontakt oss direkte.
+                    </p>
+                  </div>
+                )}
 
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="px-8 py-3 rounded-lg font-medium transition-colors bg-[#12b190] text-white hover:bg-[#0f9a7a] disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sender...' : 'Send inn forhandlerforespørsel'}
-              </button>
-            </div>
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="px-8 py-3 rounded-lg font-medium transition-colors bg-[#12b190] text-white hover:bg-[#0f9a7a] disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Sender...' : 'Send inn forhandlerforespørsel'}
+                  </button>
+                </div>
 
-            <p className="text-sm text-gray-600 text-center">
-              Ved å sende inn godtar du at vi kontakter deg med informasjon om forhandlerbetingelser.
-            </p>
-          </form>
+                <p className="text-sm text-gray-600 text-center">
+                  Ved å sende inn godtar du at vi kontakter deg med informasjon om forhandlerbetingelser.
+                </p>
+              </form>
+            </>
+          )}
           </div>
 
           {/* Benefits Section - Right */}

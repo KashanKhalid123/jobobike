@@ -181,6 +181,7 @@ const CartPage: React.FC = () => {
                       <div className="flex-1 min-w-0 pr-2">
                         <h3 className="font-bold text-gray-900 text-sm leading-tight">{item.name}</h3>
                         <p className="text-xs text-gray-600 mt-1">{item.category || 'Generell'}</p>
+                        {item.size && <p className="text-xs text-gray-500 mt-0.5">Størrelse: {item.size}</p>}
                       </div>
                       <button 
                         onClick={() => handleRemoveItem(item.id)}
@@ -280,7 +281,8 @@ const CartPage: React.FC = () => {
                           {/* Product Details */}
                           <div className="flex-1 min-w-0">
                             <h3 className="font-bold text-gray-900 text-xl mb-2">{item.name}</h3>
-                            <p className="text-sm text-gray-600 font-medium mb-4">Kategori: {item.category || 'Generell'}</p>
+                            <p className="text-sm text-gray-600 font-medium mb-1">Kategori: {item.category || 'Generell'}</p>
+                            {item.size && <p className="text-sm text-gray-500 mb-4">Størrelse: {item.size}</p>}
                             
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-6">

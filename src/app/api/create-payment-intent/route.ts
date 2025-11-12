@@ -26,25 +26,36 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     console.log('ðŸ“© Payment intent API received:', body);
 
-    const { items = [] } = body;
+    const { items = [], couponId = null, couponData = null } = body;
 
     // âœ… Calculate amount from cart items (real-time data)
-    const calculateOrderAmount = (items: any[]) => {
+    const calculateOrderAmount = (items: any[], couponData?: any) => {
       if (!items || items.length === 0) {
         throw new Error('No items in cart');
       }
 
-      const total = items.reduce((sum, item) => {
-        const price = item.price ? Math.round(item.price * 100) : 0; // Stripe needs amount in cents
+      let total = items.reduce((sum, item) => {
+        const price = item.price ? Math.round(item.price * 100) : 0;
         const quantity = item.quantity || 1;
         return sum + price * quantity;
       }, 0);
+
+      if (couponData) {
+        if (couponData.percent_off) {
+          const discount = Math.round((total * couponData.percent_off) / 100);
+          total = total - discount;
+          console.log(`Applied ${couponData.percent_off}% discount: -${discount}`);
+        } else if (couponData.amount_off) {
+          total = total - couponData.amount_off;
+          console.log(`Applied fixed discount: -${couponData.amount_off}`);
+        }
+      }
 
       console.log('âœ… Calculated total amount:', total);
       return total;
     };
 
-    const amount = calculateOrderAmount(items);
+    const amount = calculateOrderAmount(items, body.couponData);
 
     if (amount <= 0) {
       throw new Error('Invalid amount calculated');
@@ -76,12 +87,18 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    const paymentIntent = await stripe.paymentIntents.create({
+    const paymentIntentParams: Stripe.PaymentIntentCreateParams = {
       amount: amount,
       currency: 'nok',
       automatic_payment_methods: { enabled: true },
       metadata,
-    });
+    };
+
+    if (couponId) {
+      paymentIntentParams.metadata.coupon_code = couponId;
+    }
+
+    const paymentIntent = await stripe.paymentIntents.create(paymentIntentParams);
 
     console.log('âœ… Payment intent created:', paymentIntent.id);
 

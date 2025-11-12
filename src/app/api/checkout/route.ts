@@ -23,7 +23,8 @@ export async function POST(req: Request) {
         price_data: {
           currency: "nok",
           product_data: {
-            name: item.name,
+            name: item.size ? `${item.name} (Størrelse: ${item.size})` : item.name,
+            metadata: item.size ? { size: item.size } : {},
           },
           unit_amount: Math.round(item.price * 100), // øre
         },

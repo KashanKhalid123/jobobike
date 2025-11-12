@@ -1,4 +1,27 @@
-﻿// src/lib/productData.ts
+// src/lib/productData.ts
+export interface ProductVariant {
+  variantName: string;
+  originalPrice: number;
+  price: number;
+  image: string;
+  images: string[];
+  description: string;
+  keyFeatures: string[];
+  specifications: {
+    motor: string;
+    battery: string;
+    range: string;
+    speed: string;
+    weight: string;
+    wheelSize: string;
+    foldable: boolean;
+    brakes?: string;
+    frame?: string;
+    drivetrain?: string;
+  };
+  tekniskeSpesifikasjoner: any;
+  whatsInTheBox: string[];
+}
 
 export interface ProductCard {
   id: string;
@@ -14,6 +37,7 @@ export interface ProductCard {
   category: string[];
   rating: number;
   reviewCount: number;
+  variants?: ProductVariant[];
   specifications: {
     motor: string;
     battery: string;
@@ -143,7 +167,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 1. JOBOBIKE Luxe
   {
     id: "luxe-001",
-    name: "LUXE - jobobike",
+    name: "LUXE - JoboBike",
     slug: "jobobike-luxe",
     originalPrice: 73737,
     price: 73737,
@@ -258,7 +282,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 2. JOBOBIKE Robin
   {
     id: "robin-001",
-    name: "ROBIN - jobobike",
+    name: "ROBIN - JoboBike",
     slug: "jobobike-robin",
     originalPrice: 45634,
     price: 45634,
@@ -374,7 +398,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 3. JOBOBIKE Robin Pro
   {
     id: "robin-pro-001",
-    name: "ROBIN PRO - jobobike",
+    name: "ROBIN PRO - JoboBike",
     slug: "jobobike-robin-pro",
     originalPrice: 52660,
     price: 52660,
@@ -490,7 +514,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 4. JOBOBIKE Romer
   {
     id: "romer-001",
-    name: "ROMER - jobobike",
+    name: "ROMER - JoboBike",
     slug: "jobobike-romer",
     originalPrice: 56173,
     price: 56173,
@@ -613,7 +637,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 5. JOBOBIKE Romer Pro
   {
     id: "romer-pro-001",
-    name: "ROMER PRO - jobobike",
+    name: "ROMER PRO - JoboBike",
     slug: "jobobike-romer-pro",
     originalPrice: 59686,
     price: 59686,
@@ -731,7 +755,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 6. JOBOBIKE Ace Pro
   {
     id: "ace-pro-001",
-    name: "ACE PRO - jobobike",
+    name: "ACE PRO - JoboBike",
     slug: "jobobike-ace-pro",
     originalPrice: 42121,
     price: 42121,
@@ -850,7 +874,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 7. JOBOBIKE Romer C
   {
     id: "romer-c-001",
-    name: "ROMER C - jobobike",
+    name: "ROMER C - JoboBike",
     slug: "jobobike-romer-c",
     originalPrice: 45634,
     price: 45634,
@@ -969,7 +993,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 8. JOBOBIKE Sam
   {
     id: "sam-001",
-    name: "SAM - jobobike",
+    name: "SAM - JoboBike",
     slug: "jobobike-sam",
     originalPrice: 38608,
     price: 38608,
@@ -1075,7 +1099,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 9. JOBOBIKE Lyon Pro
   {
     id: "lyon-pro-001",
-    name: "LYON PRO - jobobike",
+    name: "LYON PRO - JoboBike",
     slug: "jobobike-lyon-pro",
     originalPrice: 66712,
     price: 66712,
@@ -1181,7 +1205,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 10. JOBOBIKE Dyno GT
   {
     id: "dyno-gt-001",
-    name: "DYNO GT - jobobike",
+    name: "DYNO GT - JoboBike",
     slug: "jobobike-dyno-gt",
     originalPrice: 59686,
     price: 59686,
@@ -1290,7 +1314,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 11. JOBOBIKE Transer
   {
     id: "transer-001",
-    name: "TRANSER - jobobike",
+    name: "TRANSER - JoboBike",
     slug: "jobobike-transer",
     originalPrice: 70225,
     price: 70225,
@@ -1394,7 +1418,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 12. JOBOBIKE Mover
   {
     id: "mover-001",
-    name: "MOVER - jobobike",
+    name: "MOVER - JoboBike",
     slug: "jobobike-mover",
     originalPrice: 70225,
     price: 70225,
@@ -1503,7 +1527,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 13. JOBOBIKE Eddy X
   {
     id: "eddy-x-001",
-    name: "EDDY X - jobobike",
+    name: "EDDY X - JoboBike",
     slug: "jobobike-eddy-x",
     originalPrice: 45634,
     price: 45634,
@@ -1601,7 +1625,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 14. JOBOBIKE Astra
   {
     id: "astra-001",
-    name: "ASTRA - jobobike",
+    name: "ASTRA - JoboBike",
     slug: "jobobike-astra",
     originalPrice: 56173,
     price: 56173,
@@ -1705,7 +1729,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 15. JOBOBIKE Viva
   {
     id: "viva-001",
-    name: "VIVA - jobobike",
+    name: "VIVA - JoboBike",
     slug: "jobobike-viva",
     originalPrice: 45634,
     price: 45634,
@@ -1813,7 +1837,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 16. JOBOBIKE Viva ST
   {
     id: "viva-st-001",
-    name: "VIVA ST - jobobike",
+    name: "VIVA ST - JoboBike",
     slug: "jobobike-viva-st",
     originalPrice: 45634,
     price: 45634,
@@ -1919,7 +1943,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 17. JOBOBIKE Henry
   {
     id: "henry-001",
-    name: "HENRY - jobobike",
+    name: "HENRY - JoboBike",
     slug: "jobobike-henry",
     originalPrice: 52660,
     price: 52660,
@@ -2021,7 +2045,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 18. JOBOBIKE Ace
   {
     id: "ace-001",
-    name: "ACE - jobobike",
+    name: "ACE - JoboBike",
     slug: "jobobike-ace",
     originalPrice: 35095,
     price: 35095,
@@ -2128,7 +2152,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 19. JOBOBIKE Triker
   {
     id: "triker-001",
-    name: "TRIKER - jobobike",
+    name: "TRIKER - JoboBike",
     slug: "jobobike-triker",
     originalPrice: 98338,
     price: 98338,
@@ -2237,7 +2261,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   // 20. JOBOBIKE Dyno (ST)
   {
     id: "dyno-001",
-    name: "DYNO - jobobike",
+    name: "DYNO - JoboBike",
     slug: "jobobike-dyno",
     originalPrice: 56173,
     price: 56173,

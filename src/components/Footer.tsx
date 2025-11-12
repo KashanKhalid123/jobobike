@@ -52,9 +52,11 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-3 text-base">Support</h3>
             <ul className="space-y-2 text-sm text-gray-700">
-              <li><Link href="/contact" className="hover:text-[#12b190]">Kontakt oss</Link></li>
-              <li><Link href="/afterSale" className="hover:text-[#12b190]">Ettersalgsservice</Link></li>
+              <li><Link href="/cycle" className="hover:text-[#12b190]">El-sykler</Link></li>
+              <li><Link href="/accessorie" className="hover:text-[#12b190]">Sykkelutstyr</Link></li>
+              <li><Link href="/bli-forhandler" className="hover:text-[#12b190]">Bli forhandler</Link></li>
               <li><Link href="/about" className="hover:text-[#12b190]">Om oss</Link></li>
+              <li><Link href="/contact" className="hover:text-[#12b190]">Kontakt oss</Link></li>
             </ul>
           </div>
 
@@ -64,6 +66,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/privacy" className="hover:text-[#12b190]">Personvernerklæring</Link></li>
               <li><Link href="/terms" className="hover:text-[#12b190]">Kjøpsvilkår</Link></li>
+              <li><Link href="/returns" className="hover:text-[#12b190]">Garanti & Retur</Link></li>
             </ul>
           </div>
 
@@ -82,10 +85,6 @@ const Footer = () => {
               <li className="flex items-center gap-2">
                 <HiOutlineBuildingOffice2 className="w-4 h-4 text-[#12b190]" />
                 Niels Juels Gate 70, Oslo, Norge
-              </li>
-              <li className="mt-3">
-                <div className="text-gray-600 font-bold mb-1">Returadresse:</div>
-                <div>Gromadzka 505-806 Sokołów, Polen</div>
               </li>
             </ul>
           </div>

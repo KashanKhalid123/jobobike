@@ -74,7 +74,10 @@ Vi tilbyr 14 dagers angrerett fra den dagen du mottar varen, i tråd med angrere
 • Kunden dekker returkostnader med mindre annet er avtalt.
 • Ved feil eller mangler dekkes returkostnadene av oss.
 
-For å avtale retur, kontakt oss på support@jobobike.no med ordrenummer og informasjon om varen du ønsker å returnere.`
+For å avtale retur, kontakt oss på support@jobobike.no med ordrenummer og informasjon om varen du ønsker å returnere.
+
+Returadresse:
+Gromadzka 505-806 Sokołów, Polen`
     },
     {
       id: 'reklamasjon',

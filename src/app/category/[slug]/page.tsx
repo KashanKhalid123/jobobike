@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { PRODUCTS_DATA } from "@/lib/productData";
+import { getCombinedProducts } from "@/lib/productVariants";
 import CategoryClient from "@/components/CategoryClient";
 
 interface CategoryPageProps {
@@ -21,15 +22,14 @@ export async function generateStaticParams() {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
-  const filteredProducts = PRODUCTS_DATA.filter((p) =>
-    Array.isArray(p.category)
-      ? p.category.includes(slug)
-      : p.category === slug
+  const combinedProducts = getCombinedProducts();
+  const filteredProducts = combinedProducts.filter((p) =>
+    p.category.includes(slug)
   );
 
   if (filteredProducts.length === 0) {
     notFound();
   }
 
-  return <CategoryClient products={filteredProducts} slug={slug} />;
+  return <CategoryClient combinedProducts={filteredProducts} slug={slug} />;
 }

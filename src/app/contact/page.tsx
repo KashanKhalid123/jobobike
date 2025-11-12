@@ -5,7 +5,8 @@ import {
   MapPinIcon, 
   PhoneIcon, 
   Mail, 
-  ClockIcon 
+  ClockIcon,
+  Check
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -19,6 +20,7 @@ const ContactUs: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errors, setErrors] = useState<{[key: string]: string}>({})
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -26,10 +28,49 @@ const ContactUs: React.FC = () => {
       ...prev,
       [name]: value
     }))
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' })
+    }
+  }
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {}
+    
+    if (!formData.fullName || formData.fullName.length < 2) {
+      newErrors.fullName = 'Fullt navn må være minst 2 tegn'
+    }
+    if (formData.fullName && !/^[a-zA-Z\u00c0-\u00ff\s]+$/.test(formData.fullName)) {
+      newErrors.fullName = 'Fullt navn kan kun inneholde bokstaver'
+    }
+    
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Vennligst skriv inn en gyldig e-postadresse'
+    }
+    
+    const hasDigit = /\d/.test(formData.phoneNumber)
+    if (formData.phoneNumber && hasDigit) {
+      const digitsOnly = formData.phoneNumber.replace(/[^0-9]/g, '')
+      if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+        newErrors.phoneNumber = 'Telefonnummer må være 8-15 siffer (kan inkludere landskode)'
+      }
+    }
+    
+    if (!formData.message || formData.message.length < 10) {
+      newErrors.message = 'Melding må være minst 10 tegn'
+    }
+    
+    return newErrors
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const newErrors = validateForm()
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -43,12 +84,6 @@ const ContactUs: React.FC = () => {
       
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({
-          fullName: '',
-          email: '',
-          phoneNumber: '',
-          message: ''
-        });
       } else {
         setSubmitStatus('error');
       }
@@ -94,53 +129,48 @@ const ContactUs: React.FC = () => {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send oss en melding</h2>
-              
-
-
-              <form onSubmit={handleSubmit} className="space-y-6 text-gray-600">
-                <style jsx>{`
-                  input,
-                  textarea {
-                    border-color: #d1d5db !important;
-                    box-shadow: none !important;
-                    outline: none !important;
-                  }
-                  input:focus,
-                  input:active,
-                  input:hover,
-                  textarea:focus,
-                  textarea:active,
-                  textarea:hover {
-                    border-color: #d1d5db !important;
-                    box-shadow: none !important;
-                    outline: none !important;
-                  }
-                  input:invalid,
-                  input:invalid:focus,
-                  input:invalid:hover,
-                  textarea:invalid,
-                  textarea:invalid:focus,
-                  textarea:invalid:hover {
-                    border-color: #d1d5db !important;
-                    box-shadow: none !important;
-                    outline: none !important;
-                  }
-                `}</style>
+              {submitStatus === 'success' ? (
+                <div className="flex flex-col items-center justify-center py-12 mt-16 text-center">
+                  <div className="w-20 h-20 bg-[#12b190] rounded-full flex items-center justify-center mb-6 animate-bounce">
+                    <Check className="w-12 h-12 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Takk for din melding!</h2>
+                  <p className="text-lg text-gray-600 mb-6">
+                    Vi kommer tilbake til deg innen 24 timer.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitStatus('idle');
+                      setFormData({
+                        fullName: '',
+                        email: '',
+                        phoneNumber: '',
+                        message: ''
+                      });
+                    }}
+                    className="px-8 py-3 rounded-lg font-medium text-white bg-[#12b190] hover:bg-[#0f9a7a] transition-colors"
+                  >
+                    Send ny melding
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Send oss en melding</h2>
+                  <form onSubmit={handleSubmit} className="space-y-6 text-gray-600" noValidate>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
                       Fullt navn *
                     </label>
+                    {errors.fullName && <p className="text-red-600 text-sm mb-1">{errors.fullName}</p>}
                     <input
                       type="text"
                       id="fullName"
                       name="fullName"
-                      required
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:border-gray-300 focus:outline-none transition-colors"
-                      placeholder="Skriv inn ditt fulle navn"
+                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
+                      placeholder="Ola Nordmann"
                     />
                   </div>
                   
@@ -148,17 +178,15 @@ const ContactUs: React.FC = () => {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       E-postadresse *
                     </label>
+                    {errors.email && <p className="text-red-600 text-sm mb-1">{errors.email}</p>}
                     <input
-                      type="email"
+                      type="text"
                       id="email"
                       name="email"
-                      required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:border-gray-300 focus:outline-none transition-colors invalid:border-gray-300 focus:invalid:border-gray-300"
-                      placeholder="Skriv inn din e-post"
-                      style={{ boxShadow: 'none' }}
-                      onInvalid={(e) => e.preventDefault()}
+                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                      placeholder="din@epost.no"
                     />
                   </div>
                 </div>
@@ -167,15 +195,15 @@ const ContactUs: React.FC = () => {
                   <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-2">
                     Telefonnummer
                   </label>
+                  {errors.phoneNumber && <p className="text-red-600 text-sm mb-1">{errors.phoneNumber}</p>}
                   <input
-                    type="tel"
+                    type="text"
                     id="phoneNumber"
                     name="phoneNumber"
-                    required
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:border-gray-300 focus:outline-none transition-colors"
-                    placeholder="Skriv inn ditt telefonnummer"
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
+                    placeholder="+47 123 45 678"
                   />
                 </div>
 
@@ -183,42 +211,38 @@ const ContactUs: React.FC = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Melding *
                   </label>
+                  {errors.message && <p className="text-red-600 text-sm mb-1">{errors.message}</p>}
                   <textarea
                     id="message"
                     name="message"
-                    required
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:border-gray-300 focus:outline-none transition-colors resize-vertical"
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black resize-vertical ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="Fortell oss hvordan vi kan hjelpe deg..."
                   />
                 </div>
 
-                {submitStatus === 'success' && (
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-green-800">
-                      Takk for din melding! Vi kommer tilbake til deg innen 24 timer.
-                    </p>
-                  </div>
-                )}
 
-                {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-800">
-                      Beklager, det oppstod en feil ved sending av meldingen. Vennligst prøv igjen.
-                    </p>
-                  </div>
-                )}
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 px-6 rounded-lg font-semibold text-white transition-all duration-200 bg-[#12b190] hover:bg-[#12b190] focus:ring-4 focus:ring-blue-200 shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? 'Sender...' : 'Send melding'}
-                </button>
-              </form>
+                    {submitStatus === 'error' && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <p className="text-red-800">
+                          Beklager, det oppstod en feil ved sending av meldingen. Vennligst prøv igjen.
+                        </p>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3 px-6 rounded-lg font-medium text-white transition-colors bg-[#12b190] hover:bg-[#0f9a7a] disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Sender...' : 'Send melding'}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
 
