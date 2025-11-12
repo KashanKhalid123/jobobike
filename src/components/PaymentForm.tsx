@@ -197,20 +197,20 @@ export default function PaymentForm() {
                 <div className="mt-6 pt-6 border-t">
                     <h3 className="font-medium mb-3 text-black">Har du en kupongkode?</h3>
                     {!appliedCoupon ? (
-                        <div className="flex gap-2">
+                        <div className="flex flex-col sm:flex-row gap-2">
                             <input
                                 type="text"
                                 value={couponCode}
                                 onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                                 placeholder="Skriv inn kode"
-                                className="flex-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                                className="flex-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 text-sm sm:text-base"
                                 disabled={applyingCoupon}
                             />
                             <button
                                 type="button"
                                 onClick={handleApplyCoupon}
                                 disabled={applyingCoupon || !couponCode.trim()}
-                                className="px-6 py-3 bg-[#12b190] text-white rounded hover:bg-[#0f9a7a] disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full sm:w-auto px-6 py-3 bg-[#12b190] text-white rounded hover:bg-[#0f9a7a] disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                             >
                                 {applyingCoupon ? 'Sjekker...' : 'Bruk'}
                             </button>
