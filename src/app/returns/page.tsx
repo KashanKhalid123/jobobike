@@ -1,110 +1,114 @@
-"use client";
-import React, { useState } from "react";
+'use client';
 
-interface Section {
-  title: string;
-  content: string;
-}
-
-const sections: Section[] = [
-  {
-    title: "Levering",
-    content: `Alle bestillinger sendes innen 3 virkedager etter registrert betaling, med unntak av forhåndsbestillinger. Dersom levering forsinkes grunnet force majeure, helligdager eller andre forhold utenfor vår kontroll, informeres kunden via nettsiden eller kundeservice.`,
-  },
-  {
-    title: "Angrerett",
-    content: `Du har 14 dagers angrerett fra bestillingsdato i henhold til angrerettloven. For å benytte angreretten må varen returneres i original stand og emballasje. Kjøper dekker returfrakten.`,
-  },
-  {
-    title: "Retur og bytte",
-    content: `• Retur må avtales med kundeservice før varen sendes.
-
-• Varen skal være ubrukt, komplett og uten skader.
-
-• For el-sykler må testkjøringsavstand ikke overstige 10 km.
-
-• Dersom retur skyldes produksjonsfeil, dekker vi frakt tur/retur.
-
-• Ved retur av andre årsaker enn produksjonsfeil, dekker kjøper fraktkostnader begge veier.
-
-• Dersom varen viser tydelige tegn på bruk, skade eller mangler deler, kan det trekkes opptil 20 % i behandlingsgebyr samt fraktkostnader.
-
-Returadresse:
-Gromadzka 505-806 Sokołów, Polen`,
-  },
-  {
-    title: "Inspeksjon ved mottak",
-    content: `Kunden skal kontrollere varen innen 3 virkedager etter mottak. Eventuelle skader eller feil må meldes umiddelbart. Etter 3 dager anses varen som levert i god stand.`,
-  },
-  {
-    title: "Produktendringer",
-    content: `Spesifikasjoner og detaljer kan endres uten forvarsel for å forbedre kvalitet, ytelse eller sikkerhet. Mindre forskjeller mellom produktbilder og faktisk produkt gir ikke grunnlag for reklamasjon eller retur.`,
-  },
-  {
-    title: "Deler og slitasje",
-    content: `Normale slitedeler (dekk, lagre, kjeder, bremser, batterier osv.) dekkes ikke av garanti. Ved behov for utskiftning kan deler kjøpes direkte fra oss.`,
-  },
-  {
-    title: "Reklamasjon",
-    content: `Ved dokumentert produksjonsfeil innen garantiperioden reparerer eller erstatter vi produktet uten kostnad. Garantien bortfaller dersom produktet har vært utsatt for feilbruk, uaktsomhet, kollisjon, vannskade, endring av deler eller annen modifikasjon.`,
-  },
-  {
-    title: "Slik går du frem ved retur eller reklamasjon",
-    content: `1. Kontakt kundeservice på e-post og oppgi ordrenummer, beskrivelse av problemet og eventuelle bilder.
-
-2. Vent på bekreftelse og returinstruksjon før varen sendes.
-
-3. Pakk produktet forsvarlig i original emballasje.
-
-Vi behandler saken så snart varen er mottatt, og gir beskjed om videre prosess (reparasjon, erstatning eller refusjon).`,
-  },
-];
+import React from 'react';
 
 const ReturPage = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleSection = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section className="bg-white dark:bg-gray-900 py-20 pt-36">
-      <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-2">
-          Garanti & Retur
-        </h1>
-        <p className="text-center text-gray-500 text-sm mb-10">
-          Sist oppdatert: 26. september 2025
-        </p>
-
-        <div className="space-y-4">
-          {sections.map((section, index) => (
-            <div
-              key={index}
-              className="border border-gray-200 dark:border-gray-700 rounded-lg"
-            >
-              <button
-                onClick={() => toggleSection(index)}
-                className="w-full flex justify-between items-center px-5 py-4 text-left"
-              >
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  {index + 1}. {section.title}
-                </span>
-                <span className="text-xl font-bold text-gray-600 dark:text-gray-300">
-                  {openIndex === index ? "−" : "+"}
-                </span>
-              </button>
-
-              {openIndex === index && (
-                <div className="px-5 pb-5 text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed">
-                  {section.content}
-                </div>
-              )}
-            </div>
-          ))}
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-gray-50 py-16 mt-32 md:mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-4">
+            Kjøpsvilkår & Garanti
+          </h1>
+          <p className="text-sm text-gray-600 text-center">
+            Sist oppdatert: 26. september 2025
+          </p>
         </div>
       </div>
-    </section>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        {/* Parter og vilkår */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Parter og vilkår</h2>
+          <p className="text-gray-700 leading-relaxed">
+            Disse vilkårene gjelder mellom JALUT AI INNOSCRIBE (org.nr 932806517) og kunden («du/deg»). Ved å handle på sykkellageret.no aksepterer du disse vilkårene.
+          </p>
+        </section>
+
+        {/* Bestilling, betaling og levering */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Bestilling, betaling og levering</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Når du legger inn en bestilling, mottar du en ordrebekreftelse og digital bruksanvisning på e-post. Bestillingen er bindende når du har mottatt ordrebekreftelsen.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Vi tilbyr betaling med Vipps, Visa, Mastercard og Klarna. Beløpet trekkes når du fullfører bestillingen.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Estimert leveringstid er 7–14 virkedager. Vi leverer kun innen Norge. Fraktkostnad vises før betaling.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            Kunden skal kontrollere varen innen 3 virkedager etter mottak. Eventuelle skader eller feil må meldes umiddelbart til <strong>support@jobobike.no</strong>. Etter 3 dager anses varen som levert i god stand.
+          </p>
+        </section>
+
+        {/* Retur & Angrerett */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Retur & Angrerett</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            <strong>Retur må alltid avtales med oss før varen sendes.</strong> Når vi har bekreftet at returen oppfyller våre retningslinjer, sender vi returadresse og videre instruksjoner.
+          </p>
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">Angrerett (14 dager)</h3>
+          <p className="text-gray-700 leading-relaxed mb-3">
+            Du har 14 dagers angrerett fra dagen du mottar varen, i tråd med angrerettloven.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-2">For at angreretten skal gjelde må:</p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
+            <li>Varen være i <strong>original stand og original emballasje.</strong></li>
+            <li>Varen være <strong>ubrukt, komplett og uten skader.</strong></li>
+          </ul>
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">Kostnader</h3>
+          <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
+            <li><strong>Produksjonsfeil:</strong> Selger dekker frakt tur/retur.</li>
+            <li><strong>Andre årsaker:</strong> Ved reparasjoner som ikke dekkes av garantien dekker kjøper frakt begge veier.</li>
+          </ul>
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">Slik avtaler du retur</h3>
+          <p className="text-gray-700 leading-relaxed">
+            Kontakt oss på <strong>support@jobobike.no</strong> med ordrenummer og informasjon om varen du ønsker å returnere.
+          </p>
+        </section>
+
+        {/* Garanti & Reklamasjon */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Garanti & Reklamasjon</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Vi følger gjeldende norske lover og forbrukerrettigheter for el-sykler. Dette innebærer:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
+            <li><strong>2–5 års reklamasjonsrett</strong> avhengig av komponent og forventet levetid, i tråd med forbrukerkjøpsloven.</li>
+            <li>Feil som skyldes <strong>produksjon, materialer eller fabrikasjon</strong> dekkes av garantien.</li>
+            <li>Feil som skyldes <strong>uhell, manglende vedlikehold, feilbruk, uforsvarlig lagring eller modifisering</strong> dekkes ikke.</li>
+            <li>Batterier dekkes for <strong>fabrikasjonsfeil</strong>, men normal kapasitetsreduksjon over tid regnes ikke som en mangel.</li>
+            <li>Normale slitedeler (dekk, lagre, kjeder, bremser osv.) dekkes ikke av garanti. Ved behov for utskiftning kan deler kjøpes direkte fra oss.</li>
+            <li>Garanti og reklamasjon gjelder kun når sykkelen er brukt i henhold til produsentens spesifikasjoner.</li>
+          </ul>
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">Slik melder du en garantisak:</h3>
+          <ol className="list-decimal list-inside space-y-2 text-gray-700 ml-4 mb-4">
+            <li>Kontakt oss på <strong>support@jobobike.no</strong> med ordrenummer, beskrivelse av feilen og bilder/video som dokumentasjon.</li>
+            <li>Vent på bekreftelse og returinstruksjon før varen sendes.</li>
+            <li>Pakk produktet forsvarlig i original emballasje.</li>
+          </ol>
+          <p className="text-gray-700 leading-relaxed">
+            Vi behandler saken så snart varen er mottatt, og gir beskjed om videre prosess (reparasjon, erstatning eller refusjon).
+          </p>
+        </section>
+
+        {/* Produktendringer og personvern */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Produktendringer og personvern</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Spesifikasjoner og detaljer kan endres uten forvarsel for å forbedre kvalitet, ytelse eller sikkerhet. Mindre forskjeller mellom produktbilder og faktisk produkt gir ikke grunnlag for reklamasjon eller retur.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            Vi behandler personopplysninger i samsvar med vår personvernerklæring og gjeldende lover (GDPR).
+          </p>
+        </section>
+
+      </div>
+    </div>
   );
 };
 
