@@ -74,7 +74,7 @@ const ContactUs: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('https://formspree.io/f/xldozejn', {
+      const response = await fetch('https://formspree.io/f/mzzyrzke', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -253,19 +253,6 @@ const ContactUs: React.FC = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-6">Kontaktinformasjon</h3>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <MapPinIcon className="h-6 w-6 text-[#12b190]" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900">Adresse</h4>
-                    <p className="text-gray-600 mt-1">
-                     
-                       Oslo Norge
-                    </p>
-                  </div>
-                </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <PhoneIcon className="h-6 w-6 text-[#12b190]" />

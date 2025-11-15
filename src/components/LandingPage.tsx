@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, ArrowRight } from 'lucide-react';
 import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from '@/lib/productData';
 import { getCombinedProducts } from '@/lib/productVariants';
@@ -42,13 +42,35 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white mt-32 md:mt-24">
-      <section className="flex justify-center items-center sm:m-0">
-        <img
-          src="/images/banner.jpg"
-          alt="DYU E-Bikes"
-          className="max-h-[600px] w-auto md:object-contain md:max-w-7xl md:px-4 sm:px-2"
-        />
+    <div className="min-h-screen bg-white">
+      <section className="w-full py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white pt-10 md:pt-[135px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="bg-[#12b190]/10 text-[#12b190] px-4 py-2 rounded-full text-sm font-medium font-sans">Limited Time Offer</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-sans">
+                <span className="text-[#12b190]">End of Summer Sale</span>
+                <span className="block text-[#12b190] mt-2 text-3xl md:text-4xl lg:text-5xl">Upto 30% OFF</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl font-sans">
+                Premium electric bikes designed for your lifestyle. Lightweight, powerful, and perfect for every journey.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/cycle">
+                  <button className="group bg-[#12b190] text-white font-bold px-10 py-5 rounded-full text-xl hover:bg-[#0f9d7d] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl">
+                    Shop Now
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
+              <img src="/images/eurobike.png" alt="Eurobike" className="w-[140%] h-auto object-contain rounded-lg" />
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="py-12 md:py-16 bg-white">
@@ -278,7 +300,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="py-8 md:py-12 bg-white">
+      {/* <section className="py-8 md:py-12 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
@@ -301,7 +323,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section>
         <EbikeCalculator products={PRODUCTS_DATA} />

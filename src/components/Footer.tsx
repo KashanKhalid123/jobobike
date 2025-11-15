@@ -21,7 +21,7 @@ const Footer = () => {
     <footer className="bg-white text-black border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-10">
         {/* Top Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16">
           {/* Newsletter */}
           <div>
             <h3 className="font-semibold mb-3 text-base">Motta våre nyhetsbrev</h3>
@@ -48,12 +48,19 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Support Links */}
-          <div>
-            <h3 className="font-semibold mb-3 text-base">Support</h3>
+          {/* Produkter */}
+          <div className="md:pl-8">
+            <h3 className="font-semibold mb-3 text-base">Produkter</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/cycle" className="hover:text-[#12b190]">El-sykler</Link></li>
               <li><Link href="/accessorie" className="hover:text-[#12b190]">Sykkelutstyr</Link></li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="font-semibold mb-3 text-base">Support</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/bli-forhandler" className="hover:text-[#12b190]">Bli forhandler</Link></li>
               <li><Link href="/about" className="hover:text-[#12b190]">Om oss</Link></li>
               <li><Link href="/contact" className="hover:text-[#12b190]">Kontakt oss</Link></li>
@@ -66,25 +73,6 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/privacy" className="hover:text-[#12b190]">Personvernerklæring</Link></li>
               <li><Link href="/returns" className="hover:text-[#12b190]">Kjøpsvilkår & Garanti</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}  
-          <div>
-            <h3 className="font-semibold mb-3 text-base">Kontakt</h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li className="flex items-center gap-2">
-                <HiOutlineEnvelope className="w-4 h-4 text-[#12b190]" />
-                support@jobobike.no
-              </li>
-              <li className="flex items-center gap-2">
-                <HiOutlinePhone className="w-4 h-4 text-[#12b190]" />
-                +47 40 55 63 33
-              </li>
-              <li className="flex items-center gap-2">
-                <HiOutlineBuildingOffice2 className="w-4 h-4 text-[#12b190]" />
-                Niels Juels Gate 70, Oslo, Norge
-              </li>
             </ul>
           </div>
         </div>

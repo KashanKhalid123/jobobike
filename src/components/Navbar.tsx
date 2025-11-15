@@ -148,6 +148,20 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  // close navbar dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (navbarDropdownRef.current && !navbarDropdownRef.current.contains(target)) {
+        setNavbarDropdownOpen(false);
+      }
+    };
+    if (navbarDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [navbarDropdownOpen]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
       setShowResults(false);
@@ -218,7 +232,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="fixed top-8 w-full z-50 bg-white border-b shadow-sm">
+      <nav className="fixed top-8 w-full z-50 bg-white border-b shadow-sm md:mb-10">
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 gap-4">
@@ -379,6 +393,46 @@ export default function Navbar() {
 
       </nav>
 
+      {/* Moving Ticker - Desktop Only */}
+      <div className="hidden md:block fixed top-[142px] w-full z-40 bg-gradient-to-r from-[#12b190] to-[#0f9a7a] py-3 overflow-hidden">
+        <div className="flex animate-scroll whitespace-nowrap">
+          <div className="flex items-center gap-12 px-12">
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+          </div>
+          <div className="flex items-center gap-12 px-12">
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
+            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 20s linear infinite;
+        }
+      `}</style>
+
       {/* Navbar Dropdown - Fixed Position */}
       {navbarDropdownOpen && (
         <div className="fixed top-[142px] w-full z-[100]">
@@ -538,37 +592,37 @@ export default function Navbar() {
               {/* Sidebar menu items only */}
               <Link
                 href="/accessorie"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Sykkelutstyr
               </Link>
               <Link
                 href="/bli-forhandler"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Bli forhandler
               </Link>
               <Link
                 href="/about"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Om oss
               </Link>
               <Link
                 href="/contact"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Kontakt oss
               </Link>
               <Link
                 href="/privacy"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Personvernerklæring
               </Link>
               <Link
                 href="/returns"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Kjøpsvilkår & Garanti
               </Link>
@@ -599,10 +653,10 @@ export default function Navbar() {
                   <div key={item.name} className="space-y-2">
                     <button
                       onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-[#12b190] transition-colors"
+                      className="flex items-center justify-between w-full text-left p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
                     >
                       <span>{item.name}</span>
-                      <ChevronRight className={`w-4 h-4 text-gray-400 transition-transform ${desktopDropdownOpen ? 'rotate-90' : ''}`} />
+                      <ChevronRight className={`w-4 h-4 transition-transform ${desktopDropdownOpen ? 'rotate-90' : ''}`} />
                     </button>
                     {desktopDropdownOpen && (
                       <div className="pl-4 space-y-2">
@@ -636,7 +690,7 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block text-gray-700 hover:text-black"
+                    className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
                     onClick={toggleMoreMenu}
                   >
                     {item.name}

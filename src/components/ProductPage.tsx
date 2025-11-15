@@ -66,7 +66,7 @@ export default function ProductPage() {
   }, [products]);
 
   return (
-    <main className="bg-white text-gray-900 mt-52 md:mt-36">     
+    <main className="bg-white text-gray-900 pt-40 md:pt-44 lg:pt-20">     
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-2 py-3 text-sm">

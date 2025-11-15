@@ -54,12 +54,19 @@ export default function BliForhandlerPage() {
       newErrors.epost = 'Vennligst skriv inn en gyldig e-postadresse';
     }
     
-    const hasDigit = /\d/.test(formData.telefon)
-    if (formData.telefon && hasDigit) {
-      const digitsOnly = formData.telefon.replace(/[^0-9]/g, '')
-      if (digitsOnly.length < 8 || digitsOnly.length > 15) {
-        newErrors.telefon = 'Telefonnummer må være 8-15 siffer (kan inkludere landskode)';
+    if (!formData.telefon) {
+      newErrors.telefon = 'Telefonnummer er påkrevd';
+    } else {
+      const digitsOnly = formData.telefon.replace(/[^0-9]/g, '');
+      if (digitsOnly.length < 8) {
+        newErrors.telefon = 'Telefonnummer må være minst 8 siffer';
+      } else if (digitsOnly.length > 15) {
+        newErrors.telefon = 'Telefonnummer kan ikke være mer enn 15 siffer';
       }
+    }
+    
+    if (!formData.beskrivelse || formData.beskrivelse.length < 10) {
+      newErrors.beskrivelse = 'Beskrivelse må være minst 10 tegn';
     }
     
     if (!formData.typeVirksomhet) {
@@ -81,7 +88,7 @@ export default function BliForhandlerPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('https://formspree.io/f/xldozejn', {
+      const response = await fetch('https://formspree.io/f/mzzyrzke', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -171,7 +178,7 @@ export default function BliForhandlerPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="firmanavn" className="block text-sm font-medium text-gray-700 mb-2">
-                  Firmanavn *
+                  Firmanavn
                 </label>
                 {errors.firmanavn && <p className="text-red-600 text-sm mb-1">{errors.firmanavn}</p>}
                 <input
@@ -187,7 +194,7 @@ export default function BliForhandlerPage() {
               
               <div>
                 <label htmlFor="orgnr" className="block text-sm font-medium text-gray-700 mb-2">
-                  Org.nr. *
+                  Org.nr.
                 </label>
                 {errors.orgnr && <p className="text-red-600 text-sm mb-1">{errors.orgnr}</p>}
                 <input
@@ -205,7 +212,7 @@ export default function BliForhandlerPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="kontaktperson" className="block text-sm font-medium text-gray-700 mb-2">
-                  Kontaktperson *
+                  Kontaktperson
                 </label>
                 {errors.kontaktperson && <p className="text-red-600 text-sm mb-1">{errors.kontaktperson}</p>}
                 <input
@@ -221,7 +228,7 @@ export default function BliForhandlerPage() {
               
               <div>
                 <label htmlFor="epost" className="block text-sm font-medium text-gray-700 mb-2">
-                  E-post *
+                  E-post
                 </label>
                 {errors.epost && <p className="text-red-600 text-sm mb-1">{errors.epost}</p>}
                 <input
@@ -255,7 +262,7 @@ export default function BliForhandlerPage() {
               
               <div>
                 <label htmlFor="typeVirksomhet" className="block text-sm font-medium text-gray-700 mb-2">
-                  Type virksomhet *
+                  Type virksomhet
                 </label>
                 {errors.typeVirksomhet && <p className="text-red-600 text-sm mb-1">{errors.typeVirksomhet}</p>}
                 <select
@@ -279,6 +286,7 @@ export default function BliForhandlerPage() {
               <label htmlFor="beskrivelse" className="block text-sm font-medium text-gray-700 mb-2">
                 Kort beskrivelse
               </label>
+              {errors.beskrivelse && <p className="text-red-600 text-sm mb-1">{errors.beskrivelse}</p>}
               <textarea
                 id="beskrivelse"
                 name="beskrivelse"
@@ -286,7 +294,7 @@ export default function BliForhandlerPage() {
                 value={formData.beskrivelse}
                 onChange={handleChange}
                 placeholder="Fortell oss litt om din virksomhet og hvorfor du ønsker å bli forhandler..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black"
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#12b190] focus:border-[#12b190] text-black ${errors.beskrivelse ? 'border-red-500' : 'border-gray-300'}`}
               />
             </div>
 
@@ -353,20 +361,18 @@ export default function BliForhandlerPage() {
               <h3 className="text-lg font-semibold text-black mb-3 text-center">
                 Kontakt oss
               </h3>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <HiOutlineBuildingOffice2 className="w-4 h-4 text-[#12b190]" />
-                  <span className="text-gray-800">Niels Juels Gate 70, Oslo</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center justify-center gap-4 text-sm flex-wrap">
+                <div className="flex items-center gap-2">
                   <HiOutlineClock className="w-4 h-4 text-[#12b190]" />
                   <span className="text-gray-800">Man-Fre: 08:00-16:00</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
+                <span className="text-gray-400">|</span>
+                <div className="flex items-center gap-2">
                   <HiOutlineEnvelope className="w-4 h-4 text-[#12b190]" />
                   <span className="text-gray-800">support@jobobike.no</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
+                <span className="text-gray-400">|</span>
+                <div className="flex items-center gap-2">
                   <HiOutlinePhone className="w-4 h-4 text-[#12b190]" />
                   <span className="text-gray-800">+47 40 55 63 33</span>
                 </div>

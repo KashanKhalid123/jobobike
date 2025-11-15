@@ -101,7 +101,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
   };
 
   return (
-    <div className="mt-40 md:mt-20 sm:px-6 lg:px-8">
+    <div className="pt-40 md:pt-44 lg:pt-20 sm:px-6 lg:px-8">
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-0 sm:px-4 py-3 text-sm">
           <li>

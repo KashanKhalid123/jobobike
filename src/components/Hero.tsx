@@ -1,136 +1,56 @@
 ﻿'use client';
 
 import React from 'react';
-import { ArrowRight, Star, Zap, Bike } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { PRODUCTS_DATA } from '@/lib/productData';
 
 const Hero = () => {
+  const featuredProducts = PRODUCTS_DATA.slice(0, 3);
+
   return (
-  <section className="relative min-h-screen w-full sm:m-0">
-  {/* Spacer for navbar */}
-  <div className="h-32 md:h-24"></div>
-
-  {/* Background image */}
-  <img
-    src="/images/hero.png"
-    alt="DYU E-Bikes"
-    className="w-full h-full object-cover"
-  />
-
-  {/* Text content (desktop & tablet only) */}
-  <div className="absolute inset-0 z-30 hidden sm:flex flex-col justify-center px-6 lg:px-12 text-left">
-    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-      End of Summer Sale
-      <span className="block text-[#12b190] text-xl md:text-2xl lg:text-3xl">
-        Upto 30% OFF
-      </span>
-    </h1>
-
-    <div className="flex flex-col sm:flex-row gap-4 justify-start">
-      <button className="group bg-[#12b190] text-black font-bold px-7 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg hover:bg-[#12b190] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg md:shadow-xl">
-        Shop Now
-        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-      </button>
-    </div>
-  </div>
-
-  {/* Text content (mobile only, below image) */}
-  <div className="sm:hidden relative z-30 flex flex-col items-center text-center px-4 py-6">
-    <h1 className="text-xl font-bold text-black mb-3 leading-snug">
-      End of Summer Sale
-      <span className="block text-[#12b190] text-base">Upto 30% OFF</span>
-    </h1>
-
-    <button className="group bg-[#12b190] text-black font-bold px-5 py-2.5 rounded-full text-sm hover:bg-[#12b190] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
-      Shop Now
-      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-    </button>
- 
-
-  
-
-
-
-
-
-        {/* <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div> */}
-      </div>
-
-      {/* Animated Background Elements */}
-      {/* <div className="absolute inset-0 z-1">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-[#12b190] rounded-full opacity-10 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-gray-400 rounded-full opacity-10 animate-bounce delay-75"></div>
-        <div className="absolute bottom-32 left-20 w-12 h-12 bg-[#12b190] rounded-full opacity-10 animate-pulse delay-150"></div>
-        <div className="absolute bottom-20 right-40 w-24 h-24 bg-gray-500 rounded-full opacity-10 animate-bounce delay-300"></div>
-      </div> */}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Hero Badge */}
-        {/* <div className="inline-flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-full px-6 py-3 mb-8">
-          <Star className="w-5 h-5 text-[#12b190]" />
-          <span className="text-white text-sm font-medium">Back to School Special</span>
-          <div className="bg-[#12b190] text-black text-xs font-bold px-2 py-1 rounded-full">SAVE 50%</div>
-        </div> */}
-
-        {/* Main Heading */}
-        {/* <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black mb-6 mt-40 leading-tight">
-          Ride Into The
-          <span className="block text-[#12b190]">
-            New School Year
-          </span>
-        </h1> */}
-
-        {/* Subheading */}
-        {/* <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto leading-relaxed">
-          Premium electric bikes designed for students. Lightweight, foldable, and perfect for campus commuting. 
-          Starting at just <span className="font-bold text-[#12b190]">$299</span>
-        </p> */}
-
-        {/* Feature Pills */}
-        {/* <div className="flex flex-wrap justify-center gap-4 mb-10">
-          <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-full px-4 py-2">
-            <Zap className="w-4 h-4 text-[#12b190]" />
-            <span className="text-white text-sm">30+ Miles Range</span>
+    <section className="w-full py-12 md:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left: Text and Button */}
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              End of Summer Sale
+              <span className="block text-[#12b190] mt-2">Upto 30% OFF</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600">
+              Premium electric bikes designed for your lifestyle. Lightweight, powerful, and perfect for every journey.
+            </p>
+            <Link href="/products">
+              <button className="group bg-[#12b190] text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-[#0f9d7d] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
+                Shop Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
           </div>
-          <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-full px-4 py-2">
-            <Bike className="w-4 h-4 text-[#12b190]" />
-            <span className="text-white text-sm">Lightweight Design</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-full px-4 py-2">
-            <Star className="w-4 h-4 text-[#12b190]" />
-            <span className="text-white text-sm">Premium Quality</span>
-          </div>
-        </div> */}
 
-        {/* CTA Buttons */}
-      
-
-        {/* Stats */}
-        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 mb-10 pt-16 border-t border-gray-700">
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#12b190] mb-2">50K+</div>
-            <div className="text-gray-400 text-sm">Happy Students</div>
+          {/* Right: Products */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {featuredProducts.map((product) => (
+              <Link key={product.id} href={`/products/${product.slug}`}>
+                <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer">
+                  <div className="aspect-square relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-sm mb-2 line-clamp-1">{product.name}</h3>
+                    <p className="text-[#12b190] font-bold">{product.price.toLocaleString('no-NO')} kr</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#12b190] mb-2">30+</div>
-            <div className="text-gray-400 text-sm">Miles Range</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#12b190] mb-2">4.9â˜…</div>
-            <div className="text-gray-400 text-sm">Customer Rating</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#12b190] mb-2">24/7</div>
-            <div className="text-gray-400 text-sm">Support</div>
-          </div>
-        </div> */}
-      </div>
-
-      {/* Scroll Indicator */}
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="animate-bounce">
-          <div className="w-1 h-8 bg-[#12b190] rounded-full"></div>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };

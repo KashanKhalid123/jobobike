@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/components/CartContext';
 import PromoButton from '@/components/PromoButton';
+import PromotionalGiftBox from '@/components/PromotionalGiftBox';
 
 
 const robotoCondensed = Roboto_Condensed({
@@ -108,7 +109,7 @@ export default function RootLayout({
         
         {/* Global scripts can be added here */}
         <Footer />
-        <PromoButton />
+        <PromotionalGiftBox />
       </body>
     </html>
   );
