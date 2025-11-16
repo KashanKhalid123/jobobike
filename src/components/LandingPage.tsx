@@ -44,8 +44,8 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <section className="w-full min-h-screen lg:h-screen flex items-center bg-white relative overflow-hidden py-20 lg:py-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
+            <div className="space-y-4 lg:space-y-3">
               <div className="inline-block">
                 <span className="bg-[#12b190]/10 text-[#12b190] px-4 py-2 rounded-full text-sm font-medium font-sans">Tidsbegrenset tilbud</span>
               </div>
@@ -65,49 +65,49 @@ const LandingPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 lg:gap-4">
               <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="relative w-16 h-16 lg:w-20 lg:h-20 mb-3 lg:mb-4 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v1m6-1v1m-8 2h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V8a2 2 0 012-2zm-1 6h12M9 16h6" />
                   </svg>
                 </div>
-                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Lang rekkevidde</h3>
-                <p className="relative text-xs text-[#12b190] font-semibold text-center">Opptil 120km</p>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm lg:text-base mb-1">Lang rekkevidde</h3>
+                <p className="relative text-xs lg:text-sm text-[#12b190] font-semibold text-center">Opptil 120km</p>
               </div>
 
               <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="relative w-16 h-16 lg:w-20 lg:h-20 mb-3 lg:mb-4 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Kraftig motor</h3>
-                <p className="relative text-xs text-[#12b190] font-semibold text-center">250W - 750W</p>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm lg:text-base mb-1">Kraftig motor</h3>
+                <p className="relative text-xs lg:text-sm text-[#12b190] font-semibold text-center">250W - 750W</p>
               </div>
 
               <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="relative w-16 h-16 lg:w-20 lg:h-20 mb-3 lg:mb-4 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Miljøvennlig</h3>
-                <p className="relative text-xs text-[#12b190] font-semibold text-center">0% utslipp</p>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm lg:text-base mb-1">Miljøvennlig</h3>
+                <p className="relative text-xs lg:text-sm text-[#12b190] font-semibold text-center">0% utslipp</p>
               </div>
 
               <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="relative w-16 h-16 lg:w-20 lg:h-20 mb-3 lg:mb-4 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">2-5 års garanti</h3>
-                <p className="relative text-xs text-[#12b190] font-semibold text-center">Premium kvalitet</p>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm lg:text-base mb-1">2-5 års garanti</h3>
+                <p className="relative text-xs lg:text-sm text-[#12b190] font-semibold text-center">Premium kvalitet</p>
               </div>
             </div>
           </div>
