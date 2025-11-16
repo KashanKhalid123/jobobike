@@ -7,22 +7,12 @@ const PromotionalGiftBox = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPopup(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleClick = () => {
     setIsOpening(true);
     setTimeout(() => {
       setShowPopup(true);
-    }, 1500);
-    setTimeout(() => {
       setIsOpening(false);
-    }, 2000);
+    }, 1500);
   };
 
   return (
@@ -50,44 +40,24 @@ const PromotionalGiftBox = () => {
         </div>
       )}
 
-      <div className="fixed left-8 bottom-6 z-50">
+      <div className="fixed left-4 md:left-8 bottom-8 z-50">
         <button
           onClick={handleClick}
-          className="relative group animate-bounce"
+          className="relative group hover:scale-110 transition-all duration-300"
           disabled={isOpening}
         >
-          {/* Gift Box */}
-          <div className="relative w-16 h-16">
-            {/* Box Base */}
-            <div className="absolute bottom-0 w-full h-12 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-lg shadow-xl"></div>
-            
-            {/* Box Lid */}
-            <div className={`absolute top-0 w-full h-4 bg-gradient-to-br from-[#0f9a7a] to-[#12b190] rounded-t-lg shadow-lg transition-all duration-500 ${isOpening ? '-translate-y-8 rotate-12' : ''}`}></div>
-            
-            {/* Ribbon Vertical */}
-            <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-3 h-full bg-gradient-to-b from-yellow-400 to-yellow-500 shadow-md transition-all duration-500 ${isOpening ? 'h-[200%] -top-8 opacity-50' : ''}`}></div>
-            
-            {/* Ribbon Horizontal */}
-            <div className={`absolute top-1/2 -translate-y-1/2 left-0 w-full h-3 bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-md transition-all duration-500 ${isOpening ? 'opacity-50 scale-110' : ''}`}></div>
-            
-            {/* Bow - Left Loop */}
-            <div className={`absolute -top-2 left-1/4 w-4 h-4 bg-yellow-400 rounded-full shadow-lg transition-all duration-500 ${isOpening ? '-top-10 -left-2 opacity-0' : ''}`}></div>
-            
-            {/* Bow - Right Loop */}
-            <div className={`absolute -top-2 right-1/4 w-4 h-4 bg-yellow-400 rounded-full shadow-lg transition-all duration-500 ${isOpening ? '-top-10 -right-2 opacity-0' : ''}`}></div>
-            
-            {/* Bow - Center */}
-            <div className={`absolute -top-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-yellow-500 rounded-full shadow-lg border border-yellow-300 transition-all duration-500 ${isOpening ? '-top-12 opacity-0' : ''}`}></div>
-            
-            {/* Sparkles */}
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-0 -left-1 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+          {/* Circular button with icon */}
+          <div className="relative w-20 h-20 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-full shadow-2xl flex items-center justify-center">
+            {/* Gift icon */}
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+            </svg>
           </div>
           
-          {/* "Open Me" Text */}
-          {!isOpening && !showPopup && (
-            <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-[#12b190] px-3 py-1 rounded-full shadow-lg text-xs font-bold border-2 border-[#12b190] animate-pulse">
-              Åpne meg!
+          {/* Badge */}
+          {!showPopup && (
+            <div className="absolute -top-1 -right-1 bg-red-500 text-white w-7 h-7 rounded-full shadow-lg text-xs font-bold flex items-center justify-center animate-pulse">
+              60%
             </div>
           )}
         </button>

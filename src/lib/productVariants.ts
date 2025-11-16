@@ -68,8 +68,14 @@ export function getCombinedProducts(): CombinedProduct[] {
       originalProduct: p
     }));
     
-    // Sort variants: Standard first, then alphabetically
+    // Sort variants: Grønn first for Transer, Standard first for others, then alphabetically
     variants.sort((a, b) => {
+      if (baseName === 'TRANSER') {
+        if (a.variantName === 'Grønn') return -1;
+        if (b.variantName === 'Grønn') return 1;
+        if (a.variantName === 'Grå') return b.variantName === 'Hvit' ? -1 : 1;
+        if (b.variantName === 'Grå') return a.variantName === 'Hvit' ? 1 : -1;
+      }
       if (a.variantName === 'Standard') return -1;
       if (b.variantName === 'Standard') return 1;
       return a.variantName.localeCompare(b.variantName);

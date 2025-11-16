@@ -8,23 +8,16 @@ interface PromoPopupProps {
 }
 
 export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [copied, setCopied] = useState(false);
   const [email, setEmail] = useState('');
   const [showCode, setShowCode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, onClose ? 0 : 1000);
-    
-    return () => clearTimeout(timer);
-  }, [onClose]);
-
   const handleClose = () => {
     setIsVisible(false);
+    localStorage.setItem('hasSeenPromo', 'true');
     if (onClose) {
       setTimeout(onClose, 300);
     }

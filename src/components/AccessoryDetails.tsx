@@ -139,9 +139,9 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
   };
 
   return (
-    <div className="pt-0 lg:pt-20 sm:px-6 lg:px-8">
+    <div className="pt-0 lg:pt-20 px-0 sm:px-6 lg:px-8 overflow-x-hidden">
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-0 sm:px-4 py-0 lg:py-3 lg:pt-10 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 lg:py-3 lg:pt-10 text-sm">
           <li>
             <Link href="/accessorie" className="text-gray-600 hover:text-black transition">
               Tilbehør
@@ -154,7 +154,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
 
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        <div className="mt-6">
+        <div className="mt-6 px-4">
           <div className="mb-4 relative">
             <div
               className="relative w-full h-auto overflow-hidden rounded-lg cursor-zoom-in"
@@ -223,7 +223,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
           </div>
         </div>
 
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-4 px-4">
           <div className="mt-4">
             <h1 className="text-xl font-bold text-black">{product.name}</h1>
             <ReviewStars rating={5} reviewCount={14} />
@@ -601,37 +601,37 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
       </div>
 
       {/* Mobile Add to Cart */}
-      <div className="lg:hidden mt-8 px-4">
-        <div className="flex flex-col gap-4">
+      <div className="lg:hidden mt-6 px-4">
+        <div className="flex flex-col gap-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
+            <span className="text-xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
             {selectedSuggestedProducts.size > 0 && (
-              <span className="text-sm text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
+              <span className="text-xs text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
             )}
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 border border-gray-200 rounded-lg p-1">
               <button
                 onClick={() => handleQuantityChange(quantity - 1)}
-                className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
-                <Minus className="h-4 w-4 text-gray-600" />
+                <Minus className="h-3.5 w-3.5 text-gray-600" />
               </button>
-              <span className="text-base font-semibold min-w-[32px] text-center text-black">
+              <span className="text-sm font-semibold min-w-[24px] text-center text-black">
                 {quantity}
               </span>
               <button
                 onClick={() => handleQuantityChange(quantity + 1)}
-                className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
-                <Plus className="h-4 w-4 text-gray-600" />
+                <Plus className="h-3.5 w-3.5 text-gray-600" />
               </button>
             </div>
 
             <button
               onClick={() => addToCart({ ...product, size: selectedSize, color: selectedColor } as any, quantity)}
-              className="flex-1 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0e9a7a]"
+              className="flex-1 bg-[#12b190] text-white px-4 py-2.5 rounded-md font-semibold hover:bg-[#0e9a7a] text-sm"
             >
               Legg til i handlekurv
             </button>
@@ -640,23 +640,23 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
       </div>
 
       {/* Specifications */}
-      <div className="mt-12 mb-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="mt-12 mb-16 max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <div>
-            <h2 className="text-3xl font-bold mb-8 text-black">Spesifikasjoner</h2>
-            <div className="space-y-4">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-6 lg:mb-8 text-black">Spesifikasjoner</h2>
+            <div className="space-y-3 lg:space-y-4">
               {getUniqueSpecifications().map((spec, i) => (
-                <div key={i} className="flex justify-between py-4 border-b border-gray-200">
-                  <span className="font-semibold text-gray-900 text-lg">{spec.label}</span>
-                  <span className="text-gray-700 text-base">{spec.value}</span>
+                <div key={i} className="flex justify-between py-3 lg:py-4 border-b border-gray-200">
+                  <span className="font-semibold text-gray-900 text-sm lg:text-lg">{spec.label}</span>
+                  <span className="text-gray-700 text-sm lg:text-base text-right">{spec.value}</span>
                 </div>
               ))}
             </div>
           </div>
           
           <div>
-            <h2 className="text-3xl font-bold mb-8 text-black">Foreslåtte produkter</h2>
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 max-w-2xl">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-6 lg:mb-8 text-black">Foreslåtte produkter</h2>
+            <div className="grid grid-cols-3 grid-rows-2 gap-1 lg:gap-2 max-w-2xl">
               {displayBikes.map((bike) => (
                 <button
                   key={bike.id}

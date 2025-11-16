@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Minus, Plus, ArrowRight } from 'lucide-react';
-import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from '@/lib/productData';
 import { getCombinedProducts } from '@/lib/productVariants';
-import { formatCurrency } from '@/utils/currency';
 import EbikeCalculator from './EbikeFinder/EbikeCalculator';
+import ProductCardItem from './ProductCardItem';
 
 const LandingPage = () => {
   const [quantities, setQuantities] = useState<Record<string, number>>({});
@@ -43,31 +42,73 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="w-full py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white pt-10 md:pt-[135px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+      <section className="w-full min-h-screen lg:h-screen flex items-center bg-white relative overflow-hidden py-20 lg:py-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
               <div className="inline-block">
                 <span className="bg-[#12b190]/10 text-[#12b190] px-4 py-2 rounded-full text-sm font-medium font-sans">Tidsbegrenset tilbud</span>
               </div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight font-sans">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-sans">
                 <span className="text-[#12b190]">Slutt på sommersalg</span>
-                <span className="block text-[#12b190] mt-2 text-2xl md:text-4xl lg:text-5xl">Opptil 30% RABATT</span>
+                <span className="block text-[#12b190] mt-2 text-2xl md:text-3xl lg:text-4xl">Opptil 30% RABATT</span>
               </h1>
-              <p className="text-base md:text-xl text-gray-600 leading-relaxed max-w-xl font-sans">
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl font-sans">
                 Premium el-sykler designet for din livsstil. Lette, kraftige og perfekte for enhver reise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/cycle">
-                  <button className="group bg-[#12b190] text-white font-bold px-6 py-3 md:px-10 md:py-5 rounded-full text-base md:text-xl hover:bg-[#0f9d7d] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-xl hover:shadow-2xl">
+                  <button className="group bg-[#12b190] text-white font-bold px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg hover:bg-[#0f9d7d] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl">
                     Handle nå
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </Link>
               </div>
             </div>
-            <div className="flex justify-center items-center">
-              <img src="/images/eurobike.png" alt="Eurobike" className="w-[140%] h-auto object-contain rounded-lg" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v1m6-1v1m-8 2h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V8a2 2 0 012-2zm-1 6h12M9 16h6" />
+                  </svg>
+                </div>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Lang rekkevidde</h3>
+                <p className="relative text-xs text-[#12b190] font-semibold text-center">Opptil 120km</p>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Kraftig motor</h3>
+                <p className="relative text-xs text-[#12b190] font-semibold text-center">250W - 750W</p>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">Miljøvennlig</h3>
+                <p className="relative text-xs text-[#12b190] font-semibold text-center">0% utslipp</p>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center border border-gray-100 hover:border-[#12b190]/30 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#12b190]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative w-16 h-16 mb-3 bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="relative font-bold text-gray-900 text-center text-sm mb-1">2-5 års garanti</h3>
+                <p className="relative text-xs text-[#12b190] font-semibold text-center">Premium kvalitet</p>
+              </div>
             </div>
           </div>
         </div>
@@ -152,142 +193,16 @@ const LandingPage = () => {
           role="list"
           className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
         >
-          {combinedProducts.map((combined) => {
-            const selectedIndex = getSelectedVariantIndex(combined.baseId);
-            const selectedVariant = combined.variants[selectedIndex];
-            const baseProduct = selectedVariant.originalProduct;
-            const displayName = selectedVariant.variantName === 'Standard' 
-              ? baseProduct.name 
-              : `${combined.name} ${selectedVariant.variantName} - JoboBike`;
-            const displayFeatures = baseProduct.features || combined.features;
-
-            return (
-              <li
-                key={combined.baseId}
-                className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black h-[360px] sm:h-[360px] flex flex-col cursor-pointer"
-                onClick={(e) => {
-                  if (!(e.target as HTMLElement).closest('button')) {
-                    window.location.href = `/products/${combined.baseSlug}`;
-                  }
-                }}
-              >
-                <div className="relative mb-2 sm:mb-8 h-[140px] sm:h-[160px] flex items-center justify-center">
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <Image
-                      className="object-contain rounded-lg sm:rounded-xl max-w-full max-h-full"
-                      src={baseProduct.image}
-                      alt={displayName}
-                      width={250}
-                      height={250}
-                      priority
-                      loading="eager"
-                      sizes="(max-width: 640px) 140px, 250px"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex-1 flex flex-col">
-                  <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight h-[32px] sm:h-[36px] flex items-start">
-                    <span className="break-words line-clamp-2">{displayName}</span>
-                  </h3>
-
-                  <div className="mt-auto flex flex-col sm:flex-row sm:items-end sm:justify-between">
-                    <div className="flex-1 min-w-0">
-                      {combined.variants.length > 1 && (
-                        <div className="mb-1">
-                          <div className="flex flex-wrap gap-1">
-                            {combined.variants.map((variant, index) => (
-                              <button
-                                key={variant.variantSlug}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  updateSelectedVariant(combined.baseId, index);
-                                }}
-                                className={`px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium transition-all ${
-                                  selectedIndex === index
-                                    ? 'bg-[#12b190] text-white'
-                                    : 'bg-gray-100 text-[#12b190] hover:bg-gray-200'
-                                }`}
-                                title={variant.variantName}
-                              >
-                                {variant.variantName}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {combined.variants.length === 1 && baseProduct.availableSizes && baseProduct.availableSizes.length > 1 && (
-                        <div className="mb-1">
-                          <div className="flex flex-wrap gap-1">
-                            {baseProduct.availableSizes.map((size) => (
-                              <button
-                                key={size}
-                                onClick={(e) => e.stopPropagation()}
-                                className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium bg-gray-100 text-[#12b190] hover:bg-gray-200 transition-all"
-                                title={size}
-                              >
-                                {size.split('(')[0].trim()}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                        {formatCurrency(baseProduct.price)}
-                      </span>
-
-                      {displayFeatures?.length && (
-                        <ul className="mt-1 flex flex-col gap-1 text-[8px] sm:text-[10px] text-gray-700">
-                          {displayFeatures.slice(0, 2).map((f, i) => (
-                            <li
-                              key={i}
-                              className="rounded-md border border-gray-200 px-1 sm:px-1.5 py-0.5 w-fit text-ellipsis overflow-hidden max-w-full"
-                            >
-                              {f}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-
-                    <div className="mt-2 sm:mt-0 flex flex-col sm:flex-row sm:items-center gap-2">
-                      <div className="flex items-center border border-gray-200 rounded-md w-fit">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleQuantityChange(baseProduct.id, getQuantity(baseProduct.id) - 1);
-                          }}
-                          className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
-                          aria-label="Decrease quantity"
-                        >
-                          <Minus className="h-3 w-3 text-gray-600" />
-                        </button>
-                        <span className="text-xs font-semibold min-w-[16px] text-center text-black px-1">
-                          {getQuantity(baseProduct.id)}
-                        </span>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleQuantityChange(baseProduct.id, getQuantity(baseProduct.id) + 1);
-                          }}
-                          className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
-                          aria-label="Increase quantity"
-                        >
-                          <Plus className="h-3 w-3 text-gray-600" />
-                        </button>
-                      </div>
-
-                      <AddToCartButton
-                        product={baseProduct}
-                        quantity={getQuantity(baseProduct.id)}
-                        className="w-full sm:flex-1 rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white sm:bg-[#12b190] sm:hover:bg-[#29ecc5] transition md:text-white md:hover:border-black md:bg-black md:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
+          {combinedProducts.map((combined) => (
+            <ProductCardItem
+              key={combined.baseId}
+              combined={combined}
+              selectedVariantIndex={getSelectedVariantIndex(combined.baseId)}
+              onVariantChange={(index) => updateSelectedVariant(combined.baseId, index)}
+              quantity={getQuantity(combined.variants[getSelectedVariantIndex(combined.baseId)].originalProduct.id)}
+              onQuantityChange={(newQuantity) => handleQuantityChange(combined.variants[getSelectedVariantIndex(combined.baseId)].originalProduct.id, newQuantity)}
+            />
+          ))}
         </ul>
 
         <div className="text-center mt-8">

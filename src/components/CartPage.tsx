@@ -81,7 +81,7 @@ const CartPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 lg:px-16 xl:px-24 py-8 mt-52 md:mt-36 max-w-7xl">
+        <div className="container mx-auto px-4 lg:px-16 xl:px-24 py-8 mt-16 md:mt-36 max-w-7xl">
           {/* MOBILE EMPTY CART */}
           <div className="lg:hidden">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center backdrop-blur-sm">
@@ -135,7 +135,7 @@ const CartPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4 lg:px-16 xl:px-24 py-6 sm:py-8 mt-48 max-w-7xl">
+      <div className="container mx-auto px-4 lg:px-16 xl:px-24 py-6 sm:py-8 mt-16 md:mt-24 lg:mt-32 max-w-7xl">
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">

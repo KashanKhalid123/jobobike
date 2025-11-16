@@ -206,43 +206,53 @@ export default function Navbar() {
   return (
     <>
       {/* Green promotional banner */}
-      <div className="bg-[#12b190] text-white py-2 fixed top-0 w-full z-50">
+      <div className="hidden md:block bg-[#12b190] text-white py-2 fixed top-0 w-full z-50">
         <div className="max-w-7xl mx-auto px-2 md:px-4">
-          <div className="flex items-center space-x-2 md:space-x-8 text-xs md:text-sm">
-            <div className="flex items-center space-x-1 md:space-x-2">
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center justify-between space-x-1 md:space-x-4 text-[9px] sm:text-[10px] md:text-sm">
+            <div className="flex items-center space-x-1">
+              <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="whitespace-nowrap" suppressHydrationWarning>EU fabrikk</span>
+              <span className="truncate" suppressHydrationWarning>EU fabrikk</span>
             </div>
-            <div className="flex items-center space-x-1 md:space-x-2">
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center space-x-1">
+              <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
               </svg>
-              <span className="whitespace-nowrap hidden sm:inline" suppressHydrationWarning>Gratis frakt til EU</span>
-              <span className="whitespace-nowrap sm:hidden" suppressHydrationWarning>Gratis frakt</span>
+              <span className="truncate" suppressHydrationWarning>Gratis frakt</span>
             </div>
-            <div className="flex items-center space-x-1 md:space-x-2">
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center space-x-1 hidden sm:flex">
+              <svg className="w-3 h-3 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
               </svg>
-              <span className="whitespace-nowrap">300+ partnere i Europa</span>
+              <span className="truncate">300+ partnere</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="truncate">2-5 år garanti</span>
+            </div>
+            <div className="flex items-center space-x-1 hidden lg:flex">
+              <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="truncate">14 dager åpent kjøp</span>
             </div>
           </div>
         </div>
       </div>
 
-      <nav className="fixed top-8 w-full z-50 bg-white border-b shadow-sm md:mb-10">
+      <nav className="fixed top-0 md:top-8 w-full z-50 bg-white border-b shadow-sm md:mb-10 overflow-hidden">
         {/* TOP ROW like the screenshot */}
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16 gap-4">
+        <div className="max-w-7xl mx-auto px-1 sm:px-4">
+          <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-4">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 flex items-center">
               <img
                 src="/images/logo.jpg"
                 alt="Logo"
-                className="h-9 w-auto md:h-10"
+                className="h-7 w-auto md:h-10"
               />
             </Link>
 
@@ -315,7 +325,7 @@ export default function Navbar() {
             </div>
 
             {/* Right side */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               {/* Location (desktop) */}
               <div className="hidden md:flex items-center gap-1 text-sm text-gray-700">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -327,7 +337,7 @@ export default function Navbar() {
               {/* Cart */}
               <Link
                 href="/cart"
-                className="relative p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex items-center justify-center"
+                className="relative p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex items-center justify-center"
               >
                 <CartIcon />
               </Link>
@@ -343,9 +353,9 @@ export default function Navbar() {
               {/* Mobile buttons */}
               <button
                 onClick={toggleMobileMenu}
-                className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="md:hidden p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
               >
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
               </button>
             </div>
           </div>
@@ -394,49 +404,11 @@ export default function Navbar() {
 
       </nav>
 
-      {/* Moving Ticker - Desktop Only */}
-      <div className="hidden md:block fixed top-[142px] w-full z-40 bg-gradient-to-r from-[#12b190] to-[#0f9a7a] py-3 overflow-hidden">
-        <div className="flex animate-scroll whitespace-nowrap">
-          <div className="flex items-center gap-12 px-12">
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-          </div>
-          <div className="flex items-center gap-12 px-12">
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">14 dager åpent kjøp!</span>
-            <span className="text-white font-extrabold text-4xl tracking-wide font-sans">2 års garanti</span>
-          </div>
-        </div>
-      </div>
 
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-scroll {
-          animation: scroll 20s linear infinite;
-        }
-      `}</style>
 
       {/* Navbar Dropdown - Fixed Position */}
       {navbarDropdownOpen && (
-        <div className="fixed top-[142px] w-full z-[100] pointer-events-none">
+        <div className="fixed top-[88px] w-full z-[100] pointer-events-none">
           <div className="max-w-7xl mx-auto px-4">
             <div id="navbar-dropdown-panel" className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px] pointer-events-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -639,12 +611,12 @@ export default function Navbar() {
       {isMoreMenuOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
           <div className="w-80 bg-white h-full shadow-lg">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-semibold text-gray-700">
-                Flere alternativer
+            <div className="flex justify-between items-center p-4 border-b bg-gradient-to-r from-[#12b190] to-[#0f9a7a]">
+              <h2 className="text-lg font-semibold text-white">
+                Meny
               </h2>
-              <button onClick={toggleMoreMenu}>
-                <X className="w-5 h-5 text-gray-600 hover:text-black" />
+              <button onClick={toggleMoreMenu} className="p-1 hover:bg-white/20 rounded-full transition-colors">
+                <X className="w-5 h-5 text-white" />
               </button>
             </div>
 

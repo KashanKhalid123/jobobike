@@ -53,13 +53,24 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
     : singleProduct!;
   
   const hasVariants = combinedProduct && combinedProduct.variants.length > 1;
-  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image || "");
+  const getInitialImage = () => {
+    if (product.colors && product.colorImages && product.colors[0]) {
+      return product.colorImages[product.colors[0]];
+    }
+    return product.images?.[0] || product.image || "";
+  };
+  const [selectedImage, setSelectedImage] = useState(getInitialImage());
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "");
   const [selectedSize, setSelectedSize] = useState(product.availableSizes?.[0] || "");
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   
   useEffect(() => {
-    setSelectedImage(product.images?.[0] || product.image || "");
+    const defaultImage = product.colors && product.colorImages 
+      ? product.colorImages[product.colors[0]] 
+      : product.images?.[0] || product.image || "";
+    setSelectedImage(defaultImage);
+    setSelectedColor(product.colors?.[0] || "");
     setSelectedSize(product.availableSizes?.[0] || "");
     setCarouselPage(0);
     setIsZoomed(false);
@@ -112,9 +123,9 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
   };
 
   return (
-    <div className="pt-0 lg:pt-20 sm:px-6 lg:px-8">
+    <div className="pt-0 lg:pt-20 px-0 sm:px-6 lg:px-8 overflow-x-hidden">
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-0 sm:px-4 py-0 lg:py-3 lg:pt-10 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 lg:py-3 lg:pt-10 text-sm">
           <li>
             <Link href="/cycle" className="text-gray-600 hover:text-black transition">
               Sykkel
@@ -126,7 +137,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
       </nav>
 
       <div className="lg:hidden">
-        <div className="mt-3">
+        <div className="mt-3 px-4">
           <div className="mb-4 relative">
             <div
               className="relative w-full h-auto overflow-hidden rounded-lg cursor-zoom-in"
@@ -139,37 +150,42 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 alt={product.name}
                 width={600}
                 height={600}
-                className="w-full h-auto object-contain rounded-lg transition-transform duration-200"
+                className="w-full h-auto object-contain rounded-lg transition-transform duration-200 p-4"
                 style={isZoomed ? {
                   transform: 'scale(2)',
                   transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                 } : {}}
               />
             </div>
-            {product.images.length > 1 && (
-              <>
-                <button
-                  onClick={() => {
-                    const currentIndex = product.images.indexOf(selectedImage);
-                    const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
-                    setSelectedImage(product.images[prevIndex]);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
-                >
-                  <ChevronLeft size={20} className="text-gray-700" />
-                </button>
-                <button
-                  onClick={() => {
-                    const currentIndex = product.images.indexOf(selectedImage);
-                    const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
-                    setSelectedImage(product.images[nextIndex]);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
-                >
-                  <ChevronRight size={20} className="text-gray-700" />
-                </button>
-              </>
-            )}
+            {(() => {
+              const imageArray = selectedColor && product.colorImageArrays?.[selectedColor] 
+                ? product.colorImageArrays[selectedColor] 
+                : product.images;
+              return imageArray.length > 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      const currentIndex = imageArray.indexOf(selectedImage);
+                      const prevIndex = currentIndex === 0 ? imageArray.length - 1 : currentIndex - 1;
+                      setSelectedImage(imageArray[prevIndex]);
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronLeft size={20} className="text-gray-700" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const currentIndex = imageArray.indexOf(selectedImage);
+                      const nextIndex = currentIndex === imageArray.length - 1 ? 0 : currentIndex + 1;
+                      setSelectedImage(imageArray[nextIndex]);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronRight size={20} className="text-gray-700" />
+                  </button>
+                </>
+              );
+            })()}
           </div>
 
           <div className="relative">
@@ -178,7 +194,10 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               className="flex gap-3 overflow-x-hidden pb-2 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {product.images.map((img, i) => (
+              {(selectedColor && product.colorImageArrays?.[selectedColor] 
+                ? product.colorImageArrays[selectedColor] 
+                : product.images
+              ).map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(img)}
@@ -218,35 +237,47 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
           </div>
         </div>
 
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-4 px-4">
           <div className="flex gap-2">
             <div className="flex-1">
               <h1 className="text-xl font-bold text-black">{product.name}</h1>
               <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
               
-              {hasVariants && (
+              {product.colors && product.colors.length > 1 && (
                 <div className="mt-3">
                   <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
                   <div className="flex flex-wrap gap-2">
-                    {combinedProduct!.variants.map((variant, idx) => (
-                      <button
-                        key={variant.variantSlug}
-                        onClick={() => {
-                          setSelectedVariantIndex(idx);
-                          router.push(`/products/${variant.variantSlug}`, { scroll: false });
-                        }}
-                        className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors ${
-                          selectedVariantIndex === idx
-                            ? 'bg-[#12b190] text-white border-[#12b190]'
-                            : 'bg-white text-gray-700 border-gray-300 hover:border-[#12b190]'
-                        }`}
-                      >
-                        {variant.variantName}
-                      </button>
-                    ))}
+                    {product.colors.map((color, idx) => {
+                      const colorMap: { [key: string]: string } = {
+                        "Svart": "#000000",
+                        "Hvit": "#FFFFFF",
+                        "Grå": "#808080",
+                        "Grønn": "#22c55e",
+                        "Blå": "#3b82f6",
+                        "Rød": "#ef4444",
+                      };
+                      const isSelected = selectedImage === (product.colorImages?.[color] || product.image);
+                      return (
+                        <button
+                          key={color}
+                          onClick={() => {
+                            setSelectedColor(color);
+                            if (product.colorImages && product.colorImages[color]) {
+                              setSelectedImage(product.colorImages[color]);
+                            }
+                          }}
+                          className={`w-8 h-8 rounded-full border-2 transition-all ${
+                            isSelected ? 'border-black scale-110' : 'border-gray-300 hover:border-black'
+                          }`}
+                          style={{ backgroundColor: colorMap[color] || color }}
+                          title={color}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               )}
+
               
               {product.availableSizes && product.availableSizes.length > 1 && (
                 <div className="mt-3">
@@ -285,14 +316,11 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               {product.keyFeatures.map((f, i) => (
                 <li key={i}>{f}</li>
               ))}
-              {product.availableSizes && product.availableSizes.length === 1 && (
-                <li>Størrelse: {product.availableSizes[0]}</li>
-              )}
             </ul>
           </div>
 
           <div className="mt-6 px-4">
-            <h3 className="font-semibold mb-3 text-black">Kompatibel tilbehør:</h3>
+            <h3 className="font-semibold mb-3 text-black">Kompatibelt tilbehør:</h3>
             <div className="relative overflow-hidden">
               {(() => {
                 const allAccessories = getCompatibleAccessories();
@@ -365,13 +393,12 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
       </div>
 
       <div className="hidden lg:block ">
-        <div className=" justify-center grid grid-cols-[3fr_2fr] gap-6 w-full">
-          <div className=" w-full max-w-5xl ">
+        <div className="justify-center grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 w-full">
+          <div className="w-full max-w-full lg:max-w-5xl px-4 lg:px-0">
             <div className="relative">
               <div
-                className="relative w-full max-h-[600px] overflow-hidden cursor-zoom-in"
-                onMouseEnter={() => setIsZoomed(true)}
-                onMouseLeave={() => setIsZoomed(false)}
+                className={`relative w-full max-h-[600px] overflow-hidden ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+                onClick={() => setIsZoomed(!isZoomed)}
                 onMouseMove={handleMouseMove}
               >
                 <Image
@@ -379,37 +406,42 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   alt={product.name}
                   width={1000}
                   height={800}
-                  className="w-full max-h-[600px] object-contain transition-transform duration-200"
+                  className="w-full max-h-[600px] object-contain transition-transform duration-200 p-8"
                   style={isZoomed ? {
                     transform: 'scale(2)',
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                   } : {}}
                 />
               </div>
-              {product.images.length > 1 && (
-                <>
-                  <button
-                    onClick={() => {
-                      const currentIndex = product.images.indexOf(selectedImage);
-                      const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
-                      setSelectedImage(product.images[prevIndex]);
-                    }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
-                  >
-                    <ChevronLeft size={20} className="text-gray-700" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      const currentIndex = product.images.indexOf(selectedImage);
-                      const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
-                      setSelectedImage(product.images[nextIndex]);
-                    }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
-                  >
-                    <ChevronRight size={20} className="text-gray-700" />
-                  </button>
-                </>
-              )}
+              {(() => {
+                const imageArray = selectedColor && product.colorImageArrays?.[selectedColor] 
+                  ? product.colorImageArrays[selectedColor] 
+                  : product.images;
+                return imageArray.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => {
+                        const currentIndex = imageArray.indexOf(selectedImage);
+                        const prevIndex = currentIndex === 0 ? imageArray.length - 1 : currentIndex - 1;
+                        setSelectedImage(imageArray[prevIndex]);
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                    >
+                      <ChevronLeft size={20} className="text-gray-700" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const currentIndex = imageArray.indexOf(selectedImage);
+                        const nextIndex = currentIndex === imageArray.length - 1 ? 0 : currentIndex + 1;
+                        setSelectedImage(imageArray[nextIndex]);
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                    >
+                      <ChevronRight size={20} className="text-gray-700" />
+                    </button>
+                  </>
+                );
+              })()}
             </div>
 
             <div className="relative">
@@ -418,7 +450,10 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 className="flex gap-3 w-full justify-center "
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {product.images.map((img, i) => (
+                {(selectedColor && product.colorImageArrays?.[selectedColor] 
+                  ? product.colorImageArrays[selectedColor] 
+                  : product.images
+                ).map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setSelectedImage(img)}
@@ -444,29 +479,41 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
             </div>
 
-            {hasVariants && (
+            {product.colors && product.colors.length > 1 && (
               <div className="mt-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
                 <div className="flex flex-wrap gap-2">
-                  {combinedProduct!.variants.map((variant, idx) => (
-                    <button
-                      key={variant.variantSlug}
-                      onClick={() => {
-                        setSelectedVariantIndex(idx);
-                        router.push(`/products/${variant.variantSlug}`, { scroll: false });
-                      }}
-                      className={`px-4 py-2 rounded-full border text-base font-medium transition-colors ${
-                        selectedVariantIndex === idx
-                          ? 'bg-[#12b190] text-white border-[#12b190]'
-                          : 'bg-white text-gray-700 border-gray-300 hover:border-[#12b190]'
-                      }`}
-                    >
-                      {variant.variantName}
-                    </button>
-                  ))}
+                  {product.colors.map((color, idx) => {
+                    const colorMap: { [key: string]: string } = {
+                      "Svart": "#000000",
+                      "Hvit": "#FFFFFF",
+                      "Grå": "#808080",
+                      "Grønn": "#22c55e",
+                      "Blå": "#3b82f6",
+                      "Rød": "#ef4444",
+                    };
+                    const isSelected = selectedImage === (product.colorImages?.[color] || product.image);
+                    return (
+                      <button
+                        key={color}
+                        onClick={() => {
+                          setSelectedColor(color);
+                          if (product.colorImages && product.colorImages[color]) {
+                            setSelectedImage(product.colorImages[color]);
+                          }
+                        }}
+                        className={`w-10 h-10 rounded-full border-2 transition-all ${
+                          isSelected ? 'border-black scale-110' : 'border-gray-300 hover:border-black'
+                        }`}
+                        style={{ backgroundColor: colorMap[color] || color }}
+                        title={color}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             )}
+
             
             {product.availableSizes && product.availableSizes.length > 1 && (
               <div className="mt-4">
@@ -503,28 +550,18 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   {product.keyFeatures.map((f, i) => (
                     <li key={i}>{f}</li>
                   ))}
-                  {product.availableSizes && product.availableSizes.length === 1 && (
-                    <li>Størrelse: {product.availableSizes[0]}</li>
-                  )}
                 </ul>
                 
-                <div className="flex flex-col gap-2 mt-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-black">{formatCurrency(totalPrice)}</span>
-                    {selectedAccessories.length > 0 && (
-                      <span className="text-sm text-gray-500">({selectedAccessories.length} tilbehør)</span>
-                    )}
-                  </div>
+                <div className="mt-4">
                   {selectedAccessories.length > 0 && (
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 mb-2">
                       Sykkel: {formatCurrency(product.originalPrice)} + Tilbehør: {formatCurrency(selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
                     </div>
                   )}
-                </div>
-
-                <div className="flex flex-col gap-3 mt-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm text-gray-600">Antall:</span>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl font-bold text-black">{formatCurrency(totalPrice)}</span>
+                    
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleQuantityChange(quantity - 1)}
@@ -542,24 +579,24 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                         <Plus className="h-4 w-4 text-gray-600" />
                       </button>
                     </div>
-                  </div>
 
-                  <button
-                    onClick={() => {
-                      addToCart({ ...product, size: selectedSize }, quantity);
-                      selectedAccessories.forEach(acc => {
-                        addToCart(acc as any, 1);
-                      });
-                    }}
-                    className="w-fit bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0e9a7a]"
-                  >
-                    Legg til i handlekurv
-                  </button>
+                    <button
+                      onClick={() => {
+                        addToCart({ ...product, size: selectedSize }, quantity);
+                        selectedAccessories.forEach(acc => {
+                          addToCart(acc as any, 1);
+                        });
+                      }}
+                      className="bg-[#12b190] text-white px-8 py-3 rounded-md font-semibold hover:bg-[#0e9a7a] min-w-[200px]"
+                    >
+                      Legg til i handlekurv
+                    </button>
+                  </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-semibold mb-2 text-black">Kompatibel tilbehør:</h3>
+                <h3 className="font-semibold mb-2 text-black">Kompatibelt tilbehør:</h3>
                 <div className="relative overflow-hidden">
                   {(() => {
                     const displayAccessories = getCompatibleAccessories();
@@ -683,14 +720,14 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
         </div>
       </div>
       
-      <div className="mt-2 -mx-6 lg:-mx-8">
+      <div className="-mx-6 lg:-mx-8 mt-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full">
-          <div className="bg-white px-6 lg:px-8 py-6 order-2 lg:order-2">
-            <BikePackageBuilder product={product} />
+          <div className="bg-white px-6 lg:px-8 py-6 order-1 lg:order-1">
+            <TechnicalSpecifications product={product} />
           </div>
           
-          <div className="w-full order-1 lg:order-1">
-            <TechnicalSpecifications product={product} />
+          <div className="bg-white px-6 lg:px-8 py-6 order-2 lg:order-2">
+            <BikePackageBuilder product={product} />
           </div>
         </div>
       </div>
