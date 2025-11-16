@@ -125,7 +125,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
   return (
     <div className="pt-0 lg:pt-20 px-0 sm:px-6 lg:px-8 overflow-x-hidden">
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 lg:py-3 lg:pt-10 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 text-sm">
           <li>
             <Link href="/cycle" className="text-gray-600 hover:text-black transition">
               Sykkel
@@ -243,6 +243,30 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               <h1 className="text-xl font-bold text-black">{product.name}</h1>
               <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
               
+              {product.modelVariants && product.modelVariants.length > 1 && (
+                <div className="mt-3">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Modell:</label>
+                  <div className="flex flex-wrap gap-2">
+                    {product.modelVariants.map((variant) => {
+                      const isSelected = product.slug === variant.slug;
+                      return (
+                        <button
+                          key={variant.slug}
+                          onClick={() => router.push(`/products/${variant.slug}`)}
+                          className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
+                            isSelected
+                              ? 'bg-[#12b190] text-white border-[#12b190]'
+                              : 'bg-white text-gray-700 border-gray-300 hover:border-[#12b190]'
+                          }`}
+                        >
+                          {variant.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {product.colors && product.colors.length > 1 && (
                 <div className="mt-3">
                   <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
@@ -479,6 +503,30 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
             </div>
 
+            {product.modelVariants && product.modelVariants.length > 1 && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Modell:</label>
+                <div className="flex flex-wrap gap-2">
+                  {product.modelVariants.map((variant) => {
+                    const isSelected = product.slug === variant.slug;
+                    return (
+                      <button
+                        key={variant.slug}
+                        onClick={() => router.push(`/products/${variant.slug}`)}
+                        className={`px-4 py-2 rounded-md border text-base font-medium transition-colors ${
+                          isSelected
+                            ? 'bg-[#12b190] text-white border-[#12b190]'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-[#12b190]'
+                        }`}
+                      >
+                        {variant.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             {product.colors && product.colors.length > 1 && (
               <div className="mt-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
@@ -543,7 +591,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               <p className="text-gray-700">{product.description}</p>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold mb-2 text-black">Hovedfunksjoner:</h3>
                 <ul className="list-disc ml-6 space-y-1 text-gray-700">
@@ -552,9 +600,9 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   ))}
                 </ul>
                 
-                <div className="mt-4">
+                <div className="mt-16">
                   {selectedAccessories.length > 0 && (
-                    <div className="text-sm text-gray-600 mb-2">
+                    <div className="text-sm text-gray-600 mb-4">
                       Sykkel: {formatCurrency(product.originalPrice)} + Tilbehør: {formatCurrency(selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
                     </div>
                   )}
