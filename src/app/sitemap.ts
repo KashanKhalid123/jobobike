@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { products } from '@/lib/productData'
+import { PRODUCTS_DATA } from '@/lib/productData'
 import { accessories } from '@/lib/accessoriesProducts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -46,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // Product pages
-  const productPages = products.map((product) => ({
+  const productPages = PRODUCTS_DATA.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
