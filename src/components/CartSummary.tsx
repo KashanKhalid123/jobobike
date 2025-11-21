@@ -40,8 +40,8 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         </div>
         
         <div className="flex justify-between">
-          <span className="text-gray-600">Shipping</span>
-          <span className="font-medium text-[#12b190]">Free</span>
+          <span className="text-gray-600">Frakt</span>
+          <span className="font-medium text-[#12b190]">Gratis</span>
         </div>
         
         <div className="border-t pt-2">

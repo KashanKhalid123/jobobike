@@ -48,7 +48,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       className={` ${defaultClasses} ${className}`}
     >
       {disabled ? (
-        'Out of Stock'
+        'UTSOLGT'
       ) : justAdded ? (
         <>
           <Check className="h-4 w-4" />

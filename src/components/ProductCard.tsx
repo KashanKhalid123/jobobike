@@ -76,7 +76,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
           {/* Out of Stock Overlay */}
           {isOutOfStock && (
             <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-              OUT OF STOCK
+              UTSOLGT
             </div>
           )}
           
@@ -149,7 +149,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
               `}
             >
               {isOutOfStock ? (
-                'Out of Stock'
+                'UTSOLGT'
               ) : isAdding ? (
                 <>
                   <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin mr-2" />

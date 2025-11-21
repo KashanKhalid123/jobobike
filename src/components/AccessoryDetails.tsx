@@ -177,7 +177,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
               />
               {isProductOutOfStock && (
                 <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
-                  OUT OF STOCK
+                  UTSOLGT
                 </div>
               )}
             </div>
@@ -260,7 +260,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                           : selectedColor === color ? 'border-black scale-110' : 'border-gray-300'
                       }`}
                       style={{ backgroundColor: colorMap[color] || color }}
-                      title={colorOutOfStock ? `${color} (Out of Stock)` : color}
+                      title={colorOutOfStock ? `${color} (Utsolgt)` : color}
                     >
                       {colorOutOfStock && (
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -395,7 +395,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                 />
                 {isProductOutOfStock && (
                   <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
-                    OUT OF STOCK
+                    UTSOLGT
                   </div>
                 )}
               </div>
@@ -478,7 +478,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                             : selectedColor === color ? 'border-black scale-110' : 'border-gray-300'
                         }`}
                         style={{ backgroundColor: colorMap[color] || color }}
-                        title={colorOutOfStock ? `${color} (Out of Stock)` : color}
+                        title={colorOutOfStock ? `${color} (Utsolgt)` : color}
                       >
                         {colorOutOfStock && (
                           <div className="absolute inset-0 flex items-center justify-center">

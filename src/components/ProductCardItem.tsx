@@ -72,7 +72,7 @@ export default function ProductCardItem({
         </div>
         {isOutOfStock && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full shadow-lg">
-            OUT OF STOCK
+            UTSOLGT
           </div>
         )}
       </div>
