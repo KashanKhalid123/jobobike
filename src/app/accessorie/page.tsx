@@ -139,9 +139,16 @@ export default function AccessoriesPage() {
 
                                     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
                                         <div className="flex-1 min-w-0">
-                                            <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                                                {formatCurrency(product.price)}
-                                            </span>
+                                            <div className="flex items-center gap-1.5">
+                                                <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                                                    {formatCurrency(product.price)}
+                                                </span>
+                                                {product.originalPrice && product.originalPrice !== product.price && (
+                                                    <span className="text-[10px] sm:text-xs text-red-500 line-through">
+                                                        {formatCurrency(product.originalPrice)}
+                                                    </span>
+                                                )}
+                                            </div>
                                             
                                             {/* Color Selection */}
                                             {product.colors && product.colors.length > 1 && (

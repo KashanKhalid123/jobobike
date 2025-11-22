@@ -11,6 +11,7 @@ interface Product {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   image: string;
   category?: string[];
   description?: string;
@@ -130,8 +131,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
           )}
           
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-black">
-              ${product.price.toFixed(2)}
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold text-black">
+                kr {product.price.toLocaleString('nb-NO')}
+              </span>
+              {product.originalPrice && product.originalPrice !== product.price && (
+                <span className="text-sm text-red-500 line-through">
+                  kr {product.originalPrice.toLocaleString('nb-NO')}
+                </span>
+              )}
             </div>
             
             <Button

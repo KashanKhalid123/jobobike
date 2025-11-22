@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ProductCard } from "@/lib/productData";
+import { ProductCard, PRODUCTS_DATA } from "@/lib/productData";
 import { CombinedProduct } from "@/lib/productVariants";
 import { accessoriesProducts } from "@/lib/accessoriesProducts";
 import Link from "next/link";
@@ -84,7 +84,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
   };
 
   return (
-    <div className="mt-16 md:mt-40 w-full overflow-x-hidden">
+    <div className="md:pt-12 w-full overflow-x-hidden">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 text-sm overflow-x-auto">
@@ -103,13 +103,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
         {/* MOBILE IMAGE SECTION */}
         <div className="mt-6 px-4">
           {/* Main Image */}
-          <div className="mb-4 relative">
+          <div className="mb-4 relative rounded-lg bg-white">
             <Image
               src={selectedImage}
               alt={product.name}
               width={600}
               height={600}
-              className={`w-full h-auto object-contain rounded-lg ${isProductOutOfStock ? 'opacity-60' : ''}`}
+              className={`w-full h-[400px] object-contain p-6 ${isProductOutOfStock ? 'opacity-60' : ''}`}
             />
             {isProductOutOfStock && (
               <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
@@ -295,6 +295,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               {(() => {
                 const productName = product.name.split(' - ')[0].trim().split(' ')[0];
                 const specificAccessories = accessoriesProducts.filter(acc => 
+                  acc.inStock !== false &&
                   acc.compatibility.some(comp => {
                     const compName = comp.split(' ')[0].toUpperCase();
                     return compName === productName.toUpperCase() || 
@@ -302,6 +303,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   })
                 );
                 const universalAccessories = accessoriesProducts.filter(acc => 
+                  acc.inStock !== false &&
                   acc.compatibility.some(comp => 
                     comp.includes('Universal') || comp.includes('All')
                   )
@@ -378,7 +380,16 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
 
           {/* Mobile Price and Cart - After Accessories */}
           <div className="mt-6 p-3 bg-white relative z-10">
-            <div className="text-xl font-bold text-black mb-3">{formatCurrency(product.originalPrice + selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}</div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl font-bold text-black">
+                {formatCurrency(product.price + selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
+              </span>
+              {product.originalPrice !== product.price && (
+                <span className="text-sm text-red-500 line-through">
+                  {formatCurrency(product.originalPrice + selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
+                </span>
+              )}
+            </div>
             
             <div className="flex items-center gap-3 mb-3">
               <span className="text-xs text-gray-600">Antall:</span>
@@ -428,13 +439,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
         <div className="justify-center grid grid-cols-[3fr_2fr] gap-6 w-full">
           <div className=" w-full max-w-5xl ">
             {/* MAIN IMAGE */}
-            <div className="relative">
+            <div className="relative rounded-lg bg-white">
               <Image
                 src={selectedImage}
                 alt={product.name}
                 width={1000}
                 height={800}
-                className={`w-full max-h-[600px] object-contain ${isProductOutOfStock ? 'opacity-60' : ''}`}
+                className={`w-full h-[500px] object-contain p-8 ${isProductOutOfStock ? 'opacity-60' : ''}`}
               />
               {isProductOutOfStock && (
                 <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
@@ -711,14 +722,19 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
             {/* Price Section */}
             <div className="flex flex-col gap-2 -mt-3">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-black">{formatCurrency(totalPrice)}</span>
+                <span className="text-2xl font-bold text-black">{formatCurrency(product.price + selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}</span>
+                {product.originalPrice !== product.price && (
+                  <span className="text-base text-red-500 line-through">
+                    {formatCurrency(product.originalPrice + selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
+                  </span>
+                )}
                 {selectedAccessories.length > 0 && (
                   <span className="text-sm text-gray-500">({selectedAccessories.length} tilbehør)</span>
                 )}
               </div>
               {selectedAccessories.length > 0 && (
                 <div className="text-sm text-gray-600">
-                  Sykkel: {formatCurrency(product.originalPrice)} + Tilbehør: {formatCurrency(selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
+                  Sykkel: {formatCurrency(product.price)} + Tilbehør: {formatCurrency(selectedAccessories.reduce((sum, acc) => sum + acc.price, 0))}
                 </div>
               )}
             </div>
@@ -778,35 +794,79 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
       
       {/* PACKAGE AND SPECIFICATIONS LAYOUT */}
       <div className="w-full max-w-full -mt-24">
-        {/* TRUST BADGES - Above specifications */}
-        <div className={`hidden lg:block max-w-7xl mx-auto px-4 mb-4 relative z-10 pl-16 ${hasVariants || (product.colors && product.colors.length > 1) ? '-mt-[150px]' : 'mt-8'}`}>
-          <div className="grid grid-cols-2 gap-3 max-w-md">
-            <div className="bg-white rounded-lg p-3 shadow-md border-2 border-gray-200">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-10 h-10 bg-[#12b190]/10 rounded-full flex items-center justify-center mb-2">
-                  <svg className="w-5 h-5 text-[#12b190]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-sm font-bold text-black">14 dager</h3>
-                <p className="text-xs text-gray-600">Åpent kjøp</p>
+        {/* PROMOTIONAL AD BANNERS - Above specifications */}
+        {(() => {
+          const currentVariantSlugs = product.modelVariants?.map(v => v.slug) || [];
+          const usedVariantFamilies = new Set<string>();
+          
+          const eligibleProducts = PRODUCTS_DATA.filter(p => 
+            p.slug !== product.slug && p.inStock !== false && !currentVariantSlugs.includes(p.slug)
+          );
+          
+          const bestseller = eligibleProducts.find(p => {
+            if (p.rating >= 4.8) {
+              const variantSlugs = p.modelVariants?.map(v => v.slug) || [p.slug];
+              const hasUsedVariant = variantSlugs.some(slug => usedVariantFamilies.has(slug));
+              if (!hasUsedVariant) {
+                variantSlugs.forEach(slug => usedVariantFamilies.add(slug));
+                return true;
+              }
+            }
+            return false;
+          });
+          
+          const popular = eligibleProducts.find(p => {
+            if (p.reviewCount > 100 && p.rating < 4.8) {
+              const variantSlugs = p.modelVariants?.map(v => v.slug) || [p.slug];
+              const hasUsedVariant = variantSlugs.some(slug => usedVariantFamilies.has(slug));
+              if (!hasUsedVariant) {
+                variantSlugs.forEach(slug => usedVariantFamilies.add(slug));
+                return true;
+              }
+            }
+            return false;
+          });
+          
+          const additionalProducts = eligibleProducts.filter(p => {
+            const variantSlugs = p.modelVariants?.map(v => v.slug) || [p.slug];
+            return !variantSlugs.some(slug => usedVariantFamilies.has(slug));
+          }).slice(0, 2);
+          
+          const availableAds = [bestseller, popular, ...additionalProducts].filter(Boolean) as typeof PRODUCTS_DATA;
+          const hasVariantsAndColors = hasVariants && product.colors && product.colors.length > 1;
+          const maxAds = hasVariantsAndColors ? 4 : 2;
+          const displayAds = availableAds.slice(0, maxAds);
+          
+          return displayAds.length > 0 && (
+            <div className="hidden lg:block absolute left-[13%] top-[780px] z-10 mt-14 pt-4">
+              <div className={`grid gap-4 ${hasVariantsAndColors ? 'grid-cols-2 w-[500px]' : 'grid-cols-2 w-[500px]'}`}>
+                {displayAds.map((ad) => {
+                  const isBestseller = ad.rating >= 4.8;
+                  const label = isBestseller ? 'BESTSELGER' : 'POPULÆR';
+                  const bgColor = isBestseller ? 'bg-red-500' : 'bg-yellow-500';
+                  const textColor = isBestseller ? 'text-white' : 'text-black';
+                  
+                  return (
+                    <Link key={ad.slug} href={`/products/${ad.slug}`} className="relative bg-gradient-to-br from-white to-gray-50 border-2 border-[#12b190] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105 cursor-pointer">
+                      {label && (
+                        <div className={`absolute top-3 left-3 ${bgColor} ${textColor} text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md`}>{label}</div>
+                      )}
+                      <div className="p-3 pb-2">
+                        <Image src={ad.image} alt={ad.name} width={120} height={120} className="w-full h-20 object-contain mb-2" />
+                        <div className="bg-[#12b190] text-white px-3 py-2 rounded-lg">
+                          <h3 className="text-sm font-bold">{ad.name.toUpperCase()}</h3>
+                          <p className="text-xs opacity-90">Klikk for å se →</p>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
-            <div className="bg-white rounded-lg p-3 shadow-md border-2 border-gray-200">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-10 h-10 bg-[#12b190]/10 rounded-full flex items-center justify-center mb-2">
-                  <svg className="w-5 h-5 text-[#12b190]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-sm font-bold text-black">2 års</h3>
-                <p className="text-xs text-gray-600">Garanti</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          );
+        })()}
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full max-w-full mt-24 lg:mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full max-w-full mt-24 lg:mt-28">
           {/* SPECIFICATIONS HALF - First on mobile, right on desktop */}
           <div className="w-full max-w-full lg:order-1 lg:pt-2 px-4 lg:px-0">
             <TechnicalSpecifications product={product} />

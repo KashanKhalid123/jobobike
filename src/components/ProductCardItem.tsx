@@ -147,9 +147,16 @@ export default function ProductCardItem({
                 </div>
               </div>
             )}
-            <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-              {formatCurrency(baseProduct.price)}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                {formatCurrency(baseProduct.price)}
+              </span>
+              {baseProduct.originalPrice && baseProduct.originalPrice !== baseProduct.price && (
+                <span className="text-[10px] sm:text-xs text-red-500 line-through">
+                  {formatCurrency(baseProduct.originalPrice)}
+                </span>
+              )}
+            </div>
 
             {displayFeatures?.length && (
               <ul className="mt-1 flex flex-col gap-1 text-[8px] sm:text-[10px] text-gray-700">

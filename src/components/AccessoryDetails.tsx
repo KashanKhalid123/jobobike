@@ -56,6 +56,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
     : [...suggestedProducts, ...accessoriesProducts.filter(acc => acc.id !== product.id && !suggestedProducts.includes(acc))].slice(0, 8);
 
   const compatibleBikes = PRODUCTS_DATA.filter(bike => 
+    bike.inStock !== false &&
     product.compatibility.some(compat => 
       bike.name.toLowerCase().includes(compat.toLowerCase().replace('jobobike ', ''))
     )
@@ -63,7 +64,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
   
   const displayBikes = compatibleBikes.length >= 6 
     ? compatibleBikes.slice(0, 6) 
-    : [...compatibleBikes, ...PRODUCTS_DATA.filter(bike => !compatibleBikes.includes(bike))].slice(0, 6);
+    : [...compatibleBikes, ...PRODUCTS_DATA.filter(bike => bike.inStock !== false && !compatibleBikes.includes(bike))].slice(0, 6);
 
   const handleQuantityChange = (newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -142,9 +143,9 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
   };
 
   return (
-    <div className="pt-0 lg:pt-20 px-0 sm:px-6 lg:px-8 overflow-x-hidden">
+    <div className="pt-0 lg:pt-12 px-0 sm:px-6 lg:px-8 overflow-x-hidden">
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 lg:py-3 lg:pt-10 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-4 py-3 text-sm">
           <li>
             <Link href="/accessorie" className="text-gray-600 hover:text-black transition">
               Tilbehør
@@ -160,16 +161,16 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
         <div className="mt-6 px-4">
           <div className="mb-4 relative">
             <div
-              className="relative w-full h-auto overflow-hidden rounded-lg cursor-zoom-in"
+              className="relative w-full h-[350px] overflow-hidden rounded-lg cursor-zoom-in flex items-center justify-center"
               onClick={() => setIsZoomed(!isZoomed)}
               onMouseMove={handleMouseMove}
             >
               <Image
                 src={selectedImage}
                 alt={product.name}
-                width={600}
-                height={600}
-                className={`w-full h-auto object-contain rounded-lg transition-transform duration-200 ${isProductOutOfStock ? 'opacity-60' : ''}`}
+                width={350}
+                height={350}
+                className={`max-w-[80%] max-h-[80%] object-contain rounded-lg transition-transform duration-200 ${isProductOutOfStock ? 'opacity-60' : ''}`}
                 style={isZoomed ? {
                   transform: 'scale(2)',
                   transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
@@ -378,16 +379,16 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
           <div className="w-full max-w-5xl">
             <div className="relative">
               <div
-                className="relative w-full max-h-[600px] overflow-hidden cursor-zoom-in"
+                className="relative w-full h-[500px] overflow-hidden cursor-zoom-in flex items-center justify-center"
                 onClick={() => setIsZoomed(!isZoomed)}
                 onMouseMove={handleMouseMove}
               >
                 <Image
                   src={selectedImage}
                   alt={product.name}
-                  width={1000}
-                  height={800}
-                  className={`w-full max-h-[600px] object-contain transition-transform duration-200 ${isProductOutOfStock ? 'opacity-60' : ''}`}
+                  width={500}
+                  height={500}
+                  className={`max-w-[75%] max-h-[75%] object-contain transition-transform duration-200 ${isProductOutOfStock ? 'opacity-60' : ''}`}
                   style={isZoomed ? {
                     transform: 'scale(2)',
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
@@ -532,6 +533,11 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                 <div className="mt-auto pt-4">
                   <div className="flex items-baseline gap-2">
                     <span className="text-2xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
+                    {product.originalPrice && product.originalPrice !== product.price && (
+                      <span className="text-base text-red-500 line-through">
+                        {formatCurrency(product.originalPrice)}
+                      </span>
+                    )}
                     {selectedSuggestedProducts.size > 0 && (
                       <span className="text-sm text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
                     )}
@@ -651,6 +657,11 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
         <div className="flex flex-col gap-3">
           <div className="flex items-baseline gap-2">
             <span className="text-xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
+            {product.originalPrice && product.originalPrice !== product.price && (
+              <span className="text-sm text-red-500 line-through">
+                {formatCurrency(product.originalPrice)}
+              </span>
+            )}
             {selectedSuggestedProducts.size > 0 && (
               <span className="text-xs text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
             )}

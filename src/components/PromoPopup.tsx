@@ -86,11 +86,11 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-            Få 60% RABATT! 🎉
+            Få ekstra 10% RABATT! 🎉
           </h2>
           
           <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg">
-            Bruk koden ved kassen og spar stort på din neste el-sykkel!
+            Bruk koden ved kassen og spar ekstra på din neste el-sykkel!
           </p>
 
           {!showCode ? (
