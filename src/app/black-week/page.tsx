@@ -152,7 +152,7 @@ export default function BlackWeekPage() {
                 
                 return (
                   <Link key={product.id} href={`/products/${product.slug}`} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full hover:shadow-lg transition-shadow">
-                    <div className="relative h-40 md:h-56 flex items-center justify-center p-4 md:p-8" style={{backgroundColor: product.backgroundColor || '#ffffff'}}>
+                    <div className="relative h-40 md:h-56 flex items-center justify-center p-4 md:p-8 bg-white">
                       <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-600 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-semibold">
                         -{discountPercent}%
                       </div>
