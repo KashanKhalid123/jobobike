@@ -204,7 +204,7 @@ const CartPage: React.FC = () => {
                       </div>
                       
                       <div className="text-right flex-shrink-0">
-                        <p className="text-lg font-bold text-[#12b190]">{formatCurrency(item.price * item.quantity)}</p>
+                        <p className={`text-lg font-bold ${item.category?.includes('Pakke') ? 'text-[#12b190]' : 'text-[#12b190]'}`}>{formatCurrency(item.price * item.quantity)}</p>
                       </div>
                     </div>
                   </div>
@@ -297,7 +297,7 @@ const CartPage: React.FC = () => {
                               </div>
                               
                               <div className="text-right">
-                                <p className="text-3xl font-bold text-[#12b190]">{formatCurrency(item.price * item.quantity)}</p>
+                                <p className={`text-3xl font-bold ${item.category?.includes('Pakke') ? 'text-[#12b190]' : 'text-[#12b190]'}`}>{formatCurrency(item.price * item.quantity)}</p>
                               </div>
                             </div>
                           </div>

@@ -39,6 +39,9 @@ export default function Navbar() {
 
   // dynamic categories
   const [categories, setCategories] = useState<any[]>([]);
+  
+  // scroll state
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // refs
   const desktopSearchRef = useRef<HTMLDivElement | null>(null);
@@ -163,6 +166,15 @@ export default function Navbar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  
+  // scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
@@ -207,7 +219,7 @@ export default function Navbar() {
   return (
     <>
       {/* Green promotional banner */}
-      <div className="hidden md:block bg-[#12b190] text-white py-2 fixed top-0 w-full z-50">
+      <div className={`hidden md:block bg-[#12b190] text-white py-2 fixed top-0 w-full z-50 transition-transform duration-500 ease-in-out ${isScrolled ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-2 md:px-4">
           <div className="flex items-center justify-start gap-4 md:gap-6 lg:gap-8 text-[9px] sm:text-[10px] md:text-sm">
             <div className="flex items-center space-x-1">
@@ -218,10 +230,9 @@ export default function Navbar() {
             </div>
             <div className="flex items-center space-x-1">
               <svg className="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 22V12h6v10" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
               </svg>
-              <span className="truncate" suppressHydrationWarning>Gratis frakt</span>
+              <span className="truncate" suppressHydrationWarning>Free Delivery</span>
             </div>
             <div className="flex items-center space-x-1 hidden sm:flex" suppressHydrationWarning>
               <svg className="w-4 h-4 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -245,7 +256,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="fixed top-0 md:top-8 w-full z-50 bg-white border-b shadow-sm md:mb-10">
+      <nav className={`fixed w-full z-50 bg-white border-b shadow-sm md:mb-10 transition-all duration-500 ease-in-out ${isScrolled ? 'top-0' : 'top-0 md:top-8'}`}>
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-1 sm:px-4">
           <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-4">
@@ -372,15 +383,19 @@ export default function Navbar() {
         </div>
 
         {/* Moving Text Banner */}
-        <div className="w-full bg-[#12b190] text-white py-3 overflow-hidden">
-          <div className="flex animate-scroll whitespace-nowrap text-sm font-medium tracking-wide">
-            <span className="inline-block">14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             </span>
-            <span className="inline-block">14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             14 dager Åpent kjøp             •             2 års Garanti             •             </span>
+        <div className={`w-full bg-red-500/20 text-black py-2 overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? 'hidden' : 'block'}`}>
+          <div className="flex animate-scroll text-xl font-medium gap-5">
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
           </div>
         </div>
 
         {/* BOTTOM ROW - Secondary Navigation */}
-        <div className="border-t border-gray-100 hidden md:block">
+        <div className={`border-t border-gray-100 hidden md:block transition-all duration-500 ease-in-out ${isScrolled ? 'hidden' : 'block'}`}>
           <div className="max-w-7xl mx-auto px-2">
             <div className="flex items-center h-14 gap-2 md:gap-8 relative overflow-x-auto overflow-y-visible">
               <div className="relative flex-shrink-0" ref={navbarDropdownRef}>
@@ -397,6 +412,12 @@ export default function Navbar() {
                 className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Sykkelutstyr
+              </Link>
+              <Link
+                href="/black-week"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
+              >
+                Black Week
               </Link>
               <Link
                 href="/bli-forhandler"
@@ -600,6 +621,12 @@ export default function Navbar() {
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Sykkelutstyr
+              </Link>
+              <Link
+                href="/black-week"
+                className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
+              >
+                Black Week
               </Link>
               <Link
                 href="/bli-forhandler"

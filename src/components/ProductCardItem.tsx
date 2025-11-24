@@ -70,6 +70,11 @@ export default function ProductCardItem({
             sizes="(max-width: 640px) 140px, 250px"
           />
         </div>
+        {!isOutOfStock && baseProduct.originalPrice && baseProduct.originalPrice !== baseProduct.price && (
+          <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded-full text-[10px] sm:text-xs font-semibold">
+            -{Math.round(((baseProduct.originalPrice - baseProduct.price) / baseProduct.originalPrice) * 100)}%
+          </div>
+        )}
         {isOutOfStock && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full shadow-lg">
             UTSOLGT

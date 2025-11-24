@@ -176,6 +176,11 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                   transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                 } : {}}
               />
+              {product.inStock && product.originalPrice && product.originalPrice !== product.price && (
+                <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-md z-20">
+                  -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                </div>
+              )}
               {isProductOutOfStock && (
                 <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
                   UTSOLGT
@@ -394,6 +399,11 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                   } : {}}
                 />
+                {product.inStock && product.originalPrice && product.originalPrice !== product.price && (
+                  <div className="absolute top-3 right-3 bg-red-500 text-white text-sm font-bold px-4 py-2 rounded-md z-20">
+                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                  </div>
+                )}
                 {isProductOutOfStock && (
                   <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
                     UTSOLGT
@@ -532,12 +542,12 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                 
                 <div className="mt-auto pt-4">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
                     {product.originalPrice && product.originalPrice !== product.price && (
                       <span className="text-base text-red-500 line-through">
                         {formatCurrency(product.originalPrice)}
                       </span>
                     )}
+                    <span className={`text-2xl font-bold ${product.originalPrice && product.originalPrice !== product.price ? 'text-[#12b190]' : 'text-black'}`}>{formatCurrency(calculateTotalPrice())}</span>
                     {selectedSuggestedProducts.size > 0 && (
                       <span className="text-sm text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
                     )}
@@ -656,12 +666,12 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
       <div className="lg:hidden mt-6 px-4">
         <div className="flex flex-col gap-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-xl font-bold text-black">{formatCurrency(calculateTotalPrice())}</span>
             {product.originalPrice && product.originalPrice !== product.price && (
               <span className="text-sm text-red-500 line-through">
                 {formatCurrency(product.originalPrice)}
               </span>
             )}
+            <span className={`text-xl font-bold ${product.originalPrice && product.originalPrice !== product.price ? 'text-[#12b190]' : 'text-black'}`}>{formatCurrency(calculateTotalPrice())}</span>
             {selectedSuggestedProducts.size > 0 && (
               <span className="text-xs text-gray-500">({selectedSuggestedProducts.size} tillegg)</span>
             )}

@@ -44,14 +44,16 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <section className="w-full">
         <div className="max-w-7xl mx-auto">
-          <Image
-            src="/images/banner.jpg"
-            alt="Banner"
-            width={1920}
-            height={800}
-            priority
-            className="w-full h-auto max-h-[600px] md:max-h-[800px] object-cover"
-          />
+          <Link href="/black-week">
+            <Image
+              src="/images/newbanner.png"
+              alt="Banner"
+              width={1920}
+              height={800}
+              priority
+              className="w-full h-auto max-h-[600px] md:max-h-[800px] object-cover cursor-pointer"
+            />
+          </Link>
         </div>
       </section>
 

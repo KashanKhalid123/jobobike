@@ -877,8 +877,10 @@ export const accessoriesProducts: AccessoryProduct[] = [
     name: "Sammenleggbar Sykkel Deksel Bag",
     description: "Vanntett dekkpose som beskytter sykkelen mot støv, vann og riper. Passer til JOBOBIKE Sam.",
     fullDescription: "Beskytt din JOBOBIKE Sam med denne vanntette dekkposen designet spesielt for sammenleggbare elsykler. Perfekt for oppbevaring av den sammenleggede sykkelen når du trenger å ta den med inn på kontoret eller oppbevare den trygt. Denne slitesterke posen beskytter elsykkelen mot støv, vann og riper under transport eller lagring. Enten du pendler til jobb, reiser eller bare oppbevarer sykkelen hjemme, holder denne posen Sam-en i perfekt stand. Ideell for å holde den sammenleggede sykkelen beskyttet i bilens bagasjerom eller når du bærer den innendørs.",
-    price: 65.00,
-    currency: "€",
+    originalPrice: 699,
+    price: 419,
+    discount: "40%",
+    currency: "kr",
     image: "/images/bikebag/bag-1.jpg",
     images: [
       "/images/bikebag/bag-1.jpg",

@@ -74,6 +74,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
             />
           </div>
           
+          {/* Discount Badge */}
+          {!isOutOfStock && product.originalPrice && product.originalPrice !== product.price && (
+            <div className="absolute top-3 right-3 bg-red-600 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-semibold">
+              -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+            </div>
+          )}
+          
           {/* Out of Stock Overlay */}
           {isOutOfStock && (
             <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
@@ -105,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
           )}
 
           {/* In Cart Badge */}
-          {isInCart && (
+          {isInCart && !isOutOfStock && !(product.originalPrice && product.originalPrice !== product.price) && (
             <div className="absolute top-3 right-3 bg-[#12b190] text-black text-xs font-bold px-2 py-1 rounded-full">
               {cartQuantity} in cart
             </div>

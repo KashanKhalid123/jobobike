@@ -122,6 +122,11 @@ export default function AccessoriesPage() {
                                             sizes="(max-width: 640px) 120px, 200px"
                                             style={{ maxWidth: '90%', maxHeight: '90%' }}
                                         />
+                                        {product.inStock && product.originalPrice && product.originalPrice !== product.price && (
+                                            <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded-md">
+                                                -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                                            </div>
+                                        )}
                                         {!product.inStock && (
                                             <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg">
                                                 OUT OF STOCK
@@ -140,14 +145,14 @@ export default function AccessoriesPage() {
                                     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between">
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center gap-1.5">
-                                                <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
-                                                    {formatCurrency(product.price)}
-                                                </span>
                                                 {product.originalPrice && product.originalPrice !== product.price && (
                                                     <span className="text-[10px] sm:text-xs text-red-500 line-through">
                                                         {formatCurrency(product.originalPrice)}
                                                     </span>
                                                 )}
+                                                <span className={`text-sm sm:text-base font-semibold whitespace-nowrap ${product.originalPrice && product.originalPrice !== product.price ? 'text-[#12b190]' : 'text-black'}`}>
+                                                    {formatCurrency(product.price)}
+                                                </span>
                                             </div>
                                             
                                             {/* Color Selection */}

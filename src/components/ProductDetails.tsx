@@ -111,6 +111,11 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               height={600}
               className={`w-full h-[400px] object-contain p-6 ${isProductOutOfStock ? 'opacity-60' : ''}`}
             />
+            {!isProductOutOfStock && product.originalPrice && product.originalPrice !== product.price && (
+              <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold z-20">
+                -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+              </div>
+            )}
             {isProductOutOfStock && (
               <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
                 UTSOLGT
@@ -447,6 +452,11 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 height={800}
                 className={`w-full h-[500px] object-contain p-8 ${isProductOutOfStock ? 'opacity-60' : ''}`}
               />
+              {!isProductOutOfStock && product.originalPrice && product.originalPrice !== product.price && (
+                <div className="absolute top-3 right-3 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold z-20">
+                  -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                </div>
+              )}
               {isProductOutOfStock && (
                 <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
                   UTSOLGT
