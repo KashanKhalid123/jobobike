@@ -71,12 +71,17 @@ export default function ProductCardItem({
           />
         </div>
         {!isOutOfStock && baseProduct.originalPrice && baseProduct.originalPrice !== baseProduct.price && (
-          <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded-full text-[10px] sm:text-xs font-semibold">
+          <div className="absolute top-2 right-2 bg-red-600 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[8px] sm:text-xs font-semibold">
             -{Math.round(((baseProduct.originalPrice - baseProduct.price) / baseProduct.originalPrice) * 100)}%
           </div>
         )}
+        {!isOutOfStock && ['henry-001', 'transer-001', 'robin-pro-001', 'dyno-001', 'luxe-snow-001'].includes(baseProduct.id) && (
+          <div className="absolute top-2 left-2 bg-orange-500 text-black px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[7px] sm:text-[10px] font-bold shadow-lg">
+            BLACK WEEK
+          </div>
+        )}
         {isOutOfStock && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+          <div className="absolute top-2 right-2 bg-red-500 text-white text-[8px] sm:text-xs font-bold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full shadow-lg">
             UTSOLGT
           </div>
         )}

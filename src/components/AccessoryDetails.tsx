@@ -177,7 +177,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                 } : {}}
               />
               {product.inStock && product.originalPrice && product.originalPrice !== product.price && (
-                <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-md z-20">
+                <div className="absolute top-3 right-3 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-semibold z-20">
                   -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                 </div>
               )}
@@ -400,7 +400,7 @@ export default function AccessoryDetails({ product }: AccessoryDetailsProps) {
                   } : {}}
                 />
                 {product.inStock && product.originalPrice && product.originalPrice !== product.price && (
-                  <div className="absolute top-3 right-3 bg-red-500 text-white text-sm font-bold px-4 py-2 rounded-md z-20">
+                  <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1.5 rounded-full text-sm font-semibold z-20">
                     -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                   </div>
                 )}

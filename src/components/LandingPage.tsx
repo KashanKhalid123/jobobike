@@ -42,18 +42,33 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="w-full">
-        <div className="max-w-7xl mx-auto">
-          <Link href="/black-week">
-            <Image
-              src="/images/newbanner.png"
-              alt="Banner"
-              width={1920}
-              height={800}
-              priority
-              className="w-full h-auto max-h-[600px] md:max-h-[800px] object-cover cursor-pointer"
-            />
-          </Link>
+      <section className="w-full bg-gradient-to-r from-gray-50 to-white pt-2 md:mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-4 md:gap-8 items-center pb-4 md:pb-6 lg:pb-8 md:pt-16">
+            {/* Text Content - Left */}
+            <div className="space-y-3 md:space-y-6 text-left">
+              <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-[#12b190] leading-tight">
+                ELSYKKEL SALG
+              </h1>
+              <p className="text-base md:text-2xl text-black">
+                Opptil 40% avslag
+              </p>
+              <Link href="/black-week" className="inline-flex items-center gap-2 bg-[#12b190] text-white px-4 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-lg hover:bg-[#0f9a7a] transition-colors">
+                Handle nå <ArrowRight className="w-4 md:w-5 h-4 md:h-5" />
+              </Link>
+            </div>
+            
+            {/* Image - Right */}
+            <div className="relative w-full h-[200px] md:h-[400px] lg:h-[450px]">
+              <Image
+                src="/images/newbanner.png"
+                alt="Banner"
+                fill
+                priority
+                className="object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

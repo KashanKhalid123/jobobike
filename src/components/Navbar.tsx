@@ -383,14 +383,14 @@ export default function Navbar() {
         </div>
 
         {/* Moving Text Banner */}
-        <div className={`w-full bg-red-500/20 text-black py-2 overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? 'hidden' : 'block'}`}>
-          <div className="flex animate-scroll text-xl font-medium gap-5">
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
-            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 60% RABATT</span></span>
+        <div className={`w-full bg-orange-500 text-black py-2 overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? 'hidden' : 'block'}`}>
+          <div className="flex animate-scroll-fast text-xl font-medium gap-5">
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
+            <span className="whitespace-nowrap flex gap-5"><span>BLACK WEEK ER I GANG</span><span>OPPTIL 40% RABATT</span></span>
           </div>
         </div>
 

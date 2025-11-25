@@ -81,6 +81,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
             </div>
           )}
           
+          {/* BLACK WEEK Badge for 40% discount bikes */}
+          {!isOutOfStock && ['henry-001', 'transer-001', 'robin-pro-001', 'dyno-001', 'luxe-snow-001'].includes(product.id) && (
+            <div className="absolute top-3 left-3 bg-orange-500 text-black px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
+              BLACK WEEK
+            </div>
+          )}
+          
           {/* Out of Stock Overlay */}
           {isOutOfStock && (
             <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">

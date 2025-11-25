@@ -440,3 +440,13 @@ input[type="email"]:valid {
 .animate-scroll {
   animation: scroll 20s linear infinite;
 }
+
+.animate-scroll-fast {
+  animation: scroll 12s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .animate-scroll-fast {
+    animation: scroll 5s linear infinite;
+  }
+}

@@ -116,6 +116,11 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
               </div>
             )}
+            {!isProductOutOfStock && ['henry-001', 'transer-001', 'robin-pro-001', 'dyno-001', 'luxe-snow-001'].includes(product.id) && (
+              <div className="absolute top-3 left-3 bg-orange-500 text-black px-3 py-1.5 rounded-full text-xs font-bold shadow-lg z-20">
+                BLACK WEEK
+              </div>
+            )}
             {isProductOutOfStock && (
               <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20">
                 UTSOLGT
@@ -455,6 +460,11 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               {!isProductOutOfStock && product.originalPrice && product.originalPrice !== product.price && (
                 <div className="absolute top-3 right-3 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold z-20">
                   -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                </div>
+              )}
+              {!isProductOutOfStock && ['henry-001', 'transer-001', 'robin-pro-001', 'dyno-001', 'luxe-snow-001'].includes(product.id) && (
+                <div className="absolute top-3 left-3 bg-orange-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg z-20">
+                  BLACK WEEK
                 </div>
               )}
               {isProductOutOfStock && (

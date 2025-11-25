@@ -140,12 +140,11 @@ export default function BlackWeekPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {PRODUCTS_DATA
-              .filter(product => product.inStock !== false)
-              .sort((a, b) => b.originalPrice - a.originalPrice)
-              .slice(0, 4)
+              .filter(product => ['henry-001', 'transer-001', 'robin-pro-001', 'dyno-001', 'luxe-snow-001'].includes(product.id))
+              .slice(0, 5)
               .map((product, index) => {
-                const discountedPrice = Math.round(product.originalPrice * 0.4);
-                const discountPercent = 60;
+                const discountedPrice = product.price;
+                const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
                 
                 const currentColor = selectedColors[product.id] || product.colors?.[0] || '';
                 const displayImage = product.colorImages && currentColor ? product.colorImages[currentColor] || product.image : product.image;
@@ -153,6 +152,9 @@ export default function BlackWeekPage() {
                 return (
                   <Link key={product.id} href={`/products/${product.slug}`} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full hover:shadow-lg transition-shadow">
                     <div className="relative h-40 md:h-56 flex items-center justify-center p-4 md:p-8 bg-white">
+                      <div className="absolute top-2 left-2 md:top-3 md:left-3 bg-orange-500 text-black px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold shadow-lg">
+                        BLACK WEEK
+                      </div>
                       <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-red-600 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-semibold">
                         -{discountPercent}%
                       </div>

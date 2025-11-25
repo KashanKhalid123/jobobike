@@ -57,7 +57,7 @@ const PromotionalGiftBox = () => {
           {/* Badge */}
           {!showPopup && (
             <div className="absolute -top-1 -right-1 bg-red-500 text-white w-7 h-7 rounded-full shadow-lg text-xs font-bold flex items-center justify-center animate-pulse">
-              10%
+              40%
             </div>
           )}
         </button>
