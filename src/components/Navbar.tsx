@@ -180,10 +180,7 @@ export default function Navbar() {
     if (e.key === 'Escape') {
       setShowResults(false);
     } else if (e.key === 'Enter') {
-      if (query.trim()) {
-        router.push(`/search?query=${encodeURIComponent(query.trim())}`);
-        setShowResults(false);
-      }
+      e.preventDefault();
     }
   };
 
@@ -503,9 +500,8 @@ export default function Navbar() {
                 onKeyDown={(e) => {
                   if (e.key === 'Escape') {
                     setIsMobileSearchOpen(false);
-                  } else if (e.key === 'Enter' && query.trim()) {
-                    router.push(`/search?query=${encodeURIComponent(query.trim())}`);
-                    setIsMobileSearchOpen(false);
+                  } else if (e.key === 'Enter') {
+                    e.preventDefault();
                   }
                 }}
                 autoFocus

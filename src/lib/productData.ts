@@ -2697,7 +2697,7 @@ export const searchProducts = (query: string): ProductCard[] => {
   const lowerQuery = query.toLowerCase().trim();
 
   return PRODUCTS_DATA.filter((product) => {
-    return product.name.toLowerCase().startsWith(lowerQuery);
+    return product.name.toLowerCase().includes(lowerQuery);
   });
 };
 

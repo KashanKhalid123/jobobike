@@ -254,6 +254,10 @@ export default function PaymentForm() {
                         </div>
                     )}
                     <div className="flex justify-between text-sm text-black">
+                        <span>Frakt</span>
+                        <span className="text-green-600 font-medium">Gratis</span>
+                    </div>
+                    <div className="flex justify-between text-sm text-black">
                         <span>MVA</span>
                         <span className="text-black">Inkludert i prisen</span>
                     </div>
