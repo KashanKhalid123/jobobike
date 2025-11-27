@@ -196,7 +196,7 @@ export default function Navbar() {
     { name: 'Om oss', href: '/om-oss' },
     { name: 'Kontakt oss', href: '/kontakt-oss' },
     { name: 'Personvernerklæring', href: '/personvern' },
-    { name: 'Kjøpsvilkår & Garanti', href: '/returer' },
+    { name: 'Kjøpsvilkår & Garanti', href: '/kjopsvilkar' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -649,7 +649,7 @@ export default function Navbar() {
                 Personvernerklæring
               </Link>
               <Link
-                href="/returer"
+                href="/kjopsvilkar"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Kjøpsvilkår & Garanti

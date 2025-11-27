@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
             JOBOBIKE Personvernerklæring
           </h1>
           <p className="text-sm text-gray-600 text-center">
-            Sist oppdatert: 13. juli 2023
+            Sist oppdatert: 27. november 2025
           </p>
         </div>
       </div>

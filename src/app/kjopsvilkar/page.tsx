@@ -12,7 +12,7 @@ const ReturPage = () => {
             Kjøpsvilkår & Garanti
           </h1>
           <p className="text-sm text-gray-600 text-center">
-            Sist oppdatert: 26. september 2025
+            Sist oppdatert: 27. november 2025
           </p>
         </div>
       </div>
@@ -24,7 +24,7 @@ const ReturPage = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Parter og vilkår</h2>
           <p className="text-gray-700 leading-relaxed">
-            Disse vilkårene gjelder mellom JALUT AI LAUNCHLABS (org.nr 931 361 414, Niels Juels Gate 70,B 0259 Oslo) og kunden («du/deg»). Ved å handle på sykkellageret.no aksepterer du disse vilkårene.
+            Disse vilkårene gjelder mellom JALUT AI LAUNCHLABS (org.nr 931 361 414) og kunden («du/deg»). Ved å handle på sykkellageret.no aksepterer du disse vilkårene.
           </p>
         </section>
 
