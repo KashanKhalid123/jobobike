@@ -191,12 +191,12 @@ export default function Navbar() {
 
   const moreMenuItems = [
     { name: 'El-sykler', href: '/', dropdown: true },
-    { name: 'Sykkelutstyr', href: '/accessorie' },
+    { name: 'Sykkelutstyr', href: '/sykkelutstyr' },
     { name: 'Bli forhandler', href: '/bli-forhandler' },
-    { name: 'Om oss', href: '/about' },
-    { name: 'Kontakt oss', href: '/contact' },
-    { name: 'Personvernerklæring', href: '/privacy' },
-    { name: 'Kjøpsvilkår & Garanti', href: '/returns' },
+    { name: 'Om oss', href: '/om-oss' },
+    { name: 'Kontakt oss', href: '/kontakt-oss' },
+    { name: 'Personvernerklæring', href: '/personvern' },
+    { name: 'Kjøpsvilkår & Garanti', href: '/returer' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -405,7 +405,7 @@ export default function Navbar() {
                 </button>
               </div>
               <Link
-                href="/accessorie"
+                href="/sykkelutstyr"
                 className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Sykkelutstyr
@@ -423,13 +423,13 @@ export default function Navbar() {
                 Bli forhandler
               </Link>
               <Link
-                href="/about"
+                href="/om-oss"
                 className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Om oss
               </Link>
               <Link
-                href="/contact"
+                href="/kontakt-oss"
                 className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Kontakt oss
@@ -468,7 +468,7 @@ export default function Navbar() {
                 )}
               </div>
               <Link
-                href="/cycle"
+                href="/elsykler"
                 className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
               >
                 Se alle el-sykler
@@ -601,7 +601,7 @@ export default function Navbar() {
                       </Link>
                     ))}
                     <Link
-                      href="/cycle"
+                      href="/elsykler"
                       className="block p-3 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center"
                       onClick={toggleMobileMenu}
                     >
@@ -613,7 +613,7 @@ export default function Navbar() {
 
               {/* Sidebar menu items only */}
               <Link
-                href="/accessorie"
+                href="/sykkelutstyr"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Sykkelutstyr
@@ -631,25 +631,25 @@ export default function Navbar() {
                 Bli forhandler
               </Link>
               <Link
-                href="/about"
+                href="/om-oss"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Om oss
               </Link>
               <Link
-                href="/contact"
+                href="/kontakt-oss"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Kontakt oss
               </Link>
               <Link
-                href="/privacy"
+                href="/personvern"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Personvernerklæring
               </Link>
               <Link
-                href="/returns"
+                href="/returer"
                 className="block p-4 text-gray-900 hover:bg-[#12b190] hover:text-white rounded-lg transition-colors font-medium border border-gray-200 hover:border-[#12b190]"
               >
                 Kjøpsvilkår & Garanti
@@ -706,7 +706,7 @@ export default function Navbar() {
                           </Link>
                         ))}
                         <Link
-                          href="/cycle"
+                          href="/elsykler"
                           className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
                         >
                           Se alle el-sykler

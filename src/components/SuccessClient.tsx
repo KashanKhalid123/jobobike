@@ -164,7 +164,7 @@ export default function SuccessClient() {
               Fortsett å handle
             </button>
             <button 
-              onClick={() => router.push('/contact')} 
+              onClick={() => router.push('/kontakt-oss')} 
               className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-[#12b190] hover:text-[#12b190] transition-all duration-200"
             >
               Kontakt oss

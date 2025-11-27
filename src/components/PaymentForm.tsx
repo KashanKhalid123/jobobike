@@ -173,7 +173,7 @@ export default function PaymentForm() {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?payment_intent={payment_intent}`,
+                return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/suksess?payment_intent={payment_intent}`,
                 receipt_email: email,
                 shipping: {
                     name: shippingInfo.fullName,
