@@ -97,6 +97,7 @@ export default function CompatibleAccessories({ product }: CompatibleAccessories
                     id: accessory.id,
                     name: accessory.name,
                     price: accessory.price,
+                    originalPrice: accessory.originalPrice,
                     image: accessory.image
                   }}
                   className="bg-[#12b190] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#0f9a7a] transition-colors"
