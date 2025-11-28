@@ -222,16 +222,22 @@ export default function PaymentForm() {
                                 </div>
                                 <div className="flex-1">
                                     <p className="text-sm text-black">{item.name}</p>
-                                    <div className="flex items-center gap-2">
-                                        {hasDiscount && (
-                                            <p className="text-sm text-red-500 line-through">
-                                                {formatCurrency(convertPrice(origPrice * item.quantity))}
-                                            </p>
-                                        )}
+                                    {appliedCoupon ? (
                                         <p className="text-sm font-medium text-black">
-                                            {formatCurrency(convertPrice(item.price * item.quantity))}
+                                            {formatCurrency(convertPrice(origPrice * item.quantity))}
                                         </p>
-                                    </div>
+                                    ) : (
+                                        <div className="flex items-center gap-2">
+                                            {hasDiscount && (
+                                                <p className="text-sm text-red-500 line-through">
+                                                    {formatCurrency(convertPrice(origPrice * item.quantity))}
+                                                </p>
+                                            )}
+                                            <p className="text-sm font-medium text-black">
+                                                {formatCurrency(convertPrice(item.price * item.quantity))}
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                                 <p className="text-sm text-black">x{item.quantity}</p>
                             </div>
@@ -244,11 +250,16 @@ export default function PaymentForm() {
                         <>
                             <div className="flex justify-between text-sm">
                                 <span className="text-black">Opprinnelig pris</span>
-                                <span className="text-red-500 line-through">{formatCurrency(convertPrice(originalSubtotal))}</span>
+                                <span className="text-black">{formatCurrency(convertPrice(originalSubtotal))}</span>
                             </div>
-                            <div className="flex justify-between text-sm text-green-600 font-medium">
-                                <span>Kupongrabatt {appliedCoupon.percent_off ? `(${appliedCoupon.percent_off}% rabatt)` : ''}</span>
-                                <span>-{formatCurrency(convertPrice(discount))}</span>
+                            <div className="bg-green-50 border border-green-200 rounded p-3 my-2">
+                                <div className="flex justify-between text-sm text-green-700 font-semibold mb-1">
+                                    <span>Kupongrabatt {appliedCoupon.percent_off ? `(${appliedCoupon.percent_off}% rabatt)` : ''}</span>
+                                    <span>-{formatCurrency(convertPrice(discount))}</span>
+                                </div>
+                                <p className="text-xs text-green-600">
+                                    Du fikk {appliedCoupon.percent_off}% rabatt på den opprinnelige prisen
+                                </p>
                             </div>
                         </>
                     ) : (

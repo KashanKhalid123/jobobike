@@ -21,7 +21,7 @@ const Footer = () => {
     <footer className="bg-white text-black border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-10">
         {/* Top Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16">
           {/* Newsletter */}
           <div>
             <h3 className="font-semibold mb-3 text-base">Motta våre nyhetsbrev</h3>
@@ -75,8 +75,16 @@ const Footer = () => {
               <li><Link href="/kontakt-oss" className="hover:text-[#12b190]">Kontakt oss</Link></li>
             </ul>
           </div>
-        </div>
 
+          {/* Return Address */}
+          <div>
+            <h3 className="font-semibold mb-3 text-base">Returadresse</h3>
+            <p className="text-sm text-gray-600">
+              Gromadzka 505-806<br />
+              Sokołów, Polen
+            </p>
+          </div>
+        </div>
 
       </div>
 

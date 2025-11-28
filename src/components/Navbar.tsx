@@ -150,7 +150,21 @@ export default function Navbar() {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setNavbarDropdownOpen(false);
+    setIsMoreMenuOpen(false);
   }, [pathname]);
+
+  // close more menu on ESC key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMoreMenuOpen(false);
+      }
+    };
+    if (isMoreMenuOpen) {
+      document.addEventListener('keydown', handleEsc);
+      return () => document.removeEventListener('keydown', handleEsc);
+    }
+  }, [isMoreMenuOpen]);
 
   // close navbar dropdown on outside click
   useEffect(() => {
@@ -255,10 +269,10 @@ export default function Navbar() {
 
       <nav className={`fixed w-full z-50 bg-white border-b shadow-sm md:mb-10 transition-all duration-500 ease-in-out ${isScrolled ? 'top-0' : 'top-0 md:top-8'}`}>
         {/* TOP ROW like the screenshot */}
-        <div className="max-w-7xl mx-auto px-1 sm:px-4">
-          <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-4">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+          <div className="flex items-center justify-between h-14 sm:h-16 gap-4">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex-shrink-0">
               <img
                 src="/images/logo.jpg"
                 alt="Logo"
@@ -268,10 +282,10 @@ export default function Navbar() {
 
             {/* Search (desktop) */}
             <div
-              className="hidden md:block flex-1 max-w-3xl mx-4"
+              className="hidden md:flex flex-1 justify-center"
               ref={desktopSearchRef}
             >
-              <div className="relative z-[60]">
+              <div className="relative z-[60] w-full max-w-2xl">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   id="desktop-search-input"
@@ -335,9 +349,9 @@ export default function Navbar() {
             </div>
 
             {/* Right side */}
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-3 flex-shrink-0">
               {/* Location (desktop) */}
-              <div className="hidden md:flex items-center gap-1 text-sm text-gray-700">
+              <div className="hidden md:flex items-center gap-1.5 text-sm text-gray-700">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
@@ -664,8 +678,8 @@ export default function Navbar() {
 
       {/* right-side drawer for More */}
       {isMoreMenuOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
-          <div className="w-80 bg-white h-full shadow-lg">
+        <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30" onClick={toggleMoreMenu}>
+          <div className="w-80 bg-white h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center p-4 border-b bg-gradient-to-r from-[#12b190] to-[#0f9a7a]">
               <h2 className="text-lg font-semibold text-white">
                 Meny

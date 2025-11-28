@@ -66,9 +66,19 @@ const ReturPage = () => {
             <li><strong>Andre årsaker:</strong> Ved reparasjoner som ikke dekkes av garantien dekker kjøper frakt begge veier.</li>
           </ul>
           <h3 className="text-xl font-semibold text-gray-900 mb-3">Slik avtaler du retur</h3>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 leading-relaxed mb-4">
             Kontakt oss på <strong>support@jobobike.no</strong> med ordrenummer og informasjon om varen du ønsker å returnere.
           </p>
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <h4 className="font-semibold text-gray-900 mb-2">Returadresse</h4>
+            <p className="text-gray-700">
+              Gromadzka 505-806<br />
+              Sokołów, Polen
+            </p>
+            <p className="text-sm text-gray-600 mt-2">
+              <em>Merk: Send aldri varer til denne adressen før du har fått bekreftelse fra oss.</em>
+            </p>
+          </div>
         </section>
 
         {/* Garanti & Reklamasjon */}
@@ -91,9 +101,19 @@ const ReturPage = () => {
             <li>Vent på bekreftelse og returinstruksjon før varen sendes.</li>
             <li>Pakk produktet forsvarlig i original emballasje.</li>
           </ol>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 leading-relaxed mb-4">
             Vi behandler saken så snart varen er mottatt, og gir beskjed om videre prosess (reparasjon, erstatning eller refusjon).
           </p>
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <h4 className="font-semibold text-gray-900 mb-2">Returadresse for garantisaker</h4>
+            <p className="text-gray-700">
+              Gromadzka 505-806<br />
+              Sokołów, Polen
+            </p>
+            <p className="text-sm text-gray-600 mt-2">
+              <em>Merk: Send aldri varer til denne adressen før du har fått bekreftelse fra oss.</em>
+            </p>
+          </div>
         </section>
 
         {/* Produktendringer og personvern */}

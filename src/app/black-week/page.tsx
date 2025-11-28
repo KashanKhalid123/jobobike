@@ -19,11 +19,11 @@ export default function BlackWeekPage() {
   });
 
   useEffect(() => {
-    // Set end date to tomorrow at 12:00 AM (midnight)
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    const endDate = tomorrow.getTime();
+    // Set end date to Sunday at 12:00 AM (midnight)
+    const sunday = new Date();
+    sunday.setDate(sunday.getDate() + 2);
+    sunday.setHours(0, 0, 0, 0);
+    const endDate = sunday.getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();

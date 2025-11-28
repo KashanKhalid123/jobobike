@@ -218,38 +218,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     compatibility: ["All models"],
     inStock: true
   },
-  {
-    id: "6",
-    slug: "jobobike-bicycle-mirror",
-    name: "Sykkelspeil",
-    description: "Høykvalitets bakspeil som gir utmerket sikt og økt sikkerhet når du sykler på elsykkelen.",
-    fullDescription: "JOBOBIKE sykkelspeil forbedrer sikkerheten ved å gi et bredt synsfelt bakover med splintfritt glass. Den justerbare armen gjør at du enkelt kan finne riktig vinkel, og det robuste festesystemet holder speilet stabilt selv på humpete underlag. Et elegant design som passer godt sammen med sykkelens utseende.",
-    originalPrice: 599,
-    price: 479.2,
-    discount: "40%",
-    currency: "kr",
-    image: "/images/mirror/mirror-1.png",
-    images: [
-      "/images/mirror/mirror-1.png",
-      "/images/mirror/mirror-2.png",
-    ],
-    category: ["Sikkerhet & Synlighet"],
-    specifications: [
-      { label: "Speilstørrelse", value: "80 mm diameter" },
-      { label: "Materiale", value: "Splintfritt glass" },
-      { label: "Montering", value: "Styrefeste" },
-      { label: "Justering", value: "Multi-vinkel justering" }
-    ],
-    features: [
-      "Splintfritt speilglass",
-      "Bredt synsfelt",
-      "Justerbar posisjonering",
-      "Robust monteringsbrakett",
-      "Enkel installasjon"
-    ],
-    compatibility: ["All models"],
-    inStock: true
-  },
+  
   {
     id: "7",
     slug: "jobobike-helmet",
@@ -299,6 +268,41 @@ export const accessoriesProducts: AccessoryProduct[] = [
       "Svart": "/images/helmet/helmet-1.png",
       "Blå": "/images/helmet/helmet-2.png"
     }
+  },
+
+
+
+  {
+    id: "6",
+    slug: "jobobike-bicycle-mirror",
+    name: "Sykkelspeil",
+    description: "Høykvalitets bakspeil som gir utmerket sikt og økt sikkerhet når du sykler på elsykkelen.",
+    fullDescription: "JOBOBIKE sykkelspeil forbedrer sikkerheten ved å gi et bredt synsfelt bakover med splintfritt glass. Den justerbare armen gjør at du enkelt kan finne riktig vinkel, og det robuste festesystemet holder speilet stabilt selv på humpete underlag. Et elegant design som passer godt sammen med sykkelens utseende.",
+    originalPrice: 599,
+    price: 479.2,
+    discount: "40%",
+    currency: "kr",
+    image: "/images/mirror/mirror-1.png",
+    images: [
+      "/images/mirror/mirror-1.png",
+      "/images/mirror/mirror-2.png",
+    ],
+    category: ["Sikkerhet & Synlighet"],
+    specifications: [
+      { label: "Speilstørrelse", value: "80 mm diameter" },
+      { label: "Materiale", value: "Splintfritt glass" },
+      { label: "Montering", value: "Styrefeste" },
+      { label: "Justering", value: "Multi-vinkel justering" }
+    ],
+    features: [
+      "Splintfritt speilglass",
+      "Bredt synsfelt",
+      "Justerbar posisjonering",
+      "Robust monteringsbrakett",
+      "Enkel installasjon"
+    ],
+    compatibility: ["All models"],
+    inStock: true
   },
   {
     id: "8",
