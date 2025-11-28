@@ -6,7 +6,7 @@ export interface AccessoryProduct {
   name: string;
   description: string;
   fullDescription: string;
-  originalPrice?: number;
+  originalPrice: number;
   price: number;
   discount?: string;
   currency: string;
