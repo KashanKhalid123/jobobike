@@ -5,26 +5,33 @@ import { X } from 'lucide-react';
 
 interface PromoPopupProps {
   onClose?: () => void;
+  isOpen?: boolean;
 }
 
-export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
+export default function PromoPopup({ onClose, isOpen }: PromoPopupProps = {}) {
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    } else {
+      const hasSeenPromo = sessionStorage.getItem('hasSeenPromo');
+      if (!hasSeenPromo) {
+        setIsVisible(true);
+      }
+    }
+  }, [isOpen]);
   const [copied, setCopied] = useState(false);
   const [email, setEmail] = useState('');
   const [showCode, setShowCode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const hasSeenPromo = localStorage.getItem('hasSeenPromo');
-    if (!hasSeenPromo) {
-      setIsVisible(true);
-    }
-  }, []);
-
   const handleClose = () => {
     setIsVisible(false);
-    localStorage.setItem('hasSeenPromo', 'true');
+    if (!isOpen) {
+      sessionStorage.setItem('hasSeenPromo', 'true');
+    }
     if (onClose) {
       setTimeout(onClose, 300);
     }
