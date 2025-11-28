@@ -152,6 +152,8 @@ export default function BlackWeekPage() {
                 const currentColor = selectedColors[product.id] || product.colors?.[0] || '';
                 const displayImage = product.colorImages && currentColor ? product.colorImages[currentColor] || product.image : product.image;
                 
+                const formatPrice = (price: number) => Math.round(price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                
                 return (
                   <Link key={product.id} href={`/products/${product.slug}`} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full hover:shadow-lg transition-shadow">
                     <div className="relative h-40 md:h-56 flex items-center justify-center p-4 md:p-8 bg-white">
@@ -188,9 +190,9 @@ export default function BlackWeekPage() {
                         )}
                       </div>
                       <div className="flex flex-col gap-1 mb-3 md:mb-4 flex-1">
-                        <span className="text-lg md:text-xl font-bold text-[#12b190]">{discountedPrice.toLocaleString('no-NO')} kr</span>
-                        <span className="text-xs md:text-sm text-gray-400 line-through">{product.originalPrice.toLocaleString('no-NO')} kr</span>
-                        <span className="text-xs text-green-600 font-medium">Spar {(product.originalPrice - discountedPrice).toLocaleString('no-NO')} kr</span>
+                        <span className="text-lg md:text-xl font-bold text-[#12b190]">{formatPrice(discountedPrice)} kr</span>
+                        <span className="text-xs md:text-sm text-gray-400 line-through">{formatPrice(product.originalPrice)} kr</span>
+                        <span className="text-xs text-green-600 font-medium">Spar {formatPrice(product.originalPrice - discountedPrice)} kr</span>
                       </div>
                       <button
                         onClick={(e) => { e.preventDefault(); addToCart(product as any, 1); }}
