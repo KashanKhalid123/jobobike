@@ -427,7 +427,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   const weight = getProductWeight(product.id, product.specifications.weight);
                   addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
                   selectedAccessories.forEach(acc => {
-                    addToCart({...acc as any, originalPrice: acc.originalPrice || acc.price, weight: 0.5}, 1);
+                    addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                   });
                 }
               }}
@@ -446,7 +446,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                   const weight = getProductWeight(product.id, product.specifications.weight);
                   addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
                   selectedAccessories.forEach(acc => {
-                    addToCart({...acc as any, originalPrice: acc.originalPrice || acc.price, weight: 0.5}, 1);
+                    addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                   });
                   setTimeout(() => router.push('/checkout'), 500);
                 }
@@ -814,7 +814,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                     const weight = getProductWeight(product.id, product.specifications.weight);
                     addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
                     selectedAccessories.forEach(acc => {
-                      addToCart({...acc as any, originalPrice: acc.originalPrice || acc.price, weight: 0.5}, 1);
+                      addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                     });
                   }
                 }}
@@ -833,7 +833,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                     const weight = getProductWeight(product.id, product.specifications.weight);
                     addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
                     selectedAccessories.forEach(acc => {
-                      addToCart({...acc as any, originalPrice: acc.originalPrice || acc.price, weight: 0.5}, 1);
+                      addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                     });
                     setTimeout(() => router.push('/checkout'), 500);
                   }

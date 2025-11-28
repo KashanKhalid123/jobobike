@@ -38,9 +38,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
         id: product.id,
         name: product.name,
         price: product.price,
+        originalPrice: product.originalPrice || product.price,
         image: product.image,
         category: product.category,
-        
     });
 
     // Show success state

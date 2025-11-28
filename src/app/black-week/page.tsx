@@ -277,7 +277,7 @@ export default function BlackWeekPage() {
                     onClick={() => {
                       const transerProduct = PRODUCTS_DATA.find(p => p.id === 'transer-001');
                       const imageUrl = transerProduct?.colorImages?.[transerPackageColor] || '/images/transer/transer-1.png';
-                      addToCart({ id: `transer-package-${transerPackageColor}`, name: `TRANSER Pakke (${transerPackageColor})`, price: 29386, image: imageUrl, category: ['Pakke'] } as any, 1);
+                      addToCart({ id: `transer-package-${transerPackageColor}`, name: `TRANSER Pakke (${transerPackageColor})`, price: 29386, originalPrice: 48976, image: imageUrl, category: ['Pakke'] }, 1);
                     }}
                     className="bg-[#12b190] hover:bg-[#0e9a7a] text-white px-4 py-3 rounded-md font-semibold text-sm lg:text-sm transition-all w-full lg:w-auto"
                   >
@@ -334,7 +334,7 @@ export default function BlackWeekPage() {
                   </div>
                   <button
                     onClick={() => {
-                      addToCart({ id: 'sam-package-001', name: 'SAM Pakke', price: 14455, image: '/images/sam/sam-1.png', category: ['Pakke'] } as any, 1);
+                      addToCart({ id: 'sam-package-001', name: 'SAM Pakke', price: 14455, originalPrice: 24092, image: '/images/sam/sam-1.png', category: ['Pakke'] }, 1);
                     }}
                     className="bg-[#12b190] hover:bg-[#0e9a7a] text-white px-4 py-3 rounded-md font-semibold text-sm lg:text-sm transition-all w-full lg:w-auto"
                   >

@@ -160,9 +160,10 @@ export default function BikePackageBuilder({ product }: BikePackageBuilderProps)
                 id: item.id,
                 name: item.name,
                 price: item.price,
+                originalPrice: item.price,
                 image: item.image,
                 category: item.type === 'bike' ? ['Sykkel'] : ['Tilbehør']
-              } as any, 1);
+              }, 1);
             });
           }}
           disabled={selectedCount === 0}
