@@ -9,20 +9,25 @@ const Hero = () => {
   const featuredProducts = PRODUCTS_DATA.slice(0, 3);
 
   return (
-    <section className="w-full py-12 md:py-20 bg-white md:bg-gray-50">
+    <section className="w-full py-12 md:py-20 bg-gradient-to-b from-red-50 via-white to-green-50 relative overflow-hidden">
+      {/* Animated Christmas ornaments */}
+      <div className="absolute top-10 left-10 w-8 h-8 rounded-full bg-red-500 opacity-60 animate-bounce" style={{animationDuration: '3s'}} />
+      <div className="absolute top-20 right-20 w-6 h-6 rounded-full bg-green-500 opacity-60 animate-bounce" style={{animationDuration: '2.5s', animationDelay: '0.5s'}} />
+      <div className="absolute bottom-20 left-20 w-10 h-10 rounded-full bg-yellow-400 opacity-50 animate-bounce" style={{animationDuration: '3.5s', animationDelay: '1s'}} />
+      <div className="absolute bottom-32 right-32 w-7 h-7 rounded-full bg-red-400 opacity-50 animate-bounce" style={{animationDuration: '2.8s', animationDelay: '0.3s'}} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left: Text and Button */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Christmas Sale
-              <span className="block bg-gradient-to-r from-[#c41e3a] to-[#165b33] bg-clip-text text-transparent mt-2">Upto 40% OFF</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight relative">
+              <span className="inline-block animate-pulse" style={{animationDuration: '2s'}}>🎄</span> Christmas Sale
+              <span className="block bg-gradient-to-r from-[#c41e3a] to-[#165b33] bg-clip-text text-transparent mt-2 font-black">Upto 40% OFF</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600">
               Premium electric bikes designed for your lifestyle. Lightweight, powerful, and perfect for every journey.
             </p>
             <Link href="/products">
-              <button className="group bg-[#12b190] text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-[#0f9d7d] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
+              <button className="group bg-gradient-to-r from-[#c41e3a] to-[#165b33] text-white font-bold px-8 py-4 rounded-full text-lg hover:scale-105 transition-all duration-300 transform flex items-center gap-2 shadow-lg">
                 Shop Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>

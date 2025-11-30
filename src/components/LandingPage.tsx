@@ -12,6 +12,7 @@ import ProductCardItem from './ProductCardItem';
 const LandingPage = () => {
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [selectedVariants, setSelectedVariants] = useState<{ [key: string]: number }>({});
+  const [snowflakes, setSnowflakes] = useState<Array<{left: string; top: string; fontSize: string; delay: string; duration: string}>>([]);
   const combinedProducts = getCombinedProducts().slice(0, 6);
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
@@ -38,17 +39,48 @@ const LandingPage = () => {
       const img = new window.Image();
       img.src = src;
     });
+
+    // Generate snowflakes on client side only
+    setSnowflakes(
+      Array.from({ length: 20 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `-${Math.random() * 20}%`,
+        fontSize: `${Math.random() * 20 + 10}px`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${Math.random() * 10 + 10}s`,
+      }))
+    );
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Christmas Snowflakes */}
+      {snowflakes.length > 0 && (
+        <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
+          {snowflakes.map((flake, i) => (
+            <div
+              key={i}
+              className="absolute text-white opacity-70 animate-fall"
+              style={{
+                left: flake.left,
+                top: flake.top,
+                fontSize: flake.fontSize,
+                animationDelay: flake.delay,
+                animationDuration: flake.duration,
+              }}
+            >
+              ❄
+            </div>
+          ))}
+        </div>
+      )}
       <section className="w-full bg-gradient-to-r from-gray-50 to-white pt-2 md:mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:grid md:grid-cols-[35%_65%] gap-0 items-stretch pb-0 md:pt-16 md:h-[500px] lg:h-[550px]">
             {/* Image - First on mobile, Right on desktop */}
             <div className="relative w-full h-[300px] md:h-full order-1 md:order-2 overflow-hidden">
               <Image
-                src="/images/newbanner.png"
+                src="/images/bannernew.jpg"
                 alt="Banner"
                 fill
                 priority
@@ -57,20 +89,20 @@ const LandingPage = () => {
             </div>
             
             {/* Text Content - Second on mobile, Left on desktop */}
-            <div className="flex flex-col justify-center space-y-3 md:space-y-6 text-center md:text-left w-full order-2 md:order-1 bg-gradient-to-br from-[#c41e3a] via-[#165b33] to-[#c41e3a] p-6 md:p-12">
-              <div className="inline-block">
-                <span className="bg-white text-[#c41e3a] px-4 py-2 rounded-full text-sm md:text-base font-bold uppercase tracking-wider">Christmas Sale 2025</span>
+            <div className="flex flex-col justify-center space-y-3 md:space-y-6 text-center md:text-left w-full order-2 md:order-1 bg-gradient-to-br from-[#c41e3a] via-[#165b33] to-[#c41e3a] p-6 md:p-12 relative overflow-hidden">
+              <div className="inline-block relative z-10">
+                <span className="bg-white text-[#c41e3a] px-4 py-2 rounded-full text-sm md:text-base font-bold uppercase tracking-wider shadow-lg">🎄 Christmas Sale 2025</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight relative z-10">
                 ELSYKKEL<br/>SALG
               </h1>
               
-              <div className="flex items-center justify-center md:justify-start gap-3">
-                <span className="text-5xl md:text-7xl font-black text-white">40%</span>
+              <div className="flex items-center justify-center md:justify-start gap-3 relative z-10">
+                <span className="text-5xl md:text-7xl font-black text-white drop-shadow-lg">40%</span>
                 <div className="text-left">
                   <p className="text-xl md:text-2xl font-bold text-white uppercase">Opptil</p>
-                  <p className="text-lg md:text-xl font-semibold text-black">Avslag</p>
+                  <p className="text-lg md:text-xl font-semibold text-yellow-300">Avslag</p>
                 </div>
               </div>
               
@@ -90,7 +122,7 @@ const LandingPage = () => {
                 </div>
               </div>
               
-              <Link href="/black-week" className="inline-flex items-center justify-center gap-2 bg-white text-[#c41e3a] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg w-fit mx-auto md:mx-0">
+              <Link href="/black-week" className="inline-flex items-center justify-center gap-2 bg-white text-[#c41e3a] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-lg w-fit mx-auto md:mx-0 relative z-10">
                 Handle nå <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
@@ -171,6 +203,7 @@ const LandingPage = () => {
       <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-2">Bestselgere</h2>
+          <p className="text-lg text-[#c41e3a] font-semibold mt-2">🎄 Perfekte julegaver!</p>
         </div>
 
         <ul
@@ -228,7 +261,7 @@ const LandingPage = () => {
         <EbikeCalculator products={PRODUCTS_DATA} />
       </section>
 
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-gradient-to-b from-white to-green-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-2">

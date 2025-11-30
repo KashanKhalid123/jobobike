@@ -69,7 +69,7 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="relative bg-gradient-to-br from-[#12b190] to-[#0f9a7a] rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 text-white animate-in fade-in zoom-in duration-300">
+      <div className="relative bg-gradient-to-br from-[#c41e3a] via-[#165b33] to-[#c41e3a] rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 text-white animate-in fade-in zoom-in duration-300">
         <button
           onClick={handleClose}
           className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white/80 hover:text-white transition"
@@ -79,13 +79,13 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
 
         <div className="text-center">
           <div className="mb-3 sm:mb-4">
-            <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 sm:mb-4">
-              OPPTIL 40% RABATT PÅ UTVALGTE PRODUKTER
+            <span className="inline-block bg-yellow-400 text-red-600 text-xs font-bold px-3 py-1 rounded-full mb-3 sm:mb-4 animate-pulse">
+              🎅 CHRISTMAS SALE - OPPTIL 40% RABATT 🎄
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            GRATULERER!
+            🎁 GRATULERER! 🎁
           </h2>
           
           <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg">
@@ -109,9 +109,9 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 bg-[#12b190] text-white rounded-lg hover:bg-[#0f9a7a] transition text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-2 bg-gradient-to-r from-[#c41e3a] to-[#165b33] text-white rounded-lg hover:scale-105 transition text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'VENNLIGST VENT...' : 'LÅS OPP RABATTEN'}
+                  {isSubmitting ? 'VENNLIGST VENT...' : '🎁 LÅS OPP RABATTEN'}
                 </button>
               </div>
             </form>
@@ -120,14 +120,14 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
               <p className="text-gray-700 text-sm sm:text-base mb-4 font-medium">
                 Bruk denne koden i kassen:
               </p>
-              <div className="bg-gray-100 border-2 border-dashed border-[#12b190] rounded-lg p-4 mb-4">
-                <p className="text-2xl sm:text-3xl font-bold text-[#12b190] tracking-wider">JOBO-40</p>
+              <div className="bg-gray-100 border-2 border-dashed border-red-600 rounded-lg p-4 mb-4">
+                <p className="text-2xl sm:text-3xl font-bold text-red-600 tracking-wider">JOBO-40</p>
               </div>
               <button
                 onClick={handleCopy}
-                className="w-full bg-[#12b190] text-white py-2 rounded-lg hover:bg-[#0f9a7a] transition text-sm font-semibold"
+                className="w-full bg-gradient-to-r from-[#c41e3a] to-[#165b33] text-white py-2 rounded-lg hover:scale-105 transition text-sm font-semibold"
               >
-                {copied ? 'KOPIERT!' : 'KOPIER KODE'}
+                {copied ? '✅ KOPIERT!' : '🎄 KOPIER KODE'}
               </button>
             </div>
           )}
