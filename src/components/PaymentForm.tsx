@@ -48,12 +48,11 @@ export default function PaymentForm() {
         return sum + (origPrice * item.quantity);
     }, 0);
     
+    // Calculate actual cart subtotal (current prices)
+    const cartSubtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
     let discount = 0;
     let basePrice = originalSubtotal;
-    
-    // Free shipping if order exceeds 3000 NOK
-    const isFreeShipping = basePrice >= 3000;
-    const totalShipping = isFreeShipping ? 0 : calculatedShipping;
     
     if (appliedCoupon) {
         // Apply coupon to ORIGINAL prices
@@ -65,9 +64,12 @@ export default function PaymentForm() {
         basePrice = originalSubtotal - discount;
     } else {
         // No coupon: use current sale prices
-        const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        basePrice = subtotal;
+        basePrice = cartSubtotal;
     }
+    
+    // Free shipping if cart total (current prices) exceeds 3000 NOK
+    const isFreeShipping = cartSubtotal >= 3000;
+    const totalShipping = isFreeShipping ? 0 : calculatedShipping;
     
     // VAT is included in prices (not added on top)
     const taxableBasis = basePrice + totalShipping;
@@ -291,12 +293,10 @@ export default function PaymentForm() {
                 </div>
 
                 <div className="space-y-3 border-t pt-4">
-                    {appliedCoupon ? (
-                        <div className="flex justify-between text-sm font-medium">
-                            <span className="text-black">Total produktpris</span>
-                            <span className="text-black">{formatCurrency(convertPrice(basePrice))}</span>
-                        </div>
-                    ) : null}
+                    <div className="flex justify-between text-sm font-medium">
+                        <span className="text-black">Total produktpris</span>
+                        <span className="text-black">{formatCurrency(convertPrice(basePrice))}</span>
+                    </div>
                     <div className="flex justify-between text-sm text-black">
                         <span>Frakt</span>
                         {isFreeShipping ? (
@@ -305,9 +305,9 @@ export default function PaymentForm() {
                             <span className="text-black">{formatCurrency(convertPrice(pricingBreakdown.shipping))}</span>
                         )}
                     </div>
-                    {!isFreeShipping && basePrice > 0 && (
+                    {!isFreeShipping && cartSubtotal > 0 && (
                         <div className="text-xs text-gray-600">
-                            Legg til {formatCurrency(3000 - basePrice)} for gratis frakt
+                            Legg til {formatCurrency(3000 - cartSubtotal)} for gratis frakt
                         </div>
                     )}
                     <div className="flex justify-between text-sm text-gray-600">
