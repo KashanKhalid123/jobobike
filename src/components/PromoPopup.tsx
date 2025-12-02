@@ -102,9 +102,10 @@ export default function PromoPopup({ onClose }: PromoPopupProps = {}) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="E-mail"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#12b190] mb-3"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#12b190] mb-2"
                   required
                 />
+                <p className="text-gray-600 text-xs mb-3">Denne rabatten kan ikke kombineres med andre kampanjer</p>
                 {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
                 <button
                   type="submit"

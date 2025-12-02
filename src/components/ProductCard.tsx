@@ -16,6 +16,7 @@ interface Product {
   category?: string[];
   description?: string;
   inStock?: boolean;
+  badge?: string;
 }
 
 interface ProductCardProps {
@@ -74,9 +75,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
             />
           </div>
           
-          {/* Discount Badge - Left Side */}
-          {product.originalPrice && product.originalPrice !== product.price && (
-            <div className="absolute top-3 left-3 bg-red-600 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-semibold">
+          {/* JULE SALG Badge - Left Side (if product has CHRISTMAS SALE badge) */}
+          {product.badge === "CHRISTMAS SALE" && (
+            <div className="absolute top-3 left-3 bg-gradient-to-r from-[#c41e3a] to-[#165b33] text-white px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold shadow-lg">
+              JULE SALG
+            </div>
+          )}
+          
+          {/* Discount Badge - Right Side (if no CHRISTMAS SALE badge) */}
+          {product.originalPrice && product.originalPrice !== product.price && product.badge !== "CHRISTMAS SALE" && !isOutOfStock && (
+            <div className="absolute top-3 right-3 bg-red-600 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-semibold">
               -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
             </div>
           )}

@@ -1,4 +1,4 @@
-﻿// src/lib/productData.ts
+// src/lib/productData.ts
 export interface ProductVariant {
   variantName: string;
   originalPrice: number;
@@ -318,6 +318,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Fatbike", "Terreng"],
     rating: 4.7,
     reviewCount: 156,
+    colors: ["Svart"],
+    colorImages: {
+      "Svart": "/images/robin/robin-1.png"
+    },
+    colorImageArrays: {
+      "Svart": ["/images/robin/robin-1.png", "/images/robin/robin-2.png", "/images/robin/robin-5.jpg", "/images/robin/robin-6.jpg"]
+    },
     modelVariants: [
       { name: "Robin", slug: "jobobike-robin", price: 28999 },
       { name: "Robin Pro", slug: "jobobike-robin-pro", price: 32999 }
@@ -576,6 +583,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Sammenleggbar", "Fatbike", "Pendler"],
     rating: 4.6,
     reviewCount: 112,
+    colors: ["Grå"],
+    colorImages: {
+      "Grå": "/images/romer/romer-1.png"
+    },
+    colorImageArrays: {
+      "Grå": ["/images/romer/romer-1.png", "/images/romer/romer-3.png"]
+    },
     modelVariants: [
       { name: "Romer", slug: "jobobike-romer", price: 28999 },
       { name: "Romer C", slug: "jobobike-romer-c", price: 26999 },
@@ -689,14 +703,14 @@ export const PRODUCTS_DATA: ProductCard[] = [
     discount: "9%",
     image: "/images/romer-pro/romer-1.png",
     images: ["/images/romer-pro/romer-1.png"],
-    colors: ["Svart", "Black Olive", "Special"],
+    colors: ["Grå", "Black Olive", "Special"],
     colorImages: {
-      "Svart": "/images/romer-pro/romer-1.png",
+      "Grå": "/images/romer-pro/romer-1.png",
       "Black Olive": "/images/romer-pro/romer-grey.jpg",
       "Special": "/images/romer-pro/romer-red.jpg"
     },
     colorImageArrays: {
-      "Svart": ["/images/romer-pro/romer-1.png"],
+      "Grå": ["/images/romer-pro/romer-1.png"],
       "Black Olive": ["/images/romer-pro/romer-grey.jpg"],
       "Special": ["/images/romer-pro/romer-red.jpg"]
     },
@@ -828,14 +842,14 @@ export const PRODUCTS_DATA: ProductCard[] = [
     images: ["/images/ace-pro/ace-pro-1.jpeg",
       "/images/ace-pro/ace-pro-2.jpg"
     ],
-    colors: ["Blå", "Lys Grønn"],
+    colors: ["Light Blue", "Light Green"],
     colorImages: {
-      "Blå": "/images/ace-pro/ace-pro-1.jpeg",
-      "Lys Grønn": "/images/ace-pro/ace-green-1.jpg"
+      "Light Blue": "/images/ace-pro/ace-pro-1.jpeg",
+      "Light Green": "/images/ace-pro/ace-green-1.jpg"
     },
     colorImageArrays: {
-      "Blå": ["/images/ace-pro/ace-pro-1.jpeg", "/images/ace-pro/ace-pro-2.jpg"],
-      "Lys Grønn": ["/images/ace-pro/ace-green-1.jpg"]
+      "Light Blue": ["/images/ace-pro/ace-pro-1.jpeg", "/images/ace-pro/ace-pro-2.jpg"],
+      "Light Green": ["/images/ace-pro/ace-green-1.jpg"]
     },
     features: [
       "Fullt dempingssystem",
@@ -973,6 +987,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Lastesykkel", "Sammenleggbar"],
     rating: 4.7,
     reviewCount: 76,
+    colors: ["Mint Cream"],
+    colorImages: {
+      "Mint Cream": "/images/romer-c/romer-c.png"
+    },
+    colorImageArrays: {
+      "Mint Cream": ["/images/romer-c/romer-c.png", "/images/romer-c/romer-c1.jpg"]
+    },
     modelVariants: [
       { name: "Romer", slug: "jobobike-romer", price: 28999 },
       { name: "Romer C", slug: "jobobike-romer-c", price: 26999 },
@@ -1097,6 +1118,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Sammenleggbar", "Pendler"],
     rating: 4.3,
     reviewCount: 67,
+    colors: ["Dark Grey"],
+    colorImages: {
+      "Dark Grey": "/images/sam/sam-1.png"
+    },
+    colorImageArrays: {
+      "Dark Grey": ["/images/sam/sam-1.png", "/images/sam/sam-2.png", "/images/sam/sam-5.jpg", "/images/sam/sam-6.jpg"]
+    },
     specifications: {
       motor: "XOFO 36V250W Hub",
       battery: "36V13Ah",
@@ -1213,6 +1241,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.5,
     reviewCount: 89,
     inStock: false,
+    colors: ["Beige"],
+    colorImages: {
+      "Beige": "/images/dyno/dyno-1.png"
+    },
+    colorImageArrays: {
+      "Beige": ["/images/dyno/dyno-1.png", "/images/dyno/dyno-2.png"]
+    },
     modelVariants: [
       { name: "Dyno", slug: "jobobike-dyno", price: 33999 },
       { name: "Dyno GT", slug: "jobobike-dyno-gt", price: 34999 }
@@ -1332,6 +1367,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.7,
     reviewCount: 142,
     inStock: false,
+    colors: ["Silver Gray"],
+    colorImages: {
+      "Silver Gray": "/images/lyon/lyon-1.png"
+    },
+    colorImageArrays: {
+      "Silver Gray": ["/images/lyon/lyon-1.png", "/images/lyon/lyon-2.png"]
+    },
     specifications: {
       motor: "XOFO 36V250W Mid",
       battery: "36V15Ah Samsung",
@@ -1563,6 +1605,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.4,
     reviewCount: 78,
     inStock: false,
+    colors: ["Orange"],
+    colorImages: {
+      "Orange": "/images/mover/mover-1.png"
+    },
+    colorImageArrays: {
+      "Orange": ["/images/mover/mover-1.png", "/images/mover/mover-2.png"]
+    },
     specifications: {
       motor: "250W baknav",
       battery: "36V 14Ah (504Wh)",
@@ -1674,6 +1723,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.5,
     reviewCount: 94,
     inStock: false,
+    colors: ["Svart"],
+    colorImages: {
+      "Svart": "/images/eddy-x/eddy-1.png"
+    },
+    colorImageArrays: {
+      "Svart": ["/images/eddy-x/eddy-1.png", "/images/eddy-x/eddy-2.png", "/images/eddy-x/eddy-3.jpg", "/images/eddy-x/eddy-4.jpg"]
+    },
     specifications: {
       motor: "250W midtmotor",
       battery: "36V 16Ah (576Wh)",
@@ -1777,6 +1833,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Pendler"],
     rating: 4.2,
     reviewCount: 156,
+    colors: ["Graphite Grey"],
+    colorImages: {
+      "Graphite Grey": "/images/astra/astra-1.png"
+    },
+    colorImageArrays: {
+      "Graphite Grey": ["/images/astra/astra-1.png", "/images/astra/astra-2.png"]
+    },
     specifications: {
       motor: "XOFO 36V250W Hub",
       battery: "36V15Ah Samsung",
@@ -1891,6 +1954,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Pendler"],
     rating: 4.7,
     reviewCount: 89,
+    colors: ["Grayish Blue"],
+    colorImages: {
+      "Grayish Blue": "/images/viva/viva-1.png"
+    },
+    colorImageArrays: {
+      "Grayish Blue": ["/images/viva/viva-1.png", "/images/viva/viva-2.jpg"]
+    },
     modelVariants: [
       { name: "Viva", slug: "jobobike-viva", price: 21999 },
       { name: "Viva ST", slug: "jobobike-viva-st", price: 21999 }
@@ -2002,6 +2072,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.8,
     reviewCount: 76,
     inStock: false,
+    colors: ["Dark Grey"],
+    colorImages: {
+      "Dark Grey": "/images/viva-st/viva-st-1.png"
+    },
+    colorImageArrays: {
+      "Dark Grey": ["/images/viva-st/viva-st-1.png", "/images/viva-st/viva-st-2.png"]
+    },
     modelVariants: [
       { name: "Viva", slug: "jobobike-viva", price: 21999 },
       { name: "Viva ST", slug: "jobobike-viva-st", price: 21999 }
@@ -2112,6 +2189,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Pendler"],
     rating: 4.9,
     reviewCount: 64,
+    colors: ["Grå"],
+    colorImages: {
+      "Grå": "/images/henry/henry-1.png"
+    },
+    colorImageArrays: {
+      "Grå": ["/images/henry/henry-1.png", "/images/henry/henry-2.jpg", "/images/henry/henry-5.jpg", "/images/henry/henry-6.jpg"]
+    },
     specifications: {
       motor: "Bafang 36V250W Mid",
       battery: "36V14Ah LG",
@@ -2212,15 +2296,15 @@ export const PRODUCTS_DATA: ProductCard[] = [
     discount: "15%",
     image: "/images/ace/ace-1.png",
     images: ["/images/ace/ace-1.png", "/images/ace/ace-2.png"],
-    colors: ["Svart", "Grønn", "Peach"],
+    colors: ["Svart", "Parrot Green", "Peach"],
     colorImages: {
       "Svart": "/images/ace/ace-1.png",
-      "Grønn": "/images/ace/ace-green.jpg",
+      "Parrot Green": "/images/ace/ace-green.jpg",
       "Peach": "/images/ace/ace-peach.jpg"
     },
     colorImageArrays: {
       "Svart": ["/images/ace/ace-1.png", "/images/ace/ace-2.png"],
-      "Grønn": ["/images/ace/ace-green-1.jpg"],
+      "Parrot Green": ["/images/ace/ace-green-1.jpg"],
       "Peach": ["/images/ace/ace-peach-1.jpg"]
     },
     features: ["Sammenleggbart kompakt design", "Mobilapp-kontroll", "250W motor 45Nm", '20" hjul', "Lett og bærbar"],
@@ -2344,6 +2428,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.7,
     reviewCount: 82,
     inStock: false,
+    colors: ["Hvit"],
+    colorImages: {
+      "Hvit": "/images/linda/linda-1.jpg"
+    },
+    colorImageArrays: {
+      "Hvit": ["/images/linda/linda-1.jpg", "/images/linda/linda-2.jpg", "/images/linda/linda-5.jpg", "/images/linda/linda-6.jpg"]
+    },
     specifications: {
       motor: "250W Bafang M200 midtmotor",
       battery: "36V 14Ah (504Wh)",
@@ -2456,6 +2547,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     rating: 4.9,
     reviewCount: 54,
     inStock: false,
+    colors: ["Hvit"],
+    colorImages: {
+      "Hvit": "/images/triker/triker-1.jpg"
+    },
+    colorImageArrays: {
+      "Hvit": ["/images/triker/triker-1.jpg", "/images/triker/triker-2.jpg"]
+    },
     specifications: {
       motor: "Bafang 48V250W",
       battery: "48V15Ah LG",
@@ -2569,6 +2667,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     category: ["Hybrid"],
     rating: 4.6,
     reviewCount: 103,
+    colors: ["Denim Blue"],
+    colorImages: {
+      "Denim Blue": "/images/dyno-gt/dyno-gt-1.png"
+    },
+    colorImageArrays: {
+      "Denim Blue": ["/images/dyno-gt/dyno-gt-1.png", "/images/dyno-gt/dyno-gt-2.png"]
+    },
     modelVariants: [
       { name: "Dyno", slug: "jobobike-dyno", price: 33999 },
       { name: "Dyno GT", slug: "jobobike-dyno-gt", price: 34999 }

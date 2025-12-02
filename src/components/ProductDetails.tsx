@@ -235,21 +235,32 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
             )}
             
             {/* COLOR SELECTOR - Mobile */}
-            {product.colors && product.colors.length > 1 && (
+            {product.colors && product.colors.length >= 1 && (
               <div className="mt-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-1">
                   {product.colors.map((color) => {
                     const colorMap: { [key: string]: string } = {
                       "Svart": "#000000",
                       "Hvit": "#FFFFFF",
                       "Grå": "#808080",
+                      "Dark Grey": "#3D3D3D",
+                      "Graphite Grey": "#4A4A4A",
+                      "Grayish Blue": "#6B8E9E",
+                      "Denim Blue": "#1560BD",
+                      "Beige": "#F5F5DC",
+                      "Light Blue": "#87CEEB",
+                      "Light Green": "#90EE90",
+                      "Silver Gray": "#C0C0C0",
+                      "Orange": "#FF8C00",
                       "Grønn": "#22c55e",
                       "Lys Grønn": "#90EE90",
+                      "Parrot Green": "#c9df8a",
+                      "Mint Cream": "#F5FFFA",
                       "Blå": "#3b82f6",
                       "Rød": "#ef4444",
                       "Jungle Green": "#006400",
-                      "Black Olive": "#3b3c36",
+                      "Black Olive": "#2e372e",
                       "Special": "#ef4444",
                       "Peach": "#FFDAB9"
                     };
@@ -277,6 +288,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                     );
                   })}
                 </div>
+                <p className="text-xs text-gray-600 mt-2">(Faktiske farger kan avvike noe fra bildene)</p>
               </div>
             )}
           </div>
@@ -605,21 +617,32 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
             )}
 
             {/* COLOR SELECTOR - Desktop */}
-            {product.colors && product.colors.length > 1 && (
+            {product.colors && product.colors.length >= 1 && (
               <div className="mt-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Farge:</label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-1">
                   {product.colors.map((color) => {
                     const colorMap: { [key: string]: string } = {
                       "Svart": "#000000",
                       "Hvit": "#FFFFFF",
                       "Grå": "#808080",
+                      "Dark Grey": "#3D3D3D",
+                      "Graphite Grey": "#4A4A4A",
+                      "Grayish Blue": "#6B8E9E",
+                      "Denim Blue": "#1560BD",
+                      "Beige": "#F5F5DC",
+                      "Light Blue": "#87CEEB",
+                      "Light Green": "#90EE90",
+                      "Silver Gray": "#C0C0C0",
+                      "Orange": "#FF8C00",
                       "Grønn": "#22c55e",
                       "Lys Grønn": "#90EE90",
+                      "Parrot Green": "#c9df8a",
+                      "Mint Cream": "#F5FFFA",
                       "Blå": "#3b82f6",
                       "Rød": "#ef4444",
                       "Jungle Green": "#006400",
-                      "Black Olive": "#3b3c36",
+                      "Black Olive": "#2e372e",
                       "Special": "#ef4444",
                       "Peach": "#FFDAB9"
                     };
@@ -647,6 +670,7 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                     );
                   })}
                 </div>
+                <p className="text-xs text-gray-600 mt-2">(Faktiske farger kan avvike noe fra bildene)</p>
               </div>
             )}
 
@@ -894,41 +918,41 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
             return false;
           });
           
-          const hasVariantsAndColors = hasVariants && product.colors && product.colors.length > 1;
+          const hasVariantsAndColors = (hasVariants && product.colors && product.colors.length > 1) || (product.colors && product.colors.length >= 2);
           const additionalProducts = eligibleProducts.filter(p => {
             const variantSlugs = p.modelVariants?.map(v => v.slug) || [p.slug];
             return !variantSlugs.some(slug => usedVariantFamilies.has(slug));
-          }).slice(0, hasVariantsAndColors ? 4 : 2);
+          }).slice(0, 4);
           
           const availableAds = [bestseller, popular, ...additionalProducts].filter(Boolean) as typeof PRODUCTS_DATA;
-          const displayAds = availableAds.slice(0, hasVariantsAndColors ? 6 : 3);
+          const displayAds = availableAds.slice(0, 6);
           
           return displayAds.length > 0 && (
             <>
-              <div className={`hidden lg:block absolute left-8 ${hasVariantsAndColors ? 'top-[720px]' : 'top-[750px]'} z-10 mt-20 pl-4`}>
+              <div className="hidden lg:block absolute left-8 top-[720px] z-10 mt-20 pl-4">
                 <h2 className="text-xl font-bold text-[#12b190] mb-4">Andre kjøpte også</h2>
               </div>
-              <div className={`hidden lg:block absolute left-8 ${hasVariantsAndColors ? 'top-[760px]' : 'top-[790px]'} z-10 mt-20 pl-4`}>
-                <div className={`grid gap-3 ${hasVariantsAndColors ? 'grid-cols-3 grid-rows-2 w-[650px]' : 'grid-cols-3 w-[650px]'}`}>
+              <div className="hidden lg:block absolute left-8 top-[760px] z-10 mt-20 pl-4">
+                <div className="grid gap-3 grid-cols-3 grid-rows-2 w-[650px]">
                   {displayAds.map((ad) => {
                     return (
                       <Link key={ad.slug} href={`/products/${ad.slug}`} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100">
-                        <div className={`relative bg-white p-4 ${hasVariantsAndColors ? 'h-28' : 'h-40'}`}>
+                        <div className="relative bg-white p-4 h-28">
                           <Image src={ad.image} alt={ad.name} width={150} height={150} className="w-full h-full object-contain" />
                         </div>
-                        <div className={`border-t border-gray-100 ${hasVariantsAndColors ? 'p-2' : 'p-4'}`}>
+                        <div className="border-t border-gray-100 p-2">
                           <div className="flex items-center gap-1 mb-1">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <Star key={star} className={`w-3 h-3 ${star <= (ad.rating || 5) ? 'fill-[#12b190] text-[#12b190]' : 'fill-gray-200 text-gray-200'}`} />
                             ))}
                             <span className="text-xs text-gray-600 ml-1">({ad.reviewCount || 0})</span>
                           </div>
-                          <h3 className={`font-semibold text-gray-900 mb-2 line-clamp-2 leading-snug ${hasVariantsAndColors ? 'text-xs' : 'text-sm'}`}>{ad.name}</h3>
+                          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 leading-snug text-xs">{ad.name}</h3>
                           <div className="flex items-center gap-2">
                             {ad.originalPrice !== ad.price && (
                               <span className="text-xs text-red-500 line-through">{formatCurrency(ad.originalPrice).replace(' kr', ',-')}</span>
                             )}
-                            <p className={`font-bold text-gray-900 ${hasVariantsAndColors ? 'text-sm' : 'text-base'}`}>{formatCurrency(ad.price).replace(' kr', ',-')}</p>
+                            <p className="font-bold text-gray-900 text-sm">{formatCurrency(ad.price).replace(' kr', ',-')}</p>
                           </div>
                         </div>
                       </Link>

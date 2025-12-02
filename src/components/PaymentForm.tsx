@@ -432,11 +432,6 @@ export default function PaymentForm() {
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
                             >
                                 <option>Norge</option>
-                                <option>Sverige</option>
-                                <option>Danmark</option>
-                                <option>Finland</option>
-                                <option>Tyskland</option>
-                                <option>Nederland</option>
                             </select>
                         </div>
 

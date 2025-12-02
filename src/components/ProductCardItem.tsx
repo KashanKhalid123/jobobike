@@ -75,8 +75,8 @@ export default function ProductCardItem({
             JULE SALG
           </div>
         )}
-        {baseProduct.badge !== 'CHRISTMAS SALE' && baseProduct.originalPrice && baseProduct.originalPrice !== baseProduct.price && (
-          <div className="absolute top-2 left-2 bg-red-600 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[8px] sm:text-xs font-semibold">
+        {baseProduct.badge !== 'CHRISTMAS SALE' && baseProduct.originalPrice && baseProduct.originalPrice !== baseProduct.price && !isOutOfStock && (
+          <div className="absolute top-2 right-2 bg-red-600 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[8px] sm:text-xs font-semibold">
             -{Math.round(((baseProduct.originalPrice - baseProduct.price) / baseProduct.originalPrice) * 100)}%
           </div>
         )}
@@ -138,7 +138,7 @@ export default function ProductCardItem({
                           ? 'border-[#12b190] scale-110'
                           : 'border-gray-300 hover:border-gray-400'
                       }`}
-                      style={{ backgroundColor: color.toLowerCase() === 'svart' ? '#000' : color.toLowerCase() === 'hvit' ? '#fff' : color.toLowerCase() === 'grå' ? '#808080' : color.toLowerCase() === 'grønn' ? '#22c55e' : color.toLowerCase() === 'blå' ? '#3b82f6' : color.toLowerCase() === 'peach' ? '#ffd7be' : '#ccc' }}
+                      style={{ backgroundColor: color.toLowerCase() === 'svart' ? '#000' : color.toLowerCase() === 'hvit' ? '#fff' : color.toLowerCase() === 'grå' ? '#808080' : color.toLowerCase() === 'dark grey' ? '#3D3D3D' : color.toLowerCase() === 'graphite grey' ? '#4A4A4A' : color.toLowerCase() === 'grayish blue' ? '#6B8E9E' : color.toLowerCase() === 'denim blue' ? '#1560BD' : color.toLowerCase() === 'beige' ? '#F5F5DC' : color.toLowerCase() === 'light blue' ? '#87CEEB' : color.toLowerCase() === 'light green' ? '#90EE90' : color.toLowerCase() === 'silver gray' ? '#C0C0C0' : color.toLowerCase() === 'orange' ? '#FF8C00' : color.toLowerCase() === 'grønn' ? '#22c55e' : color.toLowerCase() === 'parrot green' ? '#c9df8a' : color.toLowerCase() === 'mint cream' ? '#F5FFFA' : color.toLowerCase() === 'blå' ? '#3b82f6' : color.toLowerCase() === 'peach' ? '#ffd7be' : color.toLowerCase() === 'black olive' ? '#2e372e' : color.toLowerCase() === 'jungle green' ? '#006400' : color.toLowerCase() === 'special' ? '#ef4444' : '#ccc' }}
                       title={color}
                       aria-label={`Select ${color} color`}
                     />
