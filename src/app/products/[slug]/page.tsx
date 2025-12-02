@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       description: product.description,
       images: [product.image],
       url: `https://jobobike.no/products/${slug}`,
-      type: 'product',
     },
   };
 }
