@@ -65,12 +65,18 @@ export async function POST(request: NextRequest) {
       }
 
       // Calculate shipping per item
-      const shippingTotal = items.reduce((sum, item) => {
+      let shippingTotal = items.reduce((sum, item) => {
         const weight = item.weight || getProductWeight(item.id);
         const quantity = item.quantity || 1;
         const itemShipping = weight > 0 && weight <= 50 ? (440 + 28 * (weight - 1)) : 0;
         return sum + (itemShipping * quantity);
       }, 0);
+
+      // Free shipping for orders over 3000 kr
+      if (productTotal >= 300000) { // 3000 kr in øre
+        shippingTotal = 0;
+        console.log('🎉 Free shipping applied (order over 3000 kr)');
+      }
 
       const total = productTotal + Math.round(shippingTotal * 100);
       console.log('âœ… Product total:', productTotal, 'Shipping:', Math.round(shippingTotal * 100), 'Total:', total);

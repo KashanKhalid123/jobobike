@@ -120,7 +120,9 @@ export default function SuccessClient() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">Bestillings-ID:</span>
-                  <span className="font-mono text-xs break-all text-gray-900">{paymentIntent.id}</span>
+                  <span className="font-mono text-sm break-all text-gray-900">
+                    {paymentIntent.metadata?.order_id || paymentIntent.id}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">Status:</span>
