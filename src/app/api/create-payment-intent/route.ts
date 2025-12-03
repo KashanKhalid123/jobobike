@@ -106,6 +106,14 @@ export async function POST(request: NextRequest) {
       metadata[`${prefix}_quantity`] = (item.quantity || 1).toString();
       metadata[`${prefix}_weight`] = (item.weight || getProductWeight(item.id)).toString();
       
+      // Add variant and color if available
+      if (item.variant) {
+        metadata[`${prefix}_variant`] = item.variant;
+      }
+      if (item.color) {
+        metadata[`${prefix}_color`] = item.color;
+      }
+      
       if (item.isPackage && item.packageItems) {
         metadata[`${prefix}_is_package`] = 'true';
         metadata[`${prefix}_package_count`] = item.packageItems.length.toString();

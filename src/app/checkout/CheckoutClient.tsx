@@ -86,7 +86,9 @@ export default function CheckoutClient() {
           price: item.price,
           originalPrice: (item as any).originalPrice || item.price,
           category: item.category || 'general',
-          weight: item.weight || getProductWeight(item.id)
+          weight: item.weight || getProductWeight(item.id),
+          ...(item.variant && { variant: item.variant }),
+          ...(item.color && { color: item.color })
         }))
       };
       
