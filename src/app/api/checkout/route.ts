@@ -23,8 +23,17 @@ export async function POST(req: Request) {
         price_data: {
           currency: "nok",
           product_data: {
-            name: item.size ? `${item.name} (Størrelse: ${item.size})` : item.name,
-            metadata: item.size ? { size: item.size } : {},
+            name: item.name,
+            description: [
+              item.quantity && `Antall: ${item.quantity}`,
+              item.variant && `Variant: ${item.variant}`,
+              item.color && `Farge: ${item.color}`,
+            ].filter(Boolean).join(' | '),
+            metadata: {
+              quantity: item.quantity?.toString() || '1',
+              ...(item.variant && { variant: item.variant }),
+              ...(item.color && { color: item.color }),
+            },
           },
           unit_amount: Math.round(item.price * 100), // øre
         },

@@ -13,6 +13,8 @@ export interface CartItem {
   quantity: number;
   category?: string[];
   size?: string;
+  variant?: string;
+  color?: string;
   weight?: number; // weight in kg
 }
 

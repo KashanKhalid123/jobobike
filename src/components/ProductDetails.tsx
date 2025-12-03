@@ -468,7 +468,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               onClick={() => {
                 if (!isProductOutOfStock) {
                   const weight = getProductWeight(product.id, product.specifications.weight);
-                  addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
+                  addToCart({
+                    ...product, 
+                    originalPrice: product.originalPrice, 
+                    weight,
+                    color: selectedColor || undefined,
+                    variant: hasVariants ? combinedProduct!.variants[selectedVariantIndex].variantName : undefined
+                  }, quantity);
                   selectedAccessories.forEach(acc => {
                     addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                   });
@@ -487,7 +493,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
               onClick={() => {
                 if (!isProductOutOfStock) {
                   const weight = getProductWeight(product.id, product.specifications.weight);
-                  addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
+                  addToCart({
+                    ...product, 
+                    originalPrice: product.originalPrice, 
+                    weight,
+                    color: selectedColor || undefined,
+                    variant: hasVariants ? combinedProduct!.variants[selectedVariantIndex].variantName : undefined
+                  }, quantity);
                   selectedAccessories.forEach(acc => {
                     addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                   });
@@ -867,7 +879,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 onClick={() => {
                   if (!isProductOutOfStock) {
                     const weight = getProductWeight(product.id, product.specifications.weight);
-                    addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
+                    addToCart({
+                      ...product, 
+                      originalPrice: product.originalPrice, 
+                      weight,
+                      color: selectedColor || undefined,
+                      variant: hasVariants ? combinedProduct!.variants[selectedVariantIndex].variantName : undefined
+                    }, quantity);
                     selectedAccessories.forEach(acc => {
                       addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                     });
@@ -886,7 +904,13 @@ export default function ProductDetails({ product: singleProduct, combinedProduct
                 onClick={() => {
                   if (!isProductOutOfStock) {
                     const weight = getProductWeight(product.id, product.specifications.weight);
-                    addToCart({...product, originalPrice: product.originalPrice, weight}, quantity);
+                    addToCart({
+                      ...product, 
+                      originalPrice: product.originalPrice, 
+                      weight,
+                      color: selectedColor || undefined,
+                      variant: hasVariants ? combinedProduct!.variants[selectedVariantIndex].variantName : undefined
+                    }, quantity);
                     selectedAccessories.forEach(acc => {
                       addToCart({...acc, originalPrice: acc.price, weight: 0.5}, 1);
                     });
